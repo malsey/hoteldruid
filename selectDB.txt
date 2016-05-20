@@ -1,0 +1,3 @@
+selecteer prijs, naam van een extra cost
+SELECT nomecostoagg valore_ca FROM ntariffe+(year);
+

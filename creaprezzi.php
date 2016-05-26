@@ -440,7 +440,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"modifica_costi.php
 <input type=\"hidden\" name=\"idntariffe\" value=\"$idntariffe\">
 <input type=\"hidden\" name=\"origine\" value=\"$pag#ins_costi_agg\">
 ".mex("Il costo aggiuntivo",$pag)." \"$nomecostoagg\" ".mex("è stato inserito",$pag).".
- <input class=\"sbutton\" type=\"submit\" value=\"".mex("Modifica il costo",$pag)."\">
+ <button class=\"exco\" type=\"submit\"><div>".mex("Modifica il costo",$pag)."</div></button>
 </div></form><br><br>";
 aggiorna_privilegi_ins_costo($idntariffe,$tableprivilegi,$id_utente,$anno,$attiva_costi_agg_consentiti,$priv_ins_costi_agg,$utenti_gruppi);
 $idntariffe++;
@@ -450,7 +450,7 @@ unlock_tabelle($tabelle_lock);
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"creaprezzi.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"OK\"><br>
+<button class=\"cont\" type=\"submit\"><div>OK</div></button><br>
 </div></form>";
 } # fine if ($importa_costo and $priv_ins_costi_agg != "n")
 
@@ -595,7 +595,7 @@ unlock_tabelle($tabelle_lock);
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"OK\"><br>
+<button class=\"cont\" type=\"submit\"><div>OK</div></button><br>
 </div></form>";
 
 } # fine if (($modificacaparra or $modificacommissioni or $modificacommper or $modificatasse) and $priv_mod_tariffe != "n")
@@ -1042,13 +1042,13 @@ echo "<label><input type=\"radio\" id=\"li_s\" name=\"limite_ca\" value=\"s\"$ch
 if ($origine) $action = $origine;
 else $action = $pag;
 echo "<div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci il costo aggiuntivo",$pag)."\">
+<button class=\"aexc\" type=\"submit\"><div>".mex("Inserisci il costo aggiuntivo",$pag)."</div></button>
 </div></div></form>
 <br><hr style=\"width: 95%\"><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"".mex("Torna indietro",$pag)."\"><br>
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button><br>
 </div></form><br><br><br>";
 } # fine if (!$inseriscicosti)
 
@@ -2446,12 +2446,12 @@ echo "</div></form>
 <input type=\"hidden\" name=\"idntariffe\" value=\"".($idntariffe - 1)."\">
 <input type=\"hidden\" name=\"origine\" value=\"$pag#ins_costi_agg\">
 ".mex("Il costo aggiuntivo",$pag)." \"".stripslashes($nomecostoagg)."\" ".mex("è stato inserito",$pag).".
- <input class=\"sbutton\" type=\"submit\" value=\"".mex("Modifica il costo",$pag)."\">
+ <button class=\"exco\" type=\"submit\"><div>".mex("Modifica il costo",$pag)."</div></button>
 </div></form><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("OK",$pag)."\"><br>
+<button class=\"cont\" type=\"submit\"><div>".mex("OK",$pag)."</div></button><br>
 </div></form>";
 } # fine if ($passo == 12)
 
@@ -2463,8 +2463,8 @@ else echo mex("Errore nei valori inseriti",$pag).".<br>";
 
 if ($passo != 12 or $errore == "SI") {
 echo "<input type=\"hidden\" name=\"passo\" value=\"$passo\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"< ".mex("indietro",$pag)."\">";
-if ($errore != "SI") echo "<input class=\"sbutton\" type=\"submit\" name=\"avanti\" value=\"".mex("avanti",$pag)." >\">";
+<button class=\"prev\" type=\"submit\" name=\"indietro\" value=\"1\"><div>".mex("indietro",$pag)."</div></button>";
+if ($errore != "SI") echo "<button class=\"next\" type=\"submit\" name=\"avanti\" value=\"1\"><div>".mex("avanti",$pag)."</div></button>";
 echo "</div></form><br>";
 } # fine if ($passo != 12 or $errore == "SI")
 
@@ -2598,7 +2598,7 @@ echo "
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tariffa_selected\" value=\"$num_tariffa\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"OK\"><br>
+<button class=\"cont\" type=\"submit\"><div>OK</div></button><br>
 </div></form>";
 } # fine if ($inserisci_settimanalmente and $priv_mod_tariffe != "n")
 
@@ -2756,7 +2756,7 @@ if ($ancora) $action .= "#$ancora";
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"".mex("OK",$pag)."\"><br>
+<button class=\"cont\" type=\"submit\"><div>".mex("OK",$pag)."</div></button><br>
 </div></form>";
 } # fine if ($mostra_ok)
 
@@ -2767,7 +2767,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div>
 if ($mostra_form_iniziale != "NO") {
 
 
-echo "<h4>".mex("Inserisci i prezzi per l'anno",$pag)." $anno</h4>
+echo "<h4 id=\"h_ipri\"><span>".mex("Inserisci i prezzi per l'anno",$pag)." $anno</span></h4>
 <br><hr style=\"width: 95%\">";
 
 $dati_tariffe = dati_tariffe($tablenometariffe);
@@ -2778,9 +2778,10 @@ echo "<table cellpadding=\"0\" cellspacing=\"0\"><tr><td style=\"height: 6px;\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"aggiorna_qualcosa\" value=\"SI\">
 <input type=\"hidden\" name=\"origine\" value=\"./creaprezzi.php\">
+<input type=\"hidden\" name=\"cambianumerotariffe\" value=\"1\">
 ".mex("Cambia il numero delle tariffe","personalizza.php")." ".mex("per l'anno","personalizza.php")." $anno
  ".mex("a","personalizza.php")." <input type=\"text\" name=\"nuovo_numero_tariffe\" size=\"5\" value=\"".$dati_tariffe['num']."\">
-<input class=\"sbutton\" type=\"submit\" name=\"cambianumerotariffe\" value=\"".mex("Cambia","personalizza.php")."\">
+<button class=\"ipri\" type=\"submit\"><div>".mex("Cambia","personalizza.php")."</div></button>
 </div></form></td><td style=\"width: 50px;\"></td><td>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"./personalizza.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
@@ -2788,7 +2789,7 @@ echo "<table cellpadding=\"0\" cellspacing=\"0\"><tr><td style=\"height: 6px;\">
 <input type=\"hidden\" name=\"aggiorna_qualcosa\" value=\"SI\">
 <input type=\"hidden\" name=\"cambia_ord_tariffe\" value=\"SI\">
 <input type=\"hidden\" name=\"origine\" value=\"./creaprezzi.php\">
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("cambia l'ordine delle tariffe","personalizza.php"))."\">
+<button class=\"xpri\" type=\"submit\"><div>".ucfirst(mex("cambia l'ordine delle tariffe","personalizza.php"))."</div></button>
 </div></form></td></tr><tr><td style=\"height: 6px;\"></td></tr></table>
 <hr style=\"width: 95%\">";
 } # fine if ($id_utente == 1)
@@ -2833,7 +2834,7 @@ document.getElementById('nometariffa').value = tariffa;
 ".mex("Nome della",$pag)." <select name=\"tipotariffa\" id=\"tariffa_cambia_nome\" onchange=\"aggiorna_nome_tariffa()\">
 <option value=\"\">----</option>
 $lista_opt_tariffe</select>: <input type=\"text\" id=\"nometariffa\" name=\"nometariffa\" size=\"30\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Cambia",$pag)."\">
+<button class=\"edit\" type=\"submit\"><div>".mex("Cambia",$pag)."</div></button>
 </div></form><table><tr><td style=\"height: 5px;\"></td></tr></table>
 <hr style=\"width: 95%\">";
 
@@ -2958,7 +2959,8 @@ return false;
 } // fine function elim_lin_tar
 -->
 </script>
-<input class=\"sbutton\" type=\"submit\" name=\"modifica\" value=\"".mex("inserisci o modifica i prezzi",$pag)."\">
+<input type=\"hidden\" name=\"modifica\" value=\"1\">
+<button class=\"ipri\" type=\"submit\"><div>".mex("inserisci o modifica i prezzi",$pag)."</div></button>
 </div></form><br>
 <hr style=\"width: 95%\">";
 /*
@@ -3053,7 +3055,8 @@ if ($giorno_vedi_ini_sett == 7) $giorno_vedi_ini_sett = 0;
 } # fine for $num1
 
 echo "</div><table><tr><td style=\"height: 2px;\"></td></tr></table>
-<input class=\"sbutton\" type=\"submit\" name=\"inserisci_settimanalmente\" value=\"".mex("inserisci o modifica i prezzi",$pag)."\">
+<input type=\"hidden\" name=\"inserisci_settimanalmente\" value=\"1\">
+<button class=\"ipri\" type=\"submit\"><div>".mex("inserisci o modifica i prezzi",$pag)."</div></button>
 </div></form><br>
 <hr style=\"width: 95%\">";
 } # fine if ($tipo_periodi == "g")
@@ -3096,7 +3099,8 @@ echo "</select></span> (".mex("arrotondato a",$pag)."
 <option value=\"p\">".mex("al prezzo per persona",$pag)."</option>
 <option value=\"2\">".mex("ad entrambi i prezzi",$pag)."</option>
 </select>
-<input class=\"sbutton\" type=\"submit\" name=\"importa_tariffa\" value=\"".mex("importa",$pag)."\">
+<input type=\"hidden\" name=\"importa_tariffa\" value=\"1\">
+<button class=\"xpri\" type=\"submit\"><div>".mex("importa",$pag)."</div></button>
 </div></form><table><tr><td style=\"height: 6px;\"></td></tr></table>";
 
 for ($num1 = 1 ; $num1 <= $dati_tariffe['num'] ; $num1++) {
@@ -3121,7 +3125,7 @@ if ($dati_tariffe[$tariffa]['parte_prezzo'] == "f") echo " ".mex("al prezzo fiss
 if ($dati_tariffe[$tariffa]['parte_prezzo'] == "p") echo " ".mex("al prezzo per persona",$pag)."";
 if ($dati_tariffe[$tariffa]['parte_prezzo'] == "2") echo " ".mex("ad entrambi i prezzi",$pag)."";
 } # fine if ($dati_tariffe[$tariffa]['val_importa'])
-echo " <input class=\"sbutton\" type=\"submit\" value=\"".mex("cancella",$pag)."\">
+echo " <button class=\"cncm\" type=\"submit\"><div>".mex("cancella",$pag)."</div></button>
 </div></form>";
 } # fine if ($dati_tariffe[$tariffa]['importa_prezzi'])
 } # fine if ($attiva_tariffe_consentite == "n" or $tariffe_consentite_vett[$num1] == "SI")
@@ -3163,7 +3167,8 @@ else $selected = "";
 echo "<option value=\"s\"$selected>".mex("$parola_settimanale",$pag)."</option>
 </select>.
 </div><br><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"inseriscicosti\" value=\"".mex("Procedi nell'inserimento del nuovo costo aggiuntivo",$pag)."\">
+<input type=\"hidden\" name=\"inseriscicosti\" value=\"1\">
+<button class=\"aexc\" type=\"submit\"><div>".mex("Procedi nell'inserimento del nuovo costo aggiuntivo",$pag)."</div></button>
 </div></div></form><br>
 <hr style=\"width: 95%\">";
 
@@ -3186,7 +3191,7 @@ echo "<table><tr><td style=\"height: 6px;\"></td></tr></table>
  <select name=\"costo_importa\">
 $opt_costi_agg
 </select>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("importa",$pag)."\">.
+<button class=\"xexc\" type=\"submit\"><div>".mex("importa",$pag)."</div></button>.
 <table><tr><td style=\"height: 6px;\"></td></tr></table>
 </div></form><hr style=\"width: 95%\">";
 } # fine if ($opt_costi_agg)
@@ -3203,7 +3208,7 @@ echo "<table><tr><td style=\"height: 6px;\"></td></tr></table>
 <option value=\"letto_agg\">".mex("letto aggiuntivo",$pag)."</option>
 <option value=\"off_spec\">".mex("offerta speciale",$pag)."</option>
 </select>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("inserisci",$pag)."\">.
+<button class=\"aexc\" type=\"submit\"><div>".mex("inserisci",$pag)."</div></button>.
 <table><tr><td style=\"height: 6px;\"></td></tr></table>
 </div></form><hr style=\"width: 95%\">";
 
@@ -3236,7 +3241,8 @@ for ($num1 = 1 ; $num1 <= 10 ; $num1++) echo "<option value=\"$num1\">$num1</opt
 echo "</select><label for=\"tipo_cap_gio\"> ".mex("$parola_settimane",$pag).".</label></td></tr>
 </table>
 <table><tr><td style=\"height: 2px;\"></td></tr></table><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"modificacaparra\" value=\"".mex("Inserisci o modifica la caparra",$pag)."\">
+<input type=\"hidden\" name=\"modificacaparra\" value=\"1\">
+<button class=\"taxs\" type=\"submit\"><div>".mex("Inserisci o modifica la caparra",$pag)."</div></button>
 </div></div></form><br>
 <hr style=\"width: 95%\">";
 } # fine if ($priv_mod_tariffe != "n" and $lista_opt_tariffe)
@@ -3266,7 +3272,7 @@ $lista_opt_tariffe
 <input type=\"text\" name=\"commissioni_val\" size=\"5\"><label for=\"tipo_com_val\"> $Euro ".mex("$parola_alla $parola_settimana",$pag).".
 </label></td></tr></table>
 <table><tr><td style=\"height: 2px;\"></td></tr></table><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci o modifica le commissioni normali",$pag)."\">
+<button class=\"taxs\" type=\"submit\"><div>".mex("Inserisci o modifica le commissioni normali",$pag)."</div></button>
 </div></div></form><br><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"creaprezzi.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
@@ -3294,7 +3300,7 @@ echo ":</td><td onclick=\"document.getElementById('tipo_com_percp').checked='1'\
 <input type=\"text\" name=\"commissioni_val\" size=\"5\"><label for=\"tipo_com_valp\"> $Euro ".mex("$parola_alla $parola_settimana",$pag).".
 </label></td></tr></table>
 <table><tr><td style=\"height: 2px;\"></td></tr></table><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci o modifica le commissioni in questo periodo",$pag)."\">
+<button class=\"txpr\" type=\"submit\"><div>".mex("Inserisci o modifica le commissioni in questo periodo",$pag)."</div></button>
 </div></div></form><br>
 <hr style=\"width: 95%\">";
 } # fine if ($priv_mod_tariffe != "n" and $lista_opt_tariffe)
@@ -3312,7 +3318,7 @@ if ($id_utente == 1) echo "<option value=\"tutte\">".mex("tutte le tariffe",$pag
 echo "$lista_opt_tariffe
 </select>:
  <input type=\"text\" name=\"tasse_percent\" size=\"3\" maxlength=\"6\">%
- <input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci o modifica le tasse",$pag)."\">
+ <button class=\"taxs\" type=\"submit\"><div>".mex("Inserisci o modifica le tasse",$pag)."</div></button>
 </div></form>
 <small>(".mex("tutti i prezzi delle tariffe si intendono con tasse già incluse",$pag).")</small><br><br>";
 
@@ -3330,7 +3336,7 @@ $arrotond_tasse = esegui_query("select * from $tablepersonalizza where idpersona
 $arrotond_tasse = virgola_in_num(risul_query($arrotond_tasse,0,'valpersonalizza'),$stile_soldi);
 echo ucfirst(mex("valore a cui arrotondare le percentuali delle tasse","personalizza.php")).":
  <input type=\"text\" name=\"nuovo_arrotond_tasse\" size=\"4\" value=\"$arrotond_tasse\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Cambia","personalizza.php")."\">
+<button class=\"edit\" type=\"submit\"><div>".mex("Cambia","personalizza.php")."</div></button>
 </div></form><br>";
 } # fine if ($modifica_pers != "NO")
 
@@ -3343,14 +3349,14 @@ echo "<div style=\"text-align: center;\"><br>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"periodi\">
-<input class=\"sbutton\" type=\"submit\" name=\"visualizza\" value=\"".mex("Vedi i prezzi già inseriti",$pag)."\">
+<button class=\"rate\" type=\"submit\"><div>".mex("Vedi i prezzi già inseriti",$pag)."</div></button>
 </div></form><br>";
 } # fine if ($priv_vedi_tab_periodi != "n")
 
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form></div><br>";
 
 

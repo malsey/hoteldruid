@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2012 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2015 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -239,7 +239,7 @@ esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersona
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('aggiunta_tronca_nomi_tab1','1','-2')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('linee_ripeti_date_tab_mesi','1','25')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('mostra_giorni_tab_mesi','1','SI')");
-esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('colori_tab_mesi','1','#99CCD4,#FFEE22,#FF9900,#CC0000')");
+esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('colori_tab_mesi','1','#70C6D4,#FFEA00,#FF9900,#FF3115')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('num_linee_tab2_prenota','1','30')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('nomi_contratti','1','')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('num_righe_tab_tutte_prenota','1','200')");

@@ -23,6 +23,16 @@
 #Funzioni per effettuare il backup
 
 
+# Workaround for Ubuntu Bug #1315888
+if (!function_exists('gzopen') and function_exists('gzopen64')) {
+function gzopen ($arg1,$arg2) { return gzopen64($arg1,$arg2); }
+if (!function_exists('gzread') and function_exists('gzread64')) { function gzread (&$arg1,$arg2) { return gzread64($arg1,$arg2); } }
+if (!function_exists('gzwrite') and function_exists('gzwrite64')) { function gzwrite (&$arg1,$arg2) { return gzwrite64($arg1,$arg2); } }
+if (!function_exists('gzclose') and function_exists('gzclose64')) { function gzclose (&$arg1) { return gzclose64($arg1); } }
+} # fine if (!function_exists('gzopen') and function_exists('gzopen64'))
+
+
+
 function connetti_db_per_backup ($PHPR_DB_TYPE,$PHPR_DB_NAME,$PHPR_DB_HOST,$PHPR_DB_PORT,$PHPR_DB_USER,$PHPR_DB_PASS,$PHPR_LOAD_EXT,$PHPR_TAB_PRE,&$ext_pgsql_caricata,&$ext_mysql_caricata) {
 global $ext_sqlite_caricata;
 
@@ -944,7 +954,8 @@ fwrite($fileaperto,"<?php
 \$PHPR_TAB_PRE = \"$N_PHPR_TAB_PRE\";
 \$PHPR_LOG = \"$phpr_log\";
 ");
-if (defined('C_EXT_DB_DATA_PATH') and C_EXT_DB_DATA_PATH) fwrite($fileaperto,"
+if (defined('C_EXT_DB_DATA_PATH') and C_EXT_DB_DATA_PATH) {
+fwrite($fileaperto,"
 \$HOTELD_DB_TYPE = \"\";
 \$HOTELD_DB_NAME = \"\";
 \$HOTELD_DB_HOST = \"\";
@@ -953,7 +964,10 @@ if (defined('C_EXT_DB_DATA_PATH') and C_EXT_DB_DATA_PATH) fwrite($fileaperto,"
 \$HOTELD_DB_PASS = \"\";
 \$HOTELD_TAB_PRE = \"\";
 require('".C_EXT_DB_DATA_PATH."');
-if (\$HOTELD_DB_TYPE) \$PHPR_DB_TYPE = \$HOTELD_DB_TYPE;
+if (\$HOTELD_DB_TYPE) {
+\$PHPR_DB_TYPE = \$HOTELD_DB_TYPE;
+if (\$PHPR_DB_TYPE == \"mysql\" and @function_exists('mysqli_connect')) \$PHPR_DB_TYPE = \"mysqli\";
+}
 if (\$HOTELD_DB_NAME) \$PHPR_DB_NAME = \$HOTELD_DB_NAME;
 if (\$HOTELD_DB_HOST) \$PHPR_DB_HOST = \$HOTELD_DB_HOST;
 if (strcmp(\$HOTELD_DB_PORT,\"\")) \$PHPR_DB_PORT = \$HOTELD_DB_PORT;
@@ -961,6 +975,17 @@ if (\$HOTELD_DB_USER) \$PHPR_DB_USER = \$HOTELD_DB_USER;
 if (strcmp(\$HOTELD_DB_PASS,\"\")) \$PHPR_DB_PASS = \$HOTELD_DB_PASS;
 if (\$HOTELD_TAB_PRE) \$PHPR_TAB_PRE = \$HOTELD_TAB_PRE;
 ");
+if ($HOTELD_DB_TYPE) {
+$N_PHPR_DB_TYPE = $HOTELD_DB_TYPE;
+if ($N_PHPR_DB_TYPE == "mysql" and @function_exists('mysqli_connect')) $N_PHPR_DB_TYPE = "mysqli";
+} # fine if ($HOTELD_DB_TYPE)
+if ($HOTELD_DB_NAME) $N_PHPR_DB_NAME = $HOTELD_DB_NAME;
+if ($HOTELD_DB_HOST) $N_PHPR_DB_HOST = $HOTELD_DB_HOST;
+if (strcmp($HOTELD_DB_PORT,"")) $N_PHPR_DB_PORT = $HOTELD_DB_PORT;
+if ($HOTELD_DB_USER) $N_PHPR_DB_USER = $HOTELD_DB_USER;
+if (strcmp($HOTELD_DB_PASS,"")) $N_PHPR_DB_PASS = $HOTELD_DB_PASS;
+if ($HOTELD_TAB_PRE) $N_PHPR_TAB_PRE = $HOTELD_TAB_PRE;
+} # fine if (defined('C_EXT_DB_DATA_PATH') and C_EXT_DB_DATA_PATH)
 fwrite($fileaperto,"?>");
 fclose($fileaperto);
 @chmod(C_DATI_PATH."/dati_connessione.php", 0640);

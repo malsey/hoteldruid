@@ -76,6 +76,7 @@ $trad_var['sconto_senza_tasse_p'] = 'descuento_sin_tasas_p';
 $trad_var['nome_costo_agg'] = 'nombre_coste_agna';
 $trad_var['valore_costo_agg'] = 'valor_coste_agna';
 $trad_var['valore_costo_agg_p'] = 'valor_coste_agna_p';
+$trad_var['giorni_costo_agg'] = 'dias_coste_agna';
 $trad_var['valore_tutti_costi_agg'] = 'valor_todos_costes_agnadidos';
 $trad_var['valore_tutti_costi_agg_p'] = 'valor_todos_costes_agnadidos_p';
 $trad_var['tutti_i_costi_agg'] = 'todos_costes_agnadidos';

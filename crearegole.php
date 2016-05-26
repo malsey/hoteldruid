@@ -196,7 +196,7 @@ echo mex("Sei sicuro di voler cancellare tutte le regole del tipo 1",$pag)."?
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"inserisci\" value=\"SI\">
 <input type=\"hidden\" name=\"canc_regola_1\" value=\"$canc_regola_1\">
-<input class=\"sbutton\" type=\"submit\" name=\"gia_stato\" value=\"  ".mex("SI",$pag)."  \"></div></form><br>";
+<button class=\"crul\" type=\"submit\" name=\"gia_stato\" value=\"1\"><div>  ".mex("SI",$pag)."  </div></button></div></form><br>";
 } # fine else if ($gia_stato)
 } # fine if ($canc_regola_1)
 
@@ -351,7 +351,7 @@ if ($tabelle_lock) unlock_tabelle($tabelle_lock);
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"crearegole.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"".mex("Torna indietro",$pag)."\">";
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div>";
 
 if ($aggiorna_ic_disp or $aggiorna_ic_tar) {
 $lock = 1;
@@ -369,8 +369,8 @@ else {
 
 
 # Form iniziale di inserimento
-echo "<br><h4>".mex("Inserisci le regole di assegnazione per le prenotazioni dell'anno",$pag)." $anno
-</h4><br><hr style=\"width: 95%\">";
+echo "<br><h4 id=\"h_irul\"><span>".mex("Inserisci le regole di assegnazione per le prenotazioni dell'anno",$pag)." $anno
+</span></h4><br><hr style=\"width: 95%\">";
 
 $inizio_select = "";
 $fine_select = "";
@@ -400,7 +400,7 @@ mostra_menu_date(C_DATI_PATH."/selectperiodi$anno.$id_utente.php","fineperiodo",
 echo "<br>".mex("motivazione",$pag).":
  <input type=\"text\" name=\"motivazione\" size=\"30\" maxlength=\"30\">
  (".mex("opzionale",$pag).")<br><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"regola_1\" value=\"".mex("Inserisci la regola",$pag)." 1\">
+<button class=\"rlpe\" type=\"submit\" name=\"regola_1\" value=\"1\"><div>".mex("Inserisci la regola",$pag)." 1</div></button>
 </div></div></form>
 <hr style=\"width: 50%; margin-left: 2.5%;\">
 
@@ -429,7 +429,7 @@ mostra_menu_date(C_DATI_PATH."/selectperiodi$anno.$id_utente.php","fineperiodo",
 echo "<br>".mex("motivazione",$pag).":
  <input type=\"text\" name=\"motivazione\" size=\"30\" maxlength=\"30\">
  (".mex("opzionale",$pag).")
- <input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci la regola",$pag)." 1 ".mex("per le tariffe",$pag)."\">
+ <button class=\"rlpe\" type=\"submit\"><div>".mex("Inserisci la regola",$pag)." 1 ".mex("per le tariffe",$pag)."</div></button>
 </div></form>
 <hr style=\"width: 50%; margin-left: 2.5%;\">
 
@@ -437,7 +437,7 @@ echo "<br>".mex("motivazione",$pag).":
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"inserisci\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"canc_regola_1\" value=\"".mex("Cancella tutte le regole di questo tipo",$pag)."\">
+<button class=\"crul\" type=\"submit\" name=\"canc_regola_1\" value=\"1\"><div>".mex("Cancella tutte le regole di questo tipo",$pag)."</div></button>
 </div></form>
 <hr style=\"width: 95%\"><a name=\"regola2\"></a>
 
@@ -666,7 +666,7 @@ document.write('<div id=\"tab_app\" style=\"visibility: hidden;\"><\/div>');
 -->
 </script>
 <div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci o modifica la regola",$pag)." 2\">
+<button class=\"irul\" type=\"submit\"><div>".mex("Inserisci o modifica la regola",$pag)." 2</div></button>
 </div></div></form>
 
 <br><br>
@@ -700,7 +700,7 @@ echo "</select>
  ".mex("assegna automaticamente gli appartamenti",'unit.php')."
  <input type=\"text\" id=\"v2b\" name=\"lista_app\" size=\"15\" onclick=\"nasc_app('b')\"><input class=\"dbutton\" id=\"mappb\" onclick=\"mos_app('b')\" value=\"..\" type=\"button\">
  (".mex("se c'è almeno un appartamento della regola originale compatibile con il numero di persone",'unit.php')."). ";
-echo "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci o modifica questa eccezione alla regola",$pag)." 2\">
+echo "<button class=\"rlpe\" type=\"submit\"><div>".mex("Inserisci o modifica questa eccezione alla regola",$pag)." 2</div></button>
 <script type=\"text/javascript\">
 <!--
 var txt_box = document.getElementById(\"v2b\");
@@ -786,7 +786,7 @@ sel_box.disabled = true;
 -->
 </script>
 <div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"regola_3\" value=\"".mex("Inserisci o modifica la regola",$pag)." 3\">
+<button class=\"irul\" type=\"submit\" name=\"regola_3\" value=\"1\"><div>".mex("Inserisci o modifica la regola",$pag)." 3</div></button>
 </div></div></form><hr style=\"width: 95%\">";
 } # fine if ($num_tutti_utenti > 1)
 
@@ -842,7 +842,7 @@ txt_box.disabled = true;
 -->
 </script>
 <div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"regola_4\" value=\"".mex("Inserisci o modifica la regola",$pag)." 4\">
+<button class=\"irul\" type=\"submit\" name=\"regola_4\" value=\"1\"><div>".mex("Inserisci o modifica la regola",$pag)." 4</div></button>
 </div></div></form><hr style=\"width: 95%\">";
 
 echo "<table><tr><td style=\"height: 6px;\"></td></tr></table>
@@ -858,7 +858,7 @@ echo "<table><tr><td style=\"height: 6px;\"></td></tr></table>
 <option value=\"letto_agg\">".mex("letto aggiuntivo",'creaprezzi.php')."</option>
 <option value=\"off_spec\">".mex("offerta speciale",'creaprezzi.php')."</option>
 </select>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("inserisci",'creaprezzi.php')."\">.
+<button class=\"aexc\" type=\"submit\"><div>".mex("inserisci",'creaprezzi.php')."</div></button>.
 <table><tr><td style=\"height: 6px;\"></td></tr></table>
 </div></form><hr style=\"width: 95%\">";
 
@@ -867,12 +867,12 @@ echo "<div style=\"text-align: center;\"><br>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"regole\">
-<input class=\"sbutton\" type=\"submit\" name=\"visualizza\" value=\"".mex("Vedi le regole già inserite",$pag)."\">
+<button class=\"rule\" type=\"submit\"><div>".mex("Vedi le regole già inserite",$pag)."</div></button>
 </div></form><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 <br></div></form><br></div>";
 
 

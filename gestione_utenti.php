@@ -113,12 +113,12 @@ echo "<input type=\"hidden\" name=\"tipo_pass$id\" value=\"$n_tipo_pass\">";
 } # fine if ($tipo_pass != ${"tipo_pass".$id})
 if ($cambiato == "SI") echo "<hr style=\"width: 45%; margin-left: 0; text-align: left;\">";
 } # fine for $num1
-echo "<input class=\"sbutton\" type=\"submit\" name=\"cont\" value=\"".mex("Continua",$pag)."\">
+echo "<button class=\"musr\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 </div></form><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"gestione_utenti.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form>";
 } # fine if ($continua != "SI")
 
@@ -149,7 +149,7 @@ echo mex("<b>Non</b> è stato effettuato nessun cambiamento",$pag).".<br>";
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"gestione_utenti.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form>";
 } # fine if ($continua == "NO")
 else {
@@ -240,7 +240,7 @@ esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersona
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('aggiunta_tronca_nomi_tab1','$nuovo_id','-2')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('linee_ripeti_date_tab_mesi','$nuovo_id','25')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('mostra_giorni_tab_mesi','$nuovo_id','NO')");
-esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('colori_tab_mesi','$nuovo_id','#99CCD4,#FFEE22,#FF9900,#CC0000')");
+esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('colori_tab_mesi','$nuovo_id','#70C6D4,#FFEA00,#FF9900,#FF3115')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('num_linee_tab2_prenota','$nuovo_id','30')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza) values ('nomi_contratti','$nuovo_id','".aggslashdb($nomi_contr)."')");
 esegui_query("insert into $tablepersonalizza (idpersonalizza,idutente,valpersonalizza_num) values ('num_righe_tab_tutte_prenota','$nuovo_id','200')");
@@ -667,7 +667,7 @@ unlock_tabelle($tabelle_lock);
 
 if ($mostra_tabella_iniziale != "NO") {
 
-echo "<h4>".mex("Gestione degli utenti di hoteldruid",$pag)."</h4><br>";
+echo "<h4 id=\"h_usrs\"><span>".mex("Gestione degli utenti di hoteldruid",$pag)."</span></h4><br>";
 
 $tabelle_lock = "";
 $altre_tab_lock = array("$tableutenti","$tablegruppi","$tablerelgruppi");
@@ -699,7 +699,7 @@ echo "<div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"gestione_utenti.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<table style=\"margin-left: auto; margin-right: auto;\" border=1 cellspacing=1 cellpadding=1>
+<table class=\"usrs\" style=\"margin-left: auto; margin-right: auto;\" border=1 cellspacing=1 cellpadding=1>
 <tr style=\"background-color: $t1color;\"><td align=\"center\">".mex("N°",$pag)."</td>
 <td align=\"center\">".mex("nome",$pag)."</td>
 <td align=\"center\">".mex("login",$pag)."</td>
@@ -767,7 +767,8 @@ echo "</small></td></tr>";
 echo "</table>
 <small>* ".mex("Amministratore",$pag).".&nbsp;&nbsp;&nbsp;
 ** ".mex("Abilitare per usare altri utenti",$pag).".</small><br>
-<input class=\"sbutton\" type=\"submit\" name=\"modifica_utenti\" value=\"".mex("Modifica gli utenti",$pag)."\">
+<input type=\"hidden\" name=\"modifica_utenti\" value=\"1\">
+<button class=\"musr\" type=\"submit\"><div>".mex("Modifica gli utenti",$pag)."</div></button>
 </div></form></div><br>";
 
 if ($num_lista_utenti > 2) {
@@ -800,7 +801,7 @@ echo "<option value=\"gr$id_gruppo\">".mex("del gruppo",$pag)." $nome_gruppo</op
 echo "</select>
 ".mex("dall'utente",$pag)."
 <select name=\"id_utente_esporta\">$option_select_utenti</select>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Importa",$pag)."\">
+<button class=\"xusr\" type=\"submit\"><div>".mex("Importa",$pag)."</div></button>
 </div></form><br>";
 } # fine if ($num_lista_utenti > 2)
 
@@ -815,7 +816,8 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"gestione_utenti.ph
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 ".mex("Aggiungi",$pag)."
  ".mex("un nuovo utente chiamato",$pag)." <input type=\"text\" name=\"nome\" size=\"15\">
-<input class=\"sbutton\" type=\"submit\" name=\"aggiungi_utente\" value=\"".mex("Aggiungi",$pag)."\">
+<input type=\"hidden\" name=\"aggiungi_utente\" value=\"1\">
+<button class=\"ausr\" type=\"submit\"><div>".mex("Aggiungi",$pag)."</div></button>
 </div></form>";
 } # fine if ($aggiungi_utenti != "NO")
 
@@ -823,7 +825,7 @@ echo "<br><div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"personalizza.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 } # fine if ($mostra_tabella_iniziale != "NO")

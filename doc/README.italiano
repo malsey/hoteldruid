@@ -6,7 +6,7 @@
 #                                                 #
 ###################################################
 
-HOTELDRUID versione 2.1.3
+HOTELDRUID versione 2.1.4
 Programma per la gestione di camere di hotel o di affitti 
 settimanali e giornalieri di appartamenti.
 
@@ -342,6 +342,11 @@ puo' cancellare il file abilita_login all'interno della directory
 dati, in questo modo verra' disabilitato il login iniziale e 
 chiunque potra' accedere con i privilegi dell'utente 
 amministratore.
+
+
+RINGRAZIAMENTI
+Grazie a Stan Khodjaev di icojam.com per aver rilasciato il set di 
+icone "Marmalade" nel dominio pubblico.
 
 
 LICENZA D'USO

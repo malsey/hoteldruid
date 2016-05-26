@@ -198,15 +198,15 @@ echo "".mex("Si è sicuri di voler <div style=\"display: inline; color: red;\">c
 <input type=\"hidden\" name=\"idclienti\" value=\"$idclienti\">
 <input type=\"hidden\" name=\"cancella_cliente\" value=\"SI\">
 <input type=\"hidden\" name=\"continua\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("SI",$pag)."\">
-</div></form></td><td>
+<button class=\"ccli\" type=\"submit\"><div>".mex("SI",$pag)."</div></button>
+</div></form></td><td style=\"width: 4px;\"></td><td>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
 <input type=\"hidden\" name=\"origine\" value=\"".htmlspecialchars($origine)."\">
 <input type=\"hidden\" name=\"idclienti\" value=\"$idclienti\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("NO",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("NO",$pag)."</div></button>
 </div></form></td></tr></table>";
 } # fine if ($continua != "SI")
 else {
@@ -225,7 +225,7 @@ echo mex("Cliente cancellato",$pag)."!<br>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form>";
 } # fine else if ($continua != "SI")
 } # fine else if ($prenota_cliente_esistente == "SI")
@@ -603,7 +603,7 @@ echo "<input type=\"hidden\" name=\"c_nome\" value=\"$c_nome\">
 <input type=\"hidden\" name=\"c_cod_fiscale\" value=\"$c_cod_fiscale\">
 <input type=\"hidden\" name=\"c_partita_iva\" value=\"$c_partita_iva\">
 <input type=\"hidden\" name=\"modifica_cliente\" value=\"Continua\">
-<input class=\"sbutton\" type=\"submit\" name=\"modifica_cliente_vedi\" value=\"".mex("Continua",$pag)."\">
+<button class=\"mcli\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 <hr style=\"width: 95%\">
 </div></form>";
 } # fine if ($modifica_cliente != "Continua")
@@ -776,7 +776,7 @@ echo "<div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
 <input type=\"hidden\" name=\"origine\" value=\"".htmlspecialchars($origine)."\">
 <input type=\"hidden\" name=\"idclienti\" value=\"$idclienti\">";
-echo "<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 <br></div></form></div>";
 } # fine if ($mostra_form_modifica_cliente == "NO")
 
@@ -866,7 +866,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"vedi_cc\" value=\"SI\">
 ".ucfirst(mex("password per la visualizzazione delle carte di credito",$pag)).":
  <input type=\"password\" name=\"pass_cc\" value=\"\">
- <input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("invia",$pag))."\">
+ <button class=\"login\" type=\"submit\"><div>".ucfirst(mex("invia",$pag))."</div></button>
 </div></form>";
 } # fine if (!$pass_cc)
 else {
@@ -919,9 +919,9 @@ $d_cognome = risul_query($cliente,0,'cognome');
 $d_nome = risul_query($cliente,0,'nome');
 } # fine if (numlin_query($cliente))
 
-echo "<h4>".ucfirst(mex("carta di credito del cliente",$pag))." $idclienti ($d_cognome";
+echo "<h4 id=\"h_crc\"><span>".ucfirst(mex("carta di credito del cliente",$pag))." $idclienti ($d_cognome";
 if ($d_nome) echo " $d_nome";
-echo ")</h4><br>
+echo ")</span></h4><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
@@ -969,7 +969,7 @@ echo "<tr style=\"background-color: ".rowbgcolor().";\"><td>".mex("CVC",$pag).":
 
 echo "</table>
 <div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("modifica i dati della carta di credito",$pag))."\">
+<button class=\"mcrc\" type=\"submit\"><div>".ucfirst(mex("modifica i dati della carta di credito",$pag))."</div></button>
 </div></div></form>";
 if (numlin_query($dati_carta)) {
 echo "<br><br>
@@ -982,7 +982,7 @@ echo "<br><br>
 <input type=\"hidden\" name=\"vedi_cc\" value=\"SI\">
 <input type=\"hidden\" name=\"id_transazione\" value=\"$id_transazione\">
 <input type=\"hidden\" name=\"cancella_cc\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("cancella questa carta di credito",$pag))."\">
+<button class=\"canc\" type=\"submit\"><div>".ucfirst(mex("cancella questa carta di credito",$pag))."</div></button>
 </div></form>";
 } # fine if (numlin_query($dati_carta))
 } # fine if ($val_decrypt == 'prova')
@@ -998,7 +998,7 @@ echo "<br><br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"idclienti\" value=\"$idclienti\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
 <input type=\"hidden\" name=\"origine\" value=\"".htmlspecialchars($origine)."\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></div></form>";
 } # fine if (numlin_query($cert_cc))
 } # fine if ($_SERVER["HTTPS"] == "on" or $_SERVER["SERVER_PORT"] == "443" or...
@@ -1013,7 +1013,7 @@ else echo "<span class=\"colred\">".mex("I dati della carta di credito possono e
 if ($mostra_form_modifica_cliente != "NO") {
 
 # Form per modificare il cliente.
-echo "<h3>".mex("Modifica i dati del cliente",$pag)." $idclienti</h3><br>
+echo "<h3 id=\"h_mcli\"><span>".mex("Modifica i dati del cliente",$pag)." $idclienti</span></h3><br>
 <hr style=\"width: 95%;\">";
 
 $cliente = esegui_query("select * from $tableclienti where idclienti = '$idclienti'");
@@ -1103,7 +1103,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 echo "<small>".ucfirst(mex("data inserimento",$pag)).": ".str_replace("--","",formatta_data($d_data_inserimento_vedi,$stile_data))."</small>";
 if ($pass_cc) {
 echo "&nbsp;&nbsp;&nbsp;&nbsp;
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".ucfirst(mex("carte di credito",$pag))."\" style=\"font-size: 80%;\">
+<button class=\"crcm\" type=\"submit\" style=\"font-size: 80%;\"><div>".ucfirst(mex("carte di credito",$pag))."</div></button>
 </div></form>";
 } # fine if ($pass_cc)
 echo "</td></tr></table>";
@@ -1448,7 +1448,8 @@ echo "<input type=\"hidden\" name=\"d_campo_pers$num1\" value=\"".$d_campi_pers[
 } # fine for $num1
 
 
-echo "<input class=\"sbutton\" id=\"modi\" type=\"submit\" name=\"modifica_cliente\" value=\"".mex("Modifica i dati del cliente",$pag)."\">
+echo "<input type=\"hidden\" name=\"modifica_cliente\" value=\"1\">
+<button class=\"mcli\" id=\"modi\" type=\"submit\"><div>".mex("Modifica i dati del cliente",$pag)."</div></button>
 </div></div></form>";
 
 if ($origine_vecchia) $origine = $origine_vecchia;
@@ -1514,7 +1515,7 @@ echo "<option value=\"$num_contratto\">$num_contratto_vedi</option>";
 } # fine if ($attiva_contratti_consentiti == "n" or...
 } # fine for $num1
 echo "</select>
- <input class=\"sbutton\" id=\"tcon\" type=\"submit\" value=\"".ucfirst(mex("visualizza",$pag))."\">
+ <button class=\"vdoc\" id=\"tcon\" type=\"submit\"><div>".ucfirst(mex("visualizza",$pag))."</div></button>
 <input type=\"hidden\" id=\"hcon\" value=\"".ucfirst(mex("visualizza il documento",$pag))."\"><br>
 </div></form><hr style=\"width: 95%\">";
 
@@ -1539,18 +1540,28 @@ if ($num_prenotazioni != 0) {
 $prenota_cliente_esistente = "SI";
 $fr_Appartamento = mex("Appartamento",'unit.php');
 if (strlen($fr_Appartamento) > 4) $fr_Appartamento = substr($fr_Appartamento,0,3).".";
-echo "<br><small><b>".mex("Prenotazioni del cliente",$pag)." $d_cognome ".mex("nel",$pag)." $anno_mostra</b></small>
+if ($mobile_device) {
+$class_opt = " class=\"opt\"";
+$class_opt2 = " class=\"opt2\"";
+} # fine if ($mobile_device)
+else {
+$class_opt = "";
+$class_opt2 = "";
+} # fine else if ($mobile_device)
+echo "<br><small id=\"h_clre\"><b>".mex("Prenotazioni del cliente",$pag)." $d_cognome ".mex("nel",$pag)." $anno_mostra</b></small>
 <table class=\"t1\" style=\"background-color: $t1color; margin-left: auto; margin-right: auto;\" width=3 border=\"$t1border\" cellspacing=\"$t1cellspacing\" cellpadding=\"$t1cellpadding\">
 <tr><td>N°</td>
 <td>".mex("Cognome_del_cliente",$pag)."</td>
-<td>".mex("Data_iniziale",$pag)."</td>
-<td>".mex("Data_finale",$pag)."</td>
+<td>".mex("Data_iniziale",$pag);
+if (!$mobile_device) echo "</td><td>";
+else echo "&nbsp;/&nbsp;<span class=\"smlscr\"> </span>";
+echo mex("Data_finale",$pag)."</td>
 <td><small>".mex("Tariffa_completa",$pag)."</small></td>
-<td>".mex("Caparra",$pag)."</td>
+<td$class_opt>".mex("Caparra",$pag)."</td>
 <td>".mex("Pagato",$pag)."</td>
 <td><small><small>$fr_Appartamento</small></small></td>
 <td><small><small>".mex("Pers",$pag).".</small></small></td>
-<td>".mex("Commento",$pag)."</td></tr>";
+<td$class_opt2>".mex("Commento",$pag)."</td></tr>";
 
 $data_inizio_assoluta = esegui_query("select datainizio from $tableperiodi_mostra where idperiodi = 1");
 $data_inizio_assoluta = risul_query($data_inizio_assoluta,0,'datainizio');
@@ -1626,10 +1637,12 @@ echo "<tr><td><a href=\"modifica_prenota.php?id_prenota=$numero&amp;anno=$anno&a
 } # fine if ($anno = $anno_mostra)
 else { echo "<tr><td>$numero</td>"; }
 echo "<td>$cognome_pren</td>
-<td>$data_inizio_f</td>
-<td>$data_fine_f</td>
+<td>$data_inizio_f";
+if (!$mobile_device) echo "</td><td>";
+else echo "&nbsp;/&nbsp;<span class=\"smlscr\"> </span>";
+echo "$data_fine_f</td>
 <td>$costo_tot_p</td>
-<td>$caparra_p</td>
+<td$class_opt>$caparra_p</td>
 <td";
 if ($colore) echo " style=\"background-color: $colore;\"";
 echo ">$pagato_p</td>
@@ -1637,7 +1650,7 @@ echo ">$pagato_p</td>
 <td>$num_persone";
 if ($n_letti_agg != 0) echo "+$n_letti_agg";
 echo "</td>
-<td><small><small>$commento</small></small></td></tr>";
+<td$class_opt2><small><small>$commento</small></small></td></tr>";
 
 $costo_tot_TOT = $costo_tot_TOT + $costo_tot;
 $caparra_TOT = $caparra_TOT + $caparra;
@@ -1649,13 +1662,15 @@ if ($num_prenotazioni > 1) {
 $costo_tot_TOT_p = punti_in_num($costo_tot_TOT,$stile_soldi);
 $caparra_TOT_p = punti_in_num($caparra_TOT,$stile_soldi);
 $pagato_TOT_p = punti_in_num($pagato_TOT,$stile_soldi);
-echo "<tr><td colspan=\"4\"><b><i>".mex("TOTALE",$pag)."</i></b></td>
+if (!$mobile_device) $totcol = 4;
+else $totcol = 3;
+echo "<tr><td colspan=\"$totcol\"><b><i>".mex("TOTALE",$pag)."</i></b></td>
 <td>$costo_tot_TOT_p</td>
-<td>$caparra_TOT_p</td>
+<td$class_opt>$caparra_TOT_p</td>
 <td>$pagato_TOT_p</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td></tr>";
+<td$class_opt2>&nbsp;</td></tr>";
 } # fine if ($num_prenotazioni > 1)
 
 echo "</table><br>";
@@ -1670,7 +1685,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"origine\" value=\"".htmlspecialchars($origine)."\">
 <input type=\"hidden\" name=\"idclienti\" value=\"$idclienti\">
 <input type=\"hidden\" name=\"cancella_cliente\" value=\"SI\">
-<input class=\"sbutton\" id=\"canc\" type=\"submit\" value=\"".mex("Cancella il cliente",$pag)." $idclienti\">
+<button class=\"ccli\" id=\"canc\" type=\"submit\"><div>".mex("Cancella il cliente",$pag)." $idclienti</div></button>
 </div></form>";
 } # fine if ($prenota_cliente_esistente != "SI")
 
@@ -1679,7 +1694,7 @@ echo "<hr style=\"width: 95%\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" id=\"indi\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div>
 <table><tr><td style=\"height: 20px;\"></td></tr></table>";
 

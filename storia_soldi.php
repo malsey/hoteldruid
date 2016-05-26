@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2015 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2016 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -137,13 +137,13 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"storia_soldi.php\"
 <input type=\"hidden\" name=\"azzera_soldi\" value=\"SI\">
 <input type=\"hidden\" name=\"continua\" value=\"SI\">
 <input type=\"hidden\" name=\"id_transazione\" value=\"$id_transazione\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("SI",$pag)."\">
+<button class=\"crep\" type=\"submit\"><div>".mex("SI",$pag)."</div></button>
 </div></form></td><td>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"storia_soldi.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"senza_colori\" value=\"$senza_colori\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("NO",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("NO",$pag)."</div></button>
 </div></form></tr></td></table>";
 } # fine if (!$continua)
 else {
@@ -291,7 +291,7 @@ if (get_magic_quotes_gpc()) $metodo_selezionato = stripslashes($metodo_seleziona
 $cond_metodo = "and metodo_pagamento = '".aggslashdb($metodo_selezionato)."'";
 } # fine if ($metodo_selezionato)
 
-echo "<h3>".mex("Storia delle entate e uscite delle prenotazioni inserite nel",$pag)." $anno$frase_periodo</h3>";
+echo "<h3 id=\"h_resp\"><span>".mex("Storia delle entate e uscite delle prenotazioni inserite nel",$pag)." $anno$frase_periodo</span></h3>";
 if ($metodo_selezionato) echo "<div style=\"text-align: center;\">($metodo_selezionato)</div>";
 echo "<br>";
 
@@ -465,7 +465,7 @@ $stringa_pagine
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"costi\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><table><tr><td style=\"height: 20px;\"></td></tr></table>";
 
 

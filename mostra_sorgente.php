@@ -31,6 +31,9 @@ include("./includes/files_sorgente.php");
 if ($raw != "SI") {
 $show_bar = "NO";
 $tema_corr = $tema[1];
+@include(C_DATI_PATH."/lingua.php");
+if ($lingua[1] and @is_dir("./includes/lang/".$lingua[1])) $lingua_mex = $lingua[1];
+else $lingua_mex = "ita";
 if ($tema[1] and $tema[1] != "base" and @is_dir("./themes/".$tema[1]."/php")) include("./themes/".$tema[1]."/php/head.php");
 else include("./includes/head.php");
 } # fine if ($raw != "SI")

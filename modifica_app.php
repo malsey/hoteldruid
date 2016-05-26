@@ -153,8 +153,8 @@ echo mex("Sei sicuro di voler <b>cancellare</b> l'appartamento",'unit.php')." <b
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idappartamenti\" value=\"$idappartamenti\">
 <input type=\"hidden\" name=\"cancella_sicuro\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"cancella_app\" value=\"".mex("SI",$pag)."\">
-<input class=\"sbutton\" type=\"submit\" name=\"non_cancellare\" value=\"".mex("NO",$pag)."\">
+<button class=\"croo\" type=\"submit\" name=\"cancella_app\" value=\"".mex("SI",$pag)."\"><div>".mex("SI",$pag)."</div></button>
+<button class=\"gobk\" type=\"submit\" name=\"non_cancellare\" value=\"".mex("NO",$pag)."\"><div>".mex("NO",$pag)."</div></button>
 <br></div></form>";
 } # fine if ($cancella_sicuro != "SI")
 
@@ -214,7 +214,7 @@ echo mex("L'appartamento",'unit.php')." <b>$idappartamenti</b> ".mex("è stato c
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"appartamenti\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"OK\">
+<button class=\"cont\" type=\"submit\"><div>OK</div></button>
 </div></form>";
 
 $file_interconnessioni = C_DATI_PATH."/dati_interconnessioni.php";
@@ -247,7 +247,7 @@ echo "
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idappartamenti\" value=\"$idappartamenti\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 <br></div></form>";
 } # fine else if ($cancellare != "NO")
 
@@ -447,7 +447,7 @@ echo "<input type=\"hidden\" name=\"idappartamenti$num1\" value=\"$idappartament
 <input type=\"hidden\" name=\"d_app_vicini$num1\" value=\"".${"d_app_vicini".$num1}."\">";
 } # fine for $num1
 echo "<input type=\"hidden\" name=\"modificaappartamento\" value=\"Continua\">
-<input class=\"sbutton\" type=\"submit\" name=\"modificaappartamento_vedi\" value=\"".mex("Continua",$pag)."\">
+<button class=\"mroo\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 <hr style=\"width: 95%\">
 </div></form>";
 } # fine if ($modificaappartamento != "Continua")
@@ -632,7 +632,7 @@ echo "<div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"appartamenti\">
 <input type=\"hidden\" name=\"idappartamenti\" value=\"$idappartamenti\">";
-echo "<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 <br></div></form><br></div>";
 } # fine if ($modificaappartamento)
 
@@ -757,7 +757,7 @@ echo "<div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idappartamenti\" value=\"$idappartamenti\">";
-echo "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 <br></div></form><br></div>";
 } # fine if ($mostra_torna_indietro == "SI")
 
@@ -782,7 +782,7 @@ $d_commento = risul_query($appartamento,0,'commento');
 if ($d_letto) $fr1 = "[1]";
 else $fr1 = "";
 
-echo "<h3>".mex($fr1."Modifica l'appartamento",'unit.php')." $idappartamenti.</h3>";
+echo "<h3 id=\"h_mroo\"><span>".mex($fr1."Modifica l'appartamento",'unit.php')." $idappartamenti.</span></h3>";
 
 echo "<br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"modifica_app.php\"><div>
@@ -813,7 +813,8 @@ echo "</td></tr>
 <div style=\"text-align: center;\"><br>
 ".mex($fr1."<b>Attenzione</b>: le prenotazioni già inserite in questo appartamento <b>non</b> verranno spostate",'unit.php').",<br>
 ".mex("anche se le loro caratteristiche non sono più compatibili",$pag).".<br>
-<input class=\"sbutton\" id=\"modi\" type=\"submit\" name=\"modificaappartamento\" value=\"".mex($fr1."Modifica l'appartamento",'unit.php')." $idappartamenti\">
+<button class=\"mroo\" id=\"modi\" type=\"submit\"><div>".mex($fr1."Modifica l'appartamento",'unit.php')." $idappartamenti</div></button>
+<input type=\"hidden\" name=\"modificaappartamento\" value=\"1\">
 <input type=\"hidden\" name=\"d_numcasa0\" value=\"$d_numcasa\">
 <input type=\"hidden\" name=\"d_numpiano0\" value=\"$d_numpiano\">
 <input type=\"hidden\" name=\"d_maxoccupanti0\" value=\"$d_maxoccupanti\">
@@ -832,7 +833,7 @@ echo "<br><form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"idappartamenti\" value=\"".$idappartamenti."\">
 <input type=\"hidden\" name=\"modificadescr\" value=\"SI\">
 ".ucfirst(mex($fr1."descrizione dell'appartamento",'unit.php'))." <em>$idappartamenti</em>:<br>
-<table><tr><td>Italiano:<br>
+<table class=\"nomob\"><tr><td>Italiano:<br>
 <textarea name=\"n_descrizione_ita\" rows=4 cols=60 style=\"white-space: pre; overflow: auto;\">$d_descrizione</textarea></td>";
 $col = 0;
 $max_col = 2;
@@ -859,7 +860,7 @@ echo "<textarea name=\"n_descrizione_$ini_lingua\" rows=4 cols=60 style=\"white-
 } # fine while ($file = readdir($lang_dig))
 closedir($lang_dir);
 echo "</tr></table>
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("modifica",$pag))."\"></div></form><br><br>";
+<button class=\"edit\" type=\"submit\"><div>".ucfirst(mex("modifica",$pag))."</div></button></div></form><br><br>";
 
 $foto = esegui_query("select * from $tabledescrizioni where nome = '".$idappartamenti."' and tipo = 'appfoto' order by numero ");
 $num_foto = numlin_query($foto);
@@ -889,7 +890,7 @@ if (numlin_query($d_commento)) $d_commento = risul_query($d_commento,0,'testo');
 else $d_commento = "";
 echo "".ucfirst($nome_lingua).": <input type=\"text\" name=\"n_commento_$ini_lingua\" value=\"$d_commento\" size=\"24\"><br>";
 } # fine while (list($ini_lingua,$nome_lingua) = each($lingue_vett))
-echo "<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("modifica",$pag))."\">
+echo "<button class=\"edtm\" type=\"submit\"><div>".ucfirst(mex("modifica",$pag))."</div></button>
 </div></form><br></td><td style=\"width: 20px;\"></td><td valign=\"middle\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
@@ -897,7 +898,7 @@ echo "<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("modifica",
 <input type=\"hidden\" name=\"idappartamenti\" value=\"".$idappartamenti."\">
 <input type=\"hidden\" name=\"cancurlfoto\" value=\"SI\">
 <input type=\"hidden\" name=\"numfoto\" value=\"$numfoto\">
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("elimina",$pag))."\">
+<button class=\"cpho\" type=\"submit\"><div>".ucfirst(mex("elimina",$pag))."</div></button>
 </div></form></td></tr></table>";
 } # fine for $num1
 
@@ -910,7 +911,7 @@ echo "<br><form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"aggurlfoto\" value=\"SI\">
 ".ucfirst(mex("url di una nuova foto",$pag)).":
 <input type=\"text\" name=\"n_urlfoto\" size=\"30\" value=\"http://\"$readonly>
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("aggiungi",$pag))."\">
+<button class=\"apho\" type=\"submit\"><div>".ucfirst(mex("aggiungi",$pag))."</div></button>
 </div></form>";
 
 echo "<hr style=\"width: 95%\"><br><div style=\"text-align: center;\">
@@ -918,7 +919,8 @@ echo "<hr style=\"width: 95%\"><br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idappartamenti\" value=\"$idappartamenti\">
-<input class=\"sbutton\" id=\"canc\" type=\"submit\" name=\"cancella_app\" value=\"".mex($fr1."Cancella l'appartamento",'unit.php')." $idappartamenti\">
+<input type=\"hidden\" name=\"cancella_app\" value=\"1\">
+<button class=\"croo\" id=\"canc\" type=\"submit\"><div>".mex($fr1."Cancella l'appartamento",'unit.php')." $idappartamenti</div></button>
 </div><br></form></div>
 
 <hr style=\"width: 95%\"><br><div style=\"text-align: center;\">
@@ -926,7 +928,7 @@ echo "<hr style=\"width: 95%\"><br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"appartamenti\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" id=\"indi\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 

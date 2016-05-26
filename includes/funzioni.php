@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2015 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2016 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -53,8 +53,8 @@ $tablepersonalizza = $PHPR_TAB_PRE."personalizza";
 
 #@include("./includes/costanti.php");
 #@include(C_DATI_PATH."/costanti.php");
-define('C_PHPR_VERSIONE_NUM',2.13);
-define('C_PHPR_VERSIONE_TXT',"2.1.3");
+define('C_PHPR_VERSIONE_NUM',2.14);
+define('C_PHPR_VERSIONE_TXT',"2.1.4");
 
 # Se non si specifica nessun anno uso l'attuale
 $anno_corrente = date("Y",(time() + (C_DIFF_ORE * 3600)));
@@ -76,7 +76,7 @@ if ($_SERVER['SERVER_NAME']) $HOSTNAME = $_SERVER['SERVER_NAME'];
 elseif ($SERVER_NAME) $HOSTNAME = $SERVER_NAME;
 $HOSTNAME = htmlspecialchars($HOSTNAME);
 
-if (strstr($_SERVER['HTTP_USER_AGENT'],'(iP') or strstr($_SERVER['HTTP_USER_AGENT'],'Android') or strstr($_SERVER['HTTP_USER_AGENT'],'webOS') or strstr($_SERVER['HTTP_USER_AGENT'],'BlackBerry') or strstr($_SERVER['HTTP_USER_AGENT'],'Mobile')) $mobile_device = 1;
+if (strstr($_SERVER['HTTP_USER_AGENT'],'(iP') or strstr($_SERVER['HTTP_USER_AGENT'],'Android') or strstr($_SERVER['HTTP_USER_AGENT'],'webOS') or strstr($_SERVER['HTTP_USER_AGENT'],'BlackBerry') or strstr($_SERVER['HTTP_USER_AGENT'],'Mobile') or strstr($_SERVER['HTTP_USER_AGENT'],'Opera Mobi')) $mobile_device = 1;
 else $mobile_device = 0;
 
 
@@ -593,7 +593,7 @@ $input_var_passate
 ".mex("Nome utente","funzioni.php").": <input type=\"text\" name=\"nome_utente_phpr\" size=\"12\"><br>
 ".mex("Password","funzioni.php").": <input type=\"password\" name=\"password_phpr\" size=\"12\" autocorrect=\"off\" autocapitalize=\"off\"><br>
 <table><tr><td style=\"height: 2px;\"></td></tr></table>
-<input class=\"sbutton\" type=\"submit\" name=\"effettua_login\" value=\"".mex("Entra","funzioni.php")."\">
+<button class=\"login\" type=\"submit\"><div>".mex("Entra","funzioni.php")."</div></button>
 </div></form>";
 if (defined("C_HTML_POST_LOGIN") and C_HTML_POST_LOGIN != "") echo C_HTML_POST_LOGIN;
 } # fine if ($mostra_form_login == "SI")

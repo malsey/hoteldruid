@@ -534,7 +534,7 @@ if ($mod_ext != "." and $mod_ext != ".." and @is_dir("./includes/interconnect/$m
 include("./includes/interconnect/$mod_ext/name.php");
 if ($ic_present[$interconnection_name] == "SI") {
 include("./includes/interconnect/$mod_ext/functions_import.php");
-$funz_import_reservations = "import_reservations_".$interconnection_name;
+$funz_import_reservations = "import_reservations_".$interconnection_func_name;
 $id_utente_origi = $id_utente;
 $id_utente = 1;
 $funz_import_reservations("","",$file_interconnessioni,$anno,$PHPR_TAB_PRE,2,$id_utente,$HOSTNAME);

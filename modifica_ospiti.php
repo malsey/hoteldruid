@@ -427,8 +427,8 @@ echo " ".mex("sono stati modificati",$pag).".<br><br>
 if ($form_modifica_ospiti != "NO") {
 
 # Form per modificare gli ospiti.
-if ($num_id_prenota == 1) echo "<h3>".mex("Modifica gli ospiti della prenotazione",$pag)." $id_prenota</h3><br>";
-else echo "<h3>".mex("Modifica gli ospiti delle prenotazioni",$pag)." ".str_replace(",",", ",$id_prenota_int).".</h3><br>";
+if ($num_id_prenota == 1) echo "<h3 id=\"h_mgst\"><span>".mex("Modifica gli ospiti della prenotazione",$pag)." $id_prenota</span></h3><br>";
+else echo "<h3 id=\"h_mgst\"><span>".mex("Modifica gli ospiti delle prenotazioni",$pag)." ".str_replace(",",", ",$id_prenota_int).".</span></h3><br>";
 
 
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"modifica_ospiti.php\"><div>
@@ -545,17 +545,17 @@ for ( ; $num1 < $num_fine ; $num1++) {
 $n_o = $num1 + $agg_num;
 if ($n_ini != 1) $n_ini = $n_o;
 echo "<br>$n_o. ".mex("Cognome",$pag).": <input type=\"text\" id=\"cognome$id_prenota"."_$n_o\" name=\"cognome$id_prenota"."_$n_o\"><input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cognome$id_prenota"."_$n_o','cognome$id_prenota"."_$n_ini','$cognome_def')\" value=\"#\">,
-".mex("nome",$pag).": <input type=\"text\" name=\"nome$id_prenota"."_$n_o\">;
-".mex("sesso",$pag).": <select name=\"sesso$id_prenota"."_$n_o\">
+<span class=\"wsnw\">".mex("nome",$pag).": <input type=\"text\" name=\"nome$id_prenota"."_$n_o\">;</span>
+<span class=\"wsnw\">".mex("sesso",$pag).": <select name=\"sesso$id_prenota"."_$n_o\">
 <option value=\"\" selected>-</option>
 <option value=\"m\">m</option>
 <option value=\"f\">f</option>
-</select>;<br>
-".mex("cittadinanza",$pag).": ".mostra_lista_relutenti("nazionalita$id_prenota"."_$n_o","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti)."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionalita$id_prenota"."_$n_o','nazionalita$id_prenota"."_$n_ini','$nazione_def')\" value=\"#\">;
- ".addslashes(mex("parentela",$pag)).": ".mostra_lista_relutenti("parentela$id_prenota"."_$n_o","",$id_utente,"nome_parentela","idparentele","idparentela",$tableparentele,$tablerelutenti)."<br>
+</select>;</span><br>
+<span class=\"wsnw\">".mex("cittadinanza",$pag).": ".mostra_lista_relutenti("nazionalita$id_prenota"."_$n_o","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti)."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionalita$id_prenota"."_$n_o','nazionalita$id_prenota"."_$n_ini','$nazione_def')\" value=\"#\">;</span>
+ <span class=\"wsnw\">".addslashes(mex("parentela",$pag)).": ".mostra_lista_relutenti("parentela$id_prenota"."_$n_o","",$id_utente,"nome_parentela","idparentele","idparentela",$tableparentele,$tablerelutenti)."</span><br>
 <div style=\"height: 2px\"></div>
 ".mex("Data di nascita",$pag).": ";
-$sel_gnascita = "<select name=\"giornonascita$id_prenota"."_$n_o\">
+$sel_gnascita = "<span class=\"wsnw\"><select name=\"giornonascita$id_prenota"."_$n_o\">
 <option value=\"\" selected>--</option>";
 for ($num = 1; $num <= 31; $num++) {
 if (strlen($num) == 1) $num = "0".$num;
@@ -571,10 +571,10 @@ $sel_mnascita .= "<option value=\"$num\">$num</option>";
 $sel_mnascita .= "</select>";
 if ($stile_data == "usa") echo "$sel_mnascita/$sel_gnascita";
 else echo "$sel_gnascita/$sel_mnascita";
-echo "/<input type=\"text\" name=\"annonascita$id_prenota"."_$n_o\" size=\"5\" maxlength=\"4\" value=\"19\"> (".mex("anno con 4 cifre",$pag)."),
- ".mex("nazione di nascita",$pag).": ".mostra_lista_relutenti("nazionenascita$id_prenota"."_$n_o","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regionenascita$id_prenota"."_$n_o")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionenascita$id_prenota"."_$n_o','nazionalita$id_prenota"."_$n_o','$nazione_def')\" value=\"#\">,<br>
-".mex("reg./prov. di nascita",$pag).": ".mostra_lista_relutenti("regionenascita$id_prenota"."_$n_o","",$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","cittanascita$id_prenota"."_$n_o","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regionenascita$id_prenota"."_$n_o','regionenascita$id_prenota"."_$n_ini','$regione_def')\" value=\"#\">,
- ".mex("città di nascita",$pag).": ".mostra_lista_relutenti("cittanascita$id_prenota"."_$n_o","",$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cittanascita$id_prenota"."_$n_o','cittanascita$id_prenota"."_$n_ini','$citta_def')\" value=\"#\"><br>
+echo "/<input type=\"text\" name=\"annonascita$id_prenota"."_$n_o\" size=\"5\" maxlength=\"4\" value=\"19\"></span> (".mex("anno con 4 cifre",$pag)."),
+ <span class=\"wsnw smlscrfnt\">".mex("nazione di nascita",$pag).": ".mostra_lista_relutenti("nazionenascita$id_prenota"."_$n_o","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regionenascita$id_prenota"."_$n_o")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionenascita$id_prenota"."_$n_o','nazionalita$id_prenota"."_$n_o','$nazione_def')\" value=\"#\">,</span><br>
+<span class=\"wsnw smlscrfnt\">".mex("reg./prov. di nascita",$pag).": ".mostra_lista_relutenti("regionenascita$id_prenota"."_$n_o","",$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","cittanascita$id_prenota"."_$n_o","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regionenascita$id_prenota"."_$n_o','regionenascita$id_prenota"."_$n_ini','$regione_def')\" value=\"#\">,</span>
+ <span class=\"wsnw smlscrfnt\">".mex("città di nascita",$pag).": ".mostra_lista_relutenti("cittanascita$id_prenota"."_$n_o","",$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cittanascita$id_prenota"."_$n_o','cittanascita$id_prenota"."_$n_ini','$citta_def')\" value=\"#\"></span><br>
 <div style=\"height: 2px\"></div>";
 if ($n_o == 1) {
 echo "".mex("Nazione",$pag).": ".mostra_lista_relutenti("nazione$id_prenota"."_$n_o","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regione$id_prenota"."_$n_o")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazione$id_prenota"."_$n_o','nazionalita$id_prenota"."_$n_o','$nazione_def')\" value=\"#\">,
@@ -676,7 +676,7 @@ elem_cli.innerHTML = testo;
 
 
 echo "<br><div style=\"text-align: center;\">
-<input class=\"sbutton\" id=\"modi\" type=\"submit\" value=\"".mex("Modifica gli ospiti",$pag)."\">
+<button class=\"gsts\" id=\"modi\" type=\"submit\"><div>".mex("Modifica gli ospiti",$pag)."</div></button>
 </div></div></form>";
 
 
@@ -685,7 +685,7 @@ echo "<hr style=\"width: 95%\"><br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" id=\"indi\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div><br>";
 
 } # fine if ($form_modifica_ospiti != "NO")

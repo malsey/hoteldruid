@@ -46,7 +46,6 @@ $tablecontratti = $PHPR_TAB_PRE."contratti";
 $tablerclientiprenota = $PHPR_TAB_PRE."rclientiprenota".$anno;
 $tablecostiprenota = $PHPR_TAB_PRE."costiprenota".$anno;
 $tablecosti = $PHPR_TAB_PRE."costi".$anno;
-$tablerclientiprenota = $PHPR_TAB_PRE."rclientiprenota".$anno;
 $tablerelinventario = $PHPR_TAB_PRE."relinventario";
 $tablecasse = $PHPR_TAB_PRE."casse";
 $tableappartamenti = $PHPR_TAB_PRE."appartamenti";
@@ -222,7 +221,7 @@ if (!$checkin or $checkout) $id_prenota = "";
 else {
 $id_inizio_prenota = risul_query($dati_prenota,0,'iddatainizio');
 $id_fine_prenota = risul_query($dati_prenota,0,'iddatafine');
-if ($id_inizio_prenota > $id_periodo_corrente or $id_fine_prenota < $id_periodo_corrente) $id_prenota = "";
+if ($id_inizio_prenota > $id_periodo_corrente or $id_fine_prenota < ($id_periodo_corrente - 1)) $id_prenota = "";
 } # fine else if ($attiva_checkin == "SI")
 } # fine else if (!numlin_query($dati_prenota))
 if ($id_prenota) {
@@ -257,6 +256,7 @@ $tariffa = "tariffa".$numtariffa;
 if ($d_nome_tariffa == $tariffa or $d_nome_tariffa == $dati_tariffe[$tariffa]['nome']) $tipotariffa = $tariffa;
 } # fine for $numtariffa
 } # fine if ($id_prenota)
+else unlock_tabelle($tabelle_lock);
 } # fine if ($id_prenota)
 
 
@@ -1017,7 +1017,7 @@ $testo_azione
 </div></form>";
 
 if ($mostra_contr) {
-echo "<br><hr style=\"width: 350px; clear: right; margin: 4px auto 4px 0; text-align: left;\">
+echo "<br><hr class=\"pos\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"visualizza_contratto.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
@@ -1105,7 +1105,7 @@ echo "<div style=\"$stile_float\">
 } # fine if ($oper == "x")
 } # fine else if ($tasti_pos[$num1] == "s")
 } # fine for $num1
-echo "<hr style=\"width: 350px; clear: right; margin: 4px auto 4px 0; text-align: left;\">";
+echo "<hr class=\"pos\">";
 } # fine if ($tasti_pos)
 
 if (!$calcolabile_js['nessuno']) {
@@ -1213,7 +1213,7 @@ $testo_categoria[$categ] .= "<div style=\"float: left; padding: 2px;\">
 } # fine for $num1
 $num_cat++;
 } # fine while (list($categ,$id_costi_cat) = each($costi_agg_raggr))
-echo "<hr style=\"width: 350px; clear: right; margin: 4px auto 4px 0; text-align: left;\">";
+echo "<hr class=\"pos\">";
 } # fine if (@is_array($costi_agg_raggr))
 
 echo "<div id=\"cattxt\">";
@@ -1256,7 +1256,7 @@ echo "<div style=\"text-align: center; clear: both;\"><br><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form></div><div style=\"height: 20px\"></div>";
 
 } # fine if (!$blocca_schermo)

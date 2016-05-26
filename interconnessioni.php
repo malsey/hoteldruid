@@ -139,6 +139,7 @@ $linee = gzread($gzbackup,524288);
 fwrite($fileaperto,$linee);
 } # fine while (!feof($gzbackup))
 } # fine if ($gzbackup)
+gzclose($gzbackup);
 flock($fileaperto,3);
 fclose($fileaperto);
 } # fine if ($fileaperto = fopen($file_backup,"w"))
@@ -252,7 +253,7 @@ if ($mod_ext != "." and $mod_ext != ".." and @is_dir("./includes/interconnect/$m
 include("./includes/interconnect/$mod_ext/name.php");
 if ($ic_present[$interconnection_name] == "SI" and (!$id_ric or $int_ric == $interconnection_name)) {
 include("./includes/interconnect/$mod_ext/functions_import.php");
-$funz_import_reservations = "import_reservations_".$interconnection_name;
+$funz_import_reservations = "import_reservations_".$interconnection_func_name;
 $id_utente_origi = $id_utente;
 $id_utente = 1;
 $testo = $funz_import_reservations("",$id_ric,$file_interconnessioni,$anno,$PHPR_TAB_PRE,1,$id_utente,$HOSTNAME);
@@ -403,7 +404,7 @@ echo "<div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"./interconnessioni.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 } # fine if ($mostra_form_iniziale == "NO")
 
@@ -415,7 +416,7 @@ echo "<div style=\"text-align: center;\">
 if ($mostra_form_iniziale != "NO") {
  
 # Pagina iniziale
-echo "<h3>".mex("Interconnessioni con sorgenti esterne di dati",$pag).".</h3>
+echo "<h3 id=\"h_intc\"><span>".mex("Interconnessioni con sorgenti esterne di dati",$pag).".</span></h3>
 <hr style=\"width: 95%\">";
 
 $id_utente_az = esegui_query("select idlocale from $tableinterconnessioni where tipoid = 'id_utente_az' ");
@@ -535,7 +536,7 @@ echo "<hr style=\"width: 95%\"><div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"./personalizza.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 } # fine if ($mostra_form_iniziale != "NO")

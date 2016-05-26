@@ -5,7 +5,7 @@ switch ($messaggio) {
 case "<div style=\"display: inline; color: red;\">ERRORE</div> di scrittura del file":  		$messaggio = "<div style=\"display: inline; color: red;\">ERROR</div> de escritura del archivo"; break;
 case "Nome utente":  				$messaggio = "Nombre de usuario"; break;
 case "Password":  				$messaggio = "Contraseña"; break;
-case "Entra":  					$messaggio = "Entra"; break;
+case "Entra":  					$messaggio = "Entrar"; break;
 case "Login per HotelDruid":  			$messaggio = "Login para HotelDruid"; break;
 case "Sessione <div style=\"display: inline; color: red;\">scaduta</div>":	$messaggio = "Sesión <div style=\"display: inline; color: red;\">expirada</div>"; break;
 case "Nome utente o password <div style=\"display: inline; color: red;\">errati</div>":	$messaggio = "Nombre de usuario o contraseña <div style=\"display: inline; color: red;\">equivocados</div>"; break;

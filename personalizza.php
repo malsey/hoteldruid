@@ -309,7 +309,7 @@ echo "</table>
 <input type=\"hidden\" name=\"cambia_ord_tariffe\" value=\"SI\">
 <input type=\"hidden\" name=\"lista_tar\" value=\"$lista_tar_ser\">
 <input type=\"hidden\" name=\"applica_nuovi_num\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Applica i cambiamenti",$pag)."\">
+<button class=\"cont\" type=\"submit\"><div>".mex("Applica i cambiamenti",$pag)."</div></button>
 </div></form><br><br>";
 } # fine if (!$applica_nuovi_num)
 else {
@@ -2942,13 +2942,19 @@ else {
 $action = $pag;
 if ($anchor) $action .= "#$anchor";
 } # fine else if ($origine)
-if ($torna_invece_di_ok) $OK = mex("Torna indietro",$pag);
-else $OK = "OK";
+if ($torna_invece_di_ok) {
+$OK = mex("Torna indietro",$pag);
+$subclass = "gobk";
+} # fine if ($torna_invece_di_ok)
+else {
+$OK = "OK";
+$subclass = "cont";
+} # fine else if ($torna_invece_di_ok)
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"id_utente_mod\" value=\"$id_utente_mod_orig\">
-<input class=\"sbutton\" type=\"submit\" value=\"$OK\"><br>
+<button class=\"$subclass\" type=\"submit\"><div>$OK</div></button><br>
 </div></form><br><br>";
 
 if ($aggiorna_tariffe_interconn == "SI") {
@@ -2989,12 +2995,12 @@ else include("./includes/interconnect/aggiorna_ic.php");
 else {
 
 # pagina iniziale
-if (C_NASCONDI_MARCA == "SI") echo "<h4>".mex("Configura e personalizza","inizio.php");
+if (C_NASCONDI_MARCA == "SI") echo "<h4 id=\"h_conf\"><span>".mex("Configura e personalizza","inizio.php");
 else {
-echo "<h4>".mex("Configura e personalizza HotelDruid",$pag);
+echo "<h4 id=\"h_conf\"><span>".mex("Configura e personalizza HotelDruid",$pag);
 if ($id_utente == 1) echo " ".C_PHPR_VERSIONE_TXT;
 } # fine else if (C_NASCONDI_MARCA == "SI")
-echo "</h4><hr style=\"width: 65%\">";
+echo "</span></h4><hr style=\"width: 65%\">";
 
 if ($id_utente == 1 or ($priv_crea_backup == "s" and $installazione_subordinata != "SI") or ($priv_crea_interconnessioni == "s" and C_CREA_SUBORDINAZIONI != "NO")) {
 echo "<table style=\"margin-left: auto; margin-right: auto;\" width=\"70%\"><tr>";
@@ -3003,12 +3009,12 @@ if ($installazione_subordinata != "SI") {
 echo "<td align=\"center\"><form accept-charset=\"utf-8\" method=\"post\" action=\"./gestione_utenti.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai_a_u\" value=\"".mex("Gestione utenti",$pag)."\">
+<button class=\"usrs\" type=\"submit\"><div>".mex("Gestione utenti",$pag)."</div></button>
 </div></form></td>
 <td align=\"center\"><form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_modelli.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai_a_m\" value=\"".mex("Pagine per il sito web",$pag)."\">
+<button class=\"webs\" type=\"submit\"><div>".mex("Pagine per il sito web",$pag)."</div></button>
 </div></form></td>";
 } # fine if ($installazione_subordinata != "SI")
 } # fine if ($id_utente == 1)
@@ -3016,14 +3022,14 @@ if ($priv_crea_interconnessioni == "s" and C_CREA_SUBORDINAZIONI != "NO") {
 echo "<td align=\"center\"><form accept-charset=\"utf-8\" method=\"post\" action=\"./interconnessioni.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai_a_i\" value=\"".mex("Interconnessioni",$pag)."\">
+<button class=\"intc\" type=\"submit\"><div>".mex("Interconnessioni",$pag)."</div></button>
 </div></form></td>";
 } # fine if ($priv_crea_interconnessioni == "s" and C_CREA_SUBORDINAZIONI != "NO")
 if ($priv_crea_backup == "s" and $installazione_subordinata != "SI") {
 echo "<td align=\"center\"><form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai_a_b\" value=\"".mex("Sistema di backup",$pag)."\">
+<button class=\"bkup\" type=\"submit\"><div>".mex("Sistema di backup",$pag)."</div></button>
 </div></form></td>";
 } # fine if ($priv_crea_backup == "s" and $installazione_subordinata != "SI")
 echo "</tr></table><hr style=\"width: 95%\">";
@@ -3506,7 +3512,7 @@ echo "".mex("Cambia",$pag)." ".mex("quelle di",$pag)."
 echo str_replace("\"$id_utente_mod\">","\"$id_utente_mod\" selected>",$option_select_utenti);
 echo str_replace("\"$id_utente_mod\">","\"$id_utente_mod\" selected>",$option_select_gruppi);
 echo "</select>
-<input class=\"sbutton\" type=\"submit\" name=\"cambia_ut\" value=\"".mex("Cambia",$pag)."\">
+<button class=\"xusr\" type=\"submit\"><div>".mex("Cambia",$pag)."</div></button>
 </div></form></div><hr style=\"width: 95%\">";
 
 } # fine if ($id_utente == 1)
@@ -4839,7 +4845,7 @@ echo mex("Cambia il numero delle righe",$pag)."
 </div></form><hr style=\"width: 95%\">";
 
 
-echo "<a name=\"contratti\"></a><div style=\"text-align: center;\">".mex("Documenti",$pag)."</div><br>";
+echo "<a name=\"contratti\"></a><div id=\"h_doc2\" style=\"text-align: center;\"><span>".mex("Documenti",$pag)."</span></div><br>";
 $max_contr = esegui_query("select max(numero) from $tablecontratti where tipo $LIKE 'contr%'");
 $max_contr = risul_query($max_contr,0,0);
 $nomi_contratti = esegui_query("select valpersonalizza from $tablepersonalizza where idpersonalizza = 'nomi_contratti' and idutente = '$id_utente_sel'");
@@ -4990,7 +4996,7 @@ echo "<div style=\"text-align: center;\"><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"./inizio.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form><br></div>";
 
 

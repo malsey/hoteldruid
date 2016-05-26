@@ -47,6 +47,7 @@ echo "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\"
 <html>
 <head>
 <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\" >
+<meta name=\"viewport\" content=\"initial-scale=1.0\">
 <title> $titolo </title>";
 if ($pag == "visualizza_contratto.php" and $extra_head) echo $extra_head;
 if (defined('C_URL_FAVICON') and C_URL_FAVICON != "" and @is_file(C_URL_FAVICON)) echo "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"".C_URL_FAVICON."\">
@@ -60,6 +61,8 @@ echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"./base.css$vers_hinc\">
 <link rel=\"stylesheet\" type=\"text/css\" href=\"./themes/snj/inc/stylesheet.css$vers_hinc\" media=\"all\">
 ";
 if (defined('C_FILE_CSS_PERS') and C_FILE_CSS_PERS != "" and @is_file(C_FILE_CSS_PERS)) echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".C_FILE_CSS_PERS."\" media=\"all\">
+";
+if ($mobile_device and defined('C_FILE_MOB_CSS_PERS') and C_FILE_MOB_CSS_PERS != "" and @is_file(C_FILE_MOB_CSS_PERS)) echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"".C_FILE_MOB_CSS_PERS."\" media=\"all\">
 ";
 echo "</head>
 <body";
@@ -144,7 +147,7 @@ if ($mese_attuale == 12) $MESE_ATT = "DICEMBRE";
 if ($pag == "tabella.php" or $pag == "tabella2.php" or $pag == "tabella3.php" or $pag == "visualizza_tabelle.php" or $pag == "storia_soldi.php") $mostra_X = "SI";
 
 
-echo "<table style=\"text-align: center; background: $t1color url(./themes/snj/img/bar_bg_top.png) repeat-x left top;\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
+echo "<table class=\"nav_bar\" style=\"text-align: center; background: $t1color url(./themes/snj/img/bar_bg_top.png) repeat-x left top;\" width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">
 <tr style=\"background: url(./themes/snj/img/bar_bg_bot.png) repeat-x left bottom;\">";
 
 if ($mostra_X == "SI") echo "<td style=\"width: 10px;\"></td>";
@@ -156,24 +159,22 @@ if (substr($id_sessione,0,4) != $anno) $sessione_anno_var .= "&amp;anno=$anno";
 else $sessione_anno_var = "anno=$anno";
 
 echo "<td style=\"height: 18px; color: #666666; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: x-small;\">
-<a style=\"color: #666666;\" href=\"./inizio.php?$sessione_anno_var\"><b>".mex("MENU","head.php")."</b></a>";
-if ($priv_ins_nuove_prenota == "s" or $priv_ins_spese == "s" or $priv_ins_entrate == "s" or $inserimento_nuovi_clienti != "NO" or ($modifica_clienti != "NO" and $vedi_clienti != "NO")) {
-echo "&nbsp;|&nbsp;<b>".mex("INSERIRE","head.php").":</b>";
-if ($priv_ins_nuove_prenota == "s") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./prenota.php?$sessione_anno_var\"><b>".mex("PRENOTAZIONE","head.php")."</b></a>";
-if ($inserimento_nuovi_clienti != "NO" or ($modifica_clienti != "NO" and $vedi_clienti != "NO")) echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./clienti.php?$sessione_anno_var\"><b>".mex("CLIENTE","head.php")."</b></a>";
-if ($priv_ins_spese == "s" or $priv_ins_entrate == "s") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./costi.php?$sessione_anno_var\"><b>".mex("SPESE","head.php")."</b></a>";
+<a id=\"nb_men\" href=\"./inizio.php?$sessione_anno_var\"><b>".mex("MENU","head.php")."</b></a>";
+if ($priv_ins_nuove_prenota == "s" or $inserimento_nuovi_clienti != "NO" or ($modifica_clienti != "NO" and $vedi_clienti != "NO")) {
+echo "&nbsp;|&nbsp;<b id=\"nb_ins\">".mex("INSERIRE","head.php").":</b>";
+if ($priv_ins_nuove_prenota == "s") echo "&nbsp;&nbsp;<a id=\"nb_ires\" href=\"./prenota.php?$sessione_anno_var\"><b>".mex("PRENOTAZIONE","head.php")."</b></a>";
+if ($inserimento_nuovi_clienti != "NO" or ($modifica_clienti != "NO" and $vedi_clienti != "NO")) echo "&nbsp;&nbsp;<a id=\"nb_icli\" href=\"./clienti.php?$sessione_anno_var\"><b>".mex("CLIENTE","head.php")."</b></a>";
 } # fine if ($priv_ins_nuove_prenota == "s" or...
-if ($priv_vedi_tab_mesi != "n" or $priv_vedi_tab_prenotazioni != "n" or $vedi_clienti != "NO" or $priv_vedi_tab_costi != "n" or $priv_vedi_tab_periodi != "n" or $priv_vedi_tab_appartamenti != "n") {
-echo "&nbsp;|&nbsp;<b>".mex("TABELLE","head.php").":</b>";
-if ($priv_vedi_tab_mesi != "n") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./tabella.php?$sessione_anno_var&amp;mese=$mese_attuale\"><b>".mex("$MESE_ATT","head.php")."</b></a>";
-if ($priv_vedi_tab_prenotazioni != "n") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=prenotazioni\"><b>".mex("PRENOTAZIONI","head.php")."</b></a>";
-if ($vedi_clienti != "NO") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=clienti\"><b>".mex("CLIENTI","head.php")."</b></a>";
-if ($priv_vedi_tab_costi != "n") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=costi\"><b>".mex("SPESE","head.php")."</b></a>";
-if ($priv_vedi_tab_periodi != "n") echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=periodi\"><b>".mex("TARIFFE","head.php")."</b></a>";
+if ($priv_vedi_tab_mesi != "n" or $priv_vedi_tab_prenotazioni != "n" or $vedi_clienti != "NO" or $priv_vedi_tab_periodi != "n" or $priv_vedi_tab_appartamenti != "n") {
+echo "&nbsp;|&nbsp;<b id=\"nb_tab\">".mex("TABELLE","head.php").":</b>";
+if ($priv_vedi_tab_mesi != "n") echo "&nbsp;&nbsp;<a id=\"nb_m0\" href=\"./tabella.php?$sessione_anno_var&amp;mese=$mese_attuale\"><b>".mex("$MESE_ATT","head.php")."</b></a>";
+if ($priv_vedi_tab_prenotazioni != "n") echo "&nbsp;&nbsp;<a id=\"nb_res\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=prenotazioni\"><b>".mex("PRENOTAZIONI","head.php")."</b></a>";
+if ($vedi_clienti != "NO") echo "&nbsp;&nbsp;<a id=\"nb_cli\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=clienti\"><b>".mex("CLIENTI","head.php")."</b></a>";
+if ($priv_vedi_tab_periodi != "n") echo "&nbsp;&nbsp;<a id=\"nb_rat\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=periodi\"><b>".mex("TARIFFE","head.php")."</b></a>";
 if ($priv_vedi_tab_appartamenti != "n") {
 $fr_APPARTAMENTI = mex("APPARTAMENTI","unit.php");
 if (strlen($fr_APPARTAMENTI) > 11) $fr_APPARTAMENTI = substr($fr_APPARTAMENTI,0,6).".";
-echo "&nbsp;&nbsp;<a style=\"color: #666666;\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=appartamenti\"><b>$fr_APPARTAMENTI</b></a>";
+echo "&nbsp;&nbsp;<a id=\"nb_roo\" href=\"./visualizza_tabelle.php?$sessione_anno_var&amp;tipo_tabella=appartamenti\"><b>$fr_APPARTAMENTI</b></a>";
 } # fine if ($priv_vedi_tab_appartamenti != "n")
 } # fine if ($priv_vedi_tab_mesi != "n" or $priv_vedi_tab_prenotazioni != "n" or...
 echo "</td>";

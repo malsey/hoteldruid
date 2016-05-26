@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2013 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2016 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -210,7 +210,7 @@ echo "<br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"num_tariffe_mostra\" value=\"1\">
 <input type=\"hidden\" name=\"numtariffa1\" value=\"".$numtariffa1."\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div>";
 
 } # fine if ($azione)
@@ -336,7 +336,7 @@ $datafine = risul_query($periodi,($num1 - 1),'datafine');
 $datafine = formatta_data($datafine,$stile_data);
 $fine_colonna_periodo[$num_colonne_periodi] = $datafine;
 
-echo "<h3>".mex("Tabella tariffe del",$pag)." $anno.</h3>
+echo "<h3 id=\"h_rat\"><span>".mex("Tabella tariffe del",$pag)." $anno.</span></h3>
 <br><table class=\"t1\" style=\"background-color: $t1color; margin-left: auto; margin-right: auto;\" border=\"$t1border\" cellspacing=\"$t1cellspacing\" cellpadding=\"$t1cellpadding\"><tr><td>&nbsp;</td>";
 for ($num1 = 0 ; $num1 <= $num_colonne_periodi ; $num1++) {
 echo "<td align=\"center\" valign=\"top\"><small>".$ini_colonna_periodo[$num1]."
@@ -393,7 +393,7 @@ echo "<input type=\"hidden\" name=\"numtariffa$num1\" value=\"".${"numtariffa".$
 echo "".ucfirst(mex("tariffa",$pag))."
  <select name=\"numtariffa".($num_tariffe_mostra + 1)."\">
 $select_tariffe</select>
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".ucfirst(mex("aggiungi",$pag))."\">
+<button class=\"plus\" type=\"submit\"><div>".ucfirst(mex("aggiungi",$pag))."</div></button>
 </div></form></div>";
 } # fine if ($select_tariffe)
 
@@ -413,7 +413,7 @@ echo "<br><form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
 <input type=\"hidden\" name=\"modificadescr\" value=\"SI\">
 ".ucfirst(mex("descrizione della tariffa",$pag))." \"<em>".$nometariffa[1]."</em>\":<br>
-<table><tr><td>Italiano:<br>
+<table class=\"nomob\"><tr><td>Italiano:<br>
 <textarea name=\"n_descrizione_ita\" rows=4 cols=60 style=\"white-space: pre; overflow: auto;\">$d_descrizione</textarea></td>";
 } # fine if ($priv_mod_tariffe != "n")
 else echo "<br>".ucfirst(mex("descrizione della tariffa",$pag))." \"<em>".$nometariffa[1]."</em>\":<br>
@@ -445,7 +445,7 @@ else echo "<div style=\"width: 580px;\">\"<em>".nl2br($d_descrizione)."</em>\"</
 } # fine while ($file = readdir($lang_dig))
 closedir($lang_dir);
 echo "</tr></table>";
-if ($priv_mod_tariffe != "n") echo "<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("modifica",$pag))."\"></div></form><br>";
+if ($priv_mod_tariffe != "n") echo "<button class=\"edit\" type=\"submit\"><div>".ucfirst(mex("modifica",$pag))."</div></button></div></form><br>";
 
 $foto = esegui_query("select * from $tabledescrizioni where nome = 'tariffa".$numtariffa1."' and tipo = 'tarfoto' order by numero ");
 $num_foto = numlin_query($foto);
@@ -478,7 +478,7 @@ else $d_commento = "";
 if ($priv_mod_tariffe != "n") echo "".ucfirst($nome_lingua).": <input type=\"text\" name=\"n_commento_$ini_lingua\" value=\"$d_commento\" size=\"24\"><br>";
 else echo "<div style=\"width: 300px;\">".ucfirst($nome_lingua).": \"<em>$d_commento</em>\"</div>";
 } # fine while (list($ini_lingua,$nome_lingua) = each($lingue_vett))
-if ($priv_mod_tariffe != "n") echo "<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("modifica",$pag))."\">";
+if ($priv_mod_tariffe != "n") echo "<button class=\"edtm\" type=\"submit\"><div>".ucfirst(mex("modifica",$pag))."</div></button>";
 echo "</div></form><br></td><td style=\"width: 20px;\"></td><td valign=\"middle\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
@@ -488,7 +488,7 @@ echo "</div></form><br></td><td style=\"width: 20px;\"></td><td valign=\"middle\
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
 <input type=\"hidden\" name=\"cancurlfoto\" value=\"SI\">
 <input type=\"hidden\" name=\"numfoto\" value=\"$numfoto\">";
-if ($priv_mod_tariffe != "n") echo "<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("elimina",$pag))."\">";
+if ($priv_mod_tariffe != "n") echo "<button class=\"cpho\" type=\"submit\"><div>".ucfirst(mex("elimina",$pag))."</div></button>";
 echo "</div></form></td></tr></table>";
 } # fine for $num1
 
@@ -504,7 +504,7 @@ echo "<br><form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"aggurlfoto\" value=\"SI\">
 ".ucfirst(mex("url di una nuova foto",$pag)).":
 <input type=\"text\" name=\"n_urlfoto\" size=\"30\" value=\"http://\"$readonly>
-<input class=\"sbutton\" type=\"submit\" value=\"".ucfirst(mex("aggiungi",$pag))."\">
+<button class=\"apho\" type=\"submit\"><div>".ucfirst(mex("aggiungi",$pag))."</div></button>
 </div></form>";
 } # fine if ($priv_mod_tariffe != "n")
 } # fine if ($attiva_tariffe_consentite == "n" or $tariffe_consentite_vett[$numtariffa1] == "SI")
@@ -517,7 +517,7 @@ echo "<br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"periodi\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 } # fine if ($mostra_tab_tariffe != "NO")

@@ -3,7 +3,7 @@
 switch ($messaggio) {
 
 case "Inserisci una nuova prenotazione":  	$messaggio = "Insert a new reservation"; break;
-case "Cliente titolare: cognome":  		$messaggio = "Titular client: surname"; break;
+case "Cliente titolare":  			$messaggio = "Titular client"; break;
 case "cognome":  				$messaggio = "surname"; break;
 case "nome":  					$messaggio = "name"; break;
 case "Dal":  					$messaggio = "From"; break;

@@ -321,7 +321,8 @@ flock($file,3);
 fclose($file);
 @chmod(C_DATI_PATH."/hoteld_backup.php", 0640);
 unlock_tabelle($tabelle_lock);
-echo mex("File creato",$pag).".<br>";
+echo mex("File creato",$pag).".<br>
+<!-- Backup_created -->";
 } # fine if (@fopen(C_DATI_PATH."/hoteld_backup.php","w+"))
 else echo mex("Non ho il permesso di scrittura sul file",$pag).".<br>";
 } # fine if ($backup_contratti != "SI")
@@ -601,7 +602,7 @@ if (!$HOTELD_TAB_PRE) echo "".mex("Prefisso nel nome delle tabelle",$pag).":
 } # fine if ($dati_conn == "nuovi")
 
 echo "<div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai\" value=\"".mex("Continua",$pag)."\">
+<button class=\"rbkp\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 </div></div></form><br>";
 
 } # fine if ($continua != "SI")
@@ -652,7 +653,7 @@ echo "<div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
 if ($backup_contratti == "SI") echo "<input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">";
-echo "<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna indietro",$pag)."\">
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div>";
 } # fine if ($tasto_torna_indietro != "NO")
 
@@ -665,7 +666,7 @@ elseif ($anno_utente_attivato == "SI") {
 
 
 if ($backup_contratti == "SI") {
-echo "<h3>".mex("Backup dei documenti",$pag).".</h3>
+echo "<h3 id=\"h_dcbk\"><span>".mex("Backup dei documenti",$pag).".</span></h3>
 <hr style=\"width: 95%\">";
 
 if (@is_file(C_DATI_PATH."/hoteld_doc_backup.php")) $file_esistente = "SI";
@@ -676,10 +677,10 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"crea_backup\" value=\"";
+<button class=\"abkp\" type=\"submit\" name=\"crea_backup\" value=\"1\"><div>";
 if ($file_esistente == "NO") echo mex("Crea il file di backup dei documenti",$pag);
 else echo mex("Crea un nuovo file di backup dei documenti",$pag);
-echo "\">";
+echo "</div></button>";
 if ($file_esistente == "SI") {
 $fbackup = fopen(C_DATI_PATH."/hoteld_doc_backup.php","r");
 $data_creazione = fread($fbackup,200);
@@ -700,7 +701,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
 <input type=\"hidden\" name=\"mostra_header\" value=\"NO\">
-<input class=\"sbutton\" type=\"submit\" name=\"salva_backup\" value=\"".mex("Guarda il file",$pag)."\">
+<button class=\"dbkp\" type=\"submit\" name=\"salva_backup\" value=\"1\"><div>".mex("Guarda il file",$pag)."</div></button>
  dati/hoteld_doc_backup.php ".mex("per salvarlo (eventualmente usa il bottone indietro del browser per tornare qui)",$pag).".<br><table><tr><td style=\"width: 30px;\"></td><td>
 <label><input type=\"checkbox\" name=\"compresso\" value=\"SI\" checked> ".mex("Compresso",$pag)."</label>
 </td></tr></table></div></form><table><tr><td style=\"height: 4px;\"></td></tr></table>";
@@ -710,7 +711,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"cancella_backup\" value=\"".mex("Cancella",$pag)."\">
+<button class=\"cbkp\" type=\"submit\" name=\"cancella_backup\" value=\"1\"><div>".mex("Cancella",$pag)."</div></button>
 ".mex(" l'attuale file di backup dei documenti",$pag).".
 </div></form><table><tr><td style=\"height: 4px;\"></td></tr></table>";
 #} # fine if ($id_utente == 1)
@@ -723,7 +724,7 @@ echo "<hr style=\"width: 95%\"><table><tr><td style=\"height: 4px;\"></td></tr><
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"copia_def_backup\" value=\"".ucfirst(mex("copia",$pag))."\">
+<button class=\"ubkp\" type=\"submit\" name=\"copia_def_backup\" value=\"1\"><div>".ucfirst(mex("copia",$pag))."</div></button>
  ".mex("il file di backup dai documenti predefiniti in",$pag)."
  <select name=\"lingua\">
 <option value=\"ita\">italiano</option>";
@@ -751,7 +752,7 @@ echo ".<br></div></form><table><tr><td style=\"height: 8px;\"></td></tr></table>
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"upload_backup\" value=\"".mex("Fai l'upload",$pag)."\">";
+<button class=\"ubkp\" type=\"submit\" name=\"upload_backup\" value=\"1\"><div>".mex("Fai l'upload",$pag)."</div></button>";
 if ($file_esistente == "NO") echo mex(" del file di backup dei documenti",$pag);
 else echo mex(" di un nuovo file di backup dei documenti",$pag);
 echo ": <input name=\"file_backup_upload\" type=\"file\">";
@@ -767,7 +768,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"ripristina_backup\" value=\"".mex("Ripristina i documenti dal file",$pag)."\"><br>
+<button class=\"rdbk\" type=\"submit\" name=\"ripristina_backup\" value=\"1\"><div>".mex("Ripristina i documenti dal file",$pag)."</div></button><br>
 <table><tr><td style=\"width: 30px;\"></td><td>
 <label><input type=\"radio\" name=\"modalita\" value=\"aggiungi\" checked>".mex("aggiungi ai documenti attuali",$pag)."</label>";
 if ($info_contr['max_contr'] > 1) {
@@ -797,7 +798,7 @@ echo "<hr style=\"width: 95%\"><div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Backup completo",$pag)."\">
+<button class=\"bkup\" type=\"submit\"><div>".mex("Backup completo",$pag)."</div></button>
 </div></form><br>";
 } # fine if ($backup_contratti == "SI")
 
@@ -806,8 +807,8 @@ else {
 
 
 # Pagina iniziale di backup
-if (C_NASCONDI_MARCA == "SI") echo "<h3>".mex("Sistema di backup","personalizza.php").".</h3>";
-else echo "<h3>".mex("Sistema di backup per HotelDruid",$pag).".</h3>";
+if (C_NASCONDI_MARCA == "SI") echo "<h3 id=\"h_bkup\"><span>".mex("Sistema di backup","personalizza.php").".</span></h3>";
+else echo "<h3 id=\"h_bkup\"><span>".mex("Sistema di backup per HotelDruid",$pag).".</span></h3>";
 echo "<hr style=\"width: 95%\">";
 
 if (@is_file(C_DATI_PATH."/hoteld_backup.php")) $file_esistente = "SI";
@@ -817,10 +818,10 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"crea_backup\" value=\"";
+<button class=\"abkp\" type=\"submit\" name=\"crea_backup\" value=\"1\"><div>";
 if ($file_esistente == "NO") echo mex("Crea il file di backup",$pag);
 else echo mex("Crea un nuovo file di backup",$pag);
-echo "\">";
+echo "</div></button>";
 if ($file_esistente == "SI") {
 $fbackup = fopen(C_DATI_PATH."/hoteld_backup.php","r");
 $data_creazione = fread($fbackup,200);
@@ -856,7 +857,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
 <input type=\"hidden\" name=\"mostra_header\" value=\"NO\">
-<input class=\"sbutton\" type=\"submit\" name=\"salva_backup\" value=\"".mex("Guarda il file",$pag)."\">
+<button class=\"dbkp\" type=\"submit\" name=\"salva_backup\" value=\"1\"><div>".mex("Guarda il file",$pag)."</div></button>
  dati/hoteld_backup.php ".mex("per salvarlo (eventualmente usa il bottone indietro del browser per tornare qui)",$pag).".<br>
 <table><tr><td style=\"width: 30px;\"></td><td>
 <label><input type=\"checkbox\" name=\"compresso\" value=\"SI\" checked> ".mex("Compresso",$pag)."</label>
@@ -866,7 +867,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"cancella_backup\" value=\"".mex("Cancella",$pag)."\">
+<button class=\"cbkp\" type=\"submit\" name=\"cancella_backup\" value=\"1\"><div>".mex("Cancella",$pag)."</div></button>
 ".mex(" l'attuale file di backup",$pag).".
 </div></form><table><tr><td style=\"height: 4px;\"></td></tr></table>";
 #} # fine if ($id_utente == 1)
@@ -879,7 +880,7 @@ echo "<hr style=\"width: 95%\"><table><tr><td style=\"height: 4px;\"></td></tr><
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"upload_backup\" value=\"".mex("Fai l'upload",$pag)."\">";
+<button class=\"ubkp\" type=\"submit\" name=\"upload_backup\" value=\"1\"><div>".mex("Fai l'upload",$pag)."</div></button>";
 if ($file_esistente == "NO") echo mex(" del file di backup",$pag);
 else echo mex(" di un nuovo file di backup",$pag);
 echo ": <input name=\"file_backup_upload\" type=\"file\">";
@@ -892,7 +893,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"./crea_backup.php\
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"azione\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"ripristina_backup\" value=\"".mex("Ripristina i dati dal file",$pag)."\">
+<button class=\"rbkp\" type=\"submit\" name=\"ripristina_backup\" value=\"1\"><div>".mex("Ripristina i dati dal file",$pag)."</div></button>
 ".mex(" (i dati attuali verranno cancellati), utilizzando per la connessione al database:",$pag)."<br>
 <table><tr><td style=\"width: 30px;\"></td><td>
 <div><label><input type=\"radio\" name=\"dati_conn\" value=\"attuali\" checked>".mex("i dati dell'attuale connessione",$pag)."</label></div>";
@@ -911,7 +912,7 @@ echo "<hr style=\"width: 95%\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"backup_contratti\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Backup dei documenti",$pag)."\">
+<button class=\"dcbk\" type=\"submit\"><div>".mex("Backup dei documenti",$pag)."</div></button>
 </div></form><br>";
 
 } # fine else if ($backup_contratti == "SI")
@@ -923,7 +924,7 @@ if ($backup_contratti == "SI") $action .= "#contratti";
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 

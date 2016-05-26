@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2011 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2016 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -171,7 +171,7 @@ if ($inserisci_spesa) echo mex("La spesa è stata inserita",$pag).".<br>";
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"costi.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("OK",$pag)."\">
+<button class=\"cont\" type=\"submit\"><div>".mex("OK",$pag)."</div></button>
 </div></form>";
 
 unlock_tabelle($tabelle_lock);
@@ -215,7 +215,7 @@ $metodo_pagamento_txt .= "</select>&nbsp;(".mex("opzionale",$pag).").</td></tr>"
 } # fine if ($metodi_pagamento)
 
 if ($priv_ins_entrate == "s") {
-echo "<h3>".mex("Inserisci le entrate in cassa per l'anno",$pag)." $anno.</h3>
+echo "<h3 id=\"h_iinc\"><span>".mex("Inserisci le entrate in cassa per l'anno",$pag)." $anno.</span></h3>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"costi.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\"><br>
@@ -244,14 +244,14 @@ echo "<tr><td><label><input type=\"checkbox\" name=\"entrata_da_prenota\" value=
 </label></td></tr>";
 } # fine if ($priv_entrate_da_prenota == "c")
 echo "</table><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"inserisci_entrata\" value=\"".mex("Inserisci l' entrata",$pag)."\"><br>
+<button class=\"iinc\" type=\"submit\" name=\"inserisci_entrata\" value=\"1\"><div>".mex("Inserisci l' entrata",$pag)."</div></button><br>
 </div></div></form>
 <table><tr><td style=\"height: 8px;\"></td></tr></table><hr style=\"width: 95%\">";
 } # fine if ($priv_ins_entrate == "s")
 
 if ($priv_ins_spese == "s") {
 echo "
-<h3>".mex("Inserisci i costi di gestione per l'anno",$pag)." $anno.</h3>
+<h3 id=\"h_iexp\"><span>".mex("Inserisci i costi di gestione per l'anno",$pag)." $anno.</span></h3>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"costi.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\"><br>
@@ -275,7 +275,7 @@ echo "<tr><td>".mex("Persona che inserisce",$pag).":&nbsp;
 </td></tr>";
 } # fine if ($priv_persona_ins_costi == "c")
 echo "</table><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"inserisci_spesa\" value=\"".mex("Inserisci la spesa",$pag)."\"><br>
+<button class=\"iexp\" type=\"submit\" name=\"inserisci_spesa\" value=\"1\"><div>".mex("Inserisci la spesa",$pag)."</div></button><br>
 </div></div></form>
 <table><tr><td style=\"height: 8px;\"></td></tr></table><hr style=\"width: 95%\">";
 } # fine if ($priv_ins_spese == "s")
@@ -284,7 +284,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"visualizza_tabelle
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"costi\">
-<input class=\"sbutton\" type=\"submit\" name=\"visualizza\" value=\"".mex("Visualizza la tabella con tutte le spese e le entrate",$pag)."\">
+<button class=\"exin\" type=\"submit\"><div>".mex("Visualizza la tabella con tutte le spese e le entrate",$pag)."</div></button>
 </div></form>";
 
 } # fine else if (!$num_casse_attive) 
@@ -294,7 +294,7 @@ echo "<table><tr><td style=\"height: 8px;\"></td></tr></table>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form><table><tr><td style=\"height: 20px;\"></td></tr></table>";
 
 

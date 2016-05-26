@@ -157,12 +157,13 @@ return $nomi_contratti;
 
 
 
-function bottone_submit_contr ($val,$id="",$name="") {
+function bottone_submit_contr ($val,$id="",$name="",$class="") {
 global $origine;
 if ($id) $id = " id=\"$id\"";
 if ($name) $name = " name=\"$name\"";
+if ($class) $class = " class=\"$class\"";
 if (substr($origine,0,17) == "punto_vendita.php") $risul = "<button class=\"pos\"$id type=\"submit\"$name value=\"$val\" style=\"min-height: 60px; min-width: 70px; max-width: 110px;\">$val</button>";
-else $risul = "<input class=\"sbutton\"$id type=\"submit\"$name value=\"$val\">";
+else $risul = "<button $class$id type=\"submit\"$name value=\"$val\"><div>$val</div></button>";
 return $risul;
 } # fine function bottone_submit_contr
 
@@ -2053,8 +2054,27 @@ $utente_inserimento_costo_agg = "";
 } # fine else if ($tipo_parte2[$n_p2] == 3)
 
 if ($tipo_parte2[$n_p2] == 4) {
+$ripeti_prenota_data2 = "";
 ${$var_arr_nome[$arr_parte2[$n_p2]]} = key(${$arr_parte2[$n_p2]});
+if ($array_date_contr[$arr_parte2[$n_p2]] == "SI") $ripeti_prenota_data2 = current(${$arr_parte2[$n_p2]});
 next(${$arr_parte2[$n_p2]});
+if ($ripeti_prenota_data2) {
+if (!strcmp($tariffesettimanali[$n_r][$ripeti_prenota_data2],"")) {
+global ${"tariffesettimanali_".$n_r};
+$var_if = explode(";",${"tariffesettimanali_".$n_r});
+$var_if = explode(",",$var_if[0]);
+$num2 = count($var_if);
+for ($num1 = 0 ; $num1 <= $num2 ; $num1++) {
+if (date("Y-m-d",mktime(0,0,0,substr($data_inizio,5,2),(substr($data_inizio,8,2) + $num1),substr($data_inizio,0,4))) == $ripeti_prenota_data2) {
+if (!$var_if[$num1]) $tariffesettimanali[$n_r][$ripeti_prenota_data2] = 0;
+else $tariffesettimanali[$n_r][$ripeti_prenota_data2] = $var_if[$num1];
+break;
+} # fine if (date("Y-m-d",mktime(0,0,0,substr($data_inizio,5,2),(substr($data_inizio,8,2) + $num1),substr($data_inizio,0,4))) == $ripeti_prenota_data2)
+} # fine for $num1
+} # fine if (!strcmp($tariffesettimanali[$n_r][$ripeti_prenota_data2],""))
+$costo_tariffa_giorno_array = $tariffesettimanali[$n_r][$ripeti_prenota_data2];
+$costo_tariffa_giorno_array_p = punti_in_num($costo_tariffa_giorno_array,$stile_soldi);
+} # fine if ($ripeti_prenota_data2)
 } # fine if ($tipo_parte2[$n_p2] == 4)
 
 if ($tipo_parte2[$n_p2] == 5) {
@@ -3047,7 +3067,7 @@ $contratto .= "</textarea><br>
 </table><table><tr><td style=\"height: 3px;\"></td></tr></table>
 <hr style=\"width: 95%; margin-left: 6px; text-align: left;\">";
 } # fine if (!$ripeti_tutto)
-$contratto .= "&nbsp;&nbsp;".bottone_submit_contr(mex("Spedisci",$pag),"inse")."
+$contratto .= "&nbsp;&nbsp;".bottone_submit_contr(mex("Spedisci",$pag),"inse","","snml")."
 </div></form>";
 } # fine if ($tipo_contratto == "contreml")
 
@@ -3233,6 +3253,7 @@ $nome_file_contr = $nome_file_contr_esist;
 $num_file_salva = count($nome_file_contr);
 } # fine if ($num_contr_esist)
 $tabelle_lock = array($tableversioni,$tabletransazioni);
+$tabelle_lock = lock_tabelle($tabelle_lock);
 $adesso = date("YmdHis",(time() + (C_DIFF_ORE * 3600)));
 list($usec, $sec) = explode(' ',microtime());
 mt_srand((float) $sec + ((float) $usec * 100000));
@@ -3272,7 +3293,7 @@ echo mex("<span class=\"colblu\">salvato</span> come",$pag);
 } # fine if (!$num_contr_esist)
 echo " <b><a style=\"color: #000000;\" href=\"$url_reload&n_file=$num1\"$target>".$nome_file_contr[$num1]."</a></b>";
 if ($num_contr_esist and $num_file_salva_orig == 1 and $priv_cancella_contratti != "n") {
-echo " ".bottone_submit_contr(mex("Sovrascrivi",$pag))."
+echo " ".bottone_submit_contr(mex("Sovrascrivi",$pag),"","","xdoc")."
 .</div></form>";
 } # fine if ($num_contr_esist and $num_file_salva_orig == 1 and...
 else echo ".<br>";
@@ -3286,8 +3307,8 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"numero_contratto\" value=\"$numero_contratto\">
 <input type=\"hidden\" name=\"id_transazione\" value=\"$id_transazione\">
 <input type=\"hidden\" name=\"cancella\" value=\"SI\">";
-if ($num_file_salva == 1) echo "&nbsp;".bottone_submit_contr(mex("Cancella il documento",$pag));
-else echo bottone_submit_contr(mex("Cancella i documenti",$pag));
+if ($num_file_salva == 1) echo "&nbsp;".bottone_submit_contr(mex("Cancella il documento",$pag),"","","cdoc");
+else echo bottone_submit_contr(mex("Cancella i documenti",$pag),"","","cdoc");
 echo "</div></form><br>";
 } # fine if ($priv_cancella_contratti != "n")
 } # fine if (!$num_contr_esist)
@@ -3296,8 +3317,8 @@ echo "<br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 $lista_var_form
 <input type=\"hidden\" name=\"cont_salva\" value=\"SI\">";
-if ($num_file_salva_orig == 1) echo "&nbsp;".bottone_submit_contr(mex("Salva un nuovo documento",$pag));
-else echo bottone_submit_contr(mex("Salva dei nuovi documenti",$pag));
+if ($num_file_salva_orig == 1) echo "&nbsp;".bottone_submit_contr(mex("Salva un nuovo documento",$pag),"","","adoc");
+else echo bottone_submit_contr(mex("Salva dei nuovi documenti",$pag),"","","adoc");
 echo "</div></form><br>";
 } # fine else if (!$num_contr_esist)
 

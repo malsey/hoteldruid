@@ -178,7 +178,7 @@ else $azione = $pag;
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$azione\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("OK",$pag)."\">
+<button class=\"cont\" type=\"submit\"><div>".mex("OK",$pag)."</div></button>
 </div></form>";
 
 } # fine if ($crea_modello)
@@ -1492,7 +1492,7 @@ else echo mex("Cancellate tutte le pagine",$pag).".<br>";
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"crea_modelli.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("OK",$pag)."\">
+<button class=\"cont\" type=\"submit\"><div>".mex("OK",$pag)."</div></button>
 </div></form>";
 } # fine else if (!$continua)
 } # fine if ($mod_presente == "SI")
@@ -1587,7 +1587,7 @@ echo mex("Pagine importate",$pag).".<br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"crea_modelli.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("OK",$pag)."\">
+<button class=\"cont\" type=\"submit\"><div<".mex("OK",$pag)."</div></button>
 </div></form>";
 } # fine else if (!$continua)
 } # fine if ($errore != "SI")
@@ -1598,7 +1598,7 @@ echo mex("Pagine importate",$pag).".<br>
 
 if ($mostra_form_creazione != "NO") {
 
-echo "<h4>".mex("Crea pagine per il sito web",$pag).".</h4>";
+echo "<h4 id=\"h_webs\"><span>".mex("Crea pagine per il sito web",$pag).".</span></h4>";
 
 echo "<br><div style=\"text-align: center;\">".mex("Dati comuni",$pag)."</div><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"crea_modelli.php\"><div>
@@ -1805,7 +1805,7 @@ echo "<hr style=\"width: 95%\"><div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"personalizza.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"indietro\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 } # fine if ($mostra_form_creazione != "NO")

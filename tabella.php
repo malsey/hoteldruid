@@ -250,7 +250,7 @@ if ($g_corr == "3") $var .= mex(" Me","giorni_mesi.php");
 if ($g_corr == "4") $var .= mex(" Gi","giorni_mesi.php");
 if ($g_corr == "5") $var .= mex(" Ve","giorni_mesi.php");
 if ($g_corr == "6") $var .= mex(" Sa","giorni_mesi.php");
-$var = str_replace(" ","<br/>",$var);
+$var = str_replace(" ","<br>",$var);
 $var .= "</small>";
 } # fine function ins_nome_giorno
 
@@ -715,7 +715,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 &nbsp;&nbsp;&nbsp;&nbsp;</div></form>";
 } # fine if ($mese != 1)
 echo "</td><td align=\"center\">
-<h3>".mex("Tabella prenotazioni del",$pag)." <span id=\"m_corr_su\">$mese_mostra-$anno_mostra</span>.</h3>
+<h3 id=\"h_mon\">".mex("Tabella prenotazioni del",$pag)." <span id=\"m_corr_su\">$mese_mostra-$anno_mostra</span>.</h3>
 </td><td style=\"width: 100px;\" align=\"left\">";
 if ($mese != $mese_fine_periodi) {
 if ($tipo_periodi == "g") $mese_freccia = ($mese_fine_tab + 1);
@@ -738,16 +738,17 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"visualizza_tabelle
 <input class=\"sbutton\" type=\"submit\" value=\"".mex("Aggiungi periodi",'visualizza_tabelle.php')."\">
 </div></form>";
 } # fine else if ($mese != $mese_fine_periodi)
-echo "</td></tr></table>
-<div style=\"position: relative;\" ondragstart=\"drg(event)\">
-<table class=\"m1\" style=\"background-color: $t1color; margin-left: auto; margin-right: auto; white-space: nowrap;\" border=\"3\" cellspacing=\"$cellspacing\" cellpadding=\"$cellpadding\" ><tbody>";
+echo "</td></tr></table>";
+
 $data_inizio_tab = date("Y-m-d" , mktime(0,0,0,$mese_inizio_tab,1,$anno));
 $id_data_inizio_tab = esegui_query("select * from $tableperiodi where datainizio >= '$data_inizio_tab' order by idperiodi");
 $id_data_inizio_tab = risul_query($id_data_inizio_tab,0,'idperiodi');
 if ($mese != $mese_inizio_periodi) {
 $id_data_inizio_tab = $id_data_inizio_tab - 1;
 $data_inizio_tab = date("Y-m-d" , mktime(0,0,0,$mese_inizio_tab,0,$anno));
+$data_inizio_selezione = $data_inizio_tab;
 } # fine if ($mese != $mese_inizio_periodi)
+else $data_inizio_selezione = date("Y-m-d" , mktime(0,0,0,$mese_inizio_tab,0,$anno));
 $data_fine_tab = date("Y-m-d" , mktime(0,0,0,$mese_fine_tab,31,$anno));
 $data_fine_tab = esegui_query("select * from $tableperiodi where datainizio <= '$data_fine_tab' order by idperiodi");
 $num_date = numlin_query($data_fine_tab);
@@ -868,11 +869,13 @@ var sel_start_date = 0;
 var sel_start_col = 0;
 var sel_stop_date = 0;
 var curr_sel_row = 0;
-
-
 -->
 </script>
-";
+
+<div style=\"position: relative;\" ondragstart=\"drg(event)\">
+<table class=\"m1ext\" cellspacing=0 cellpadding=0><tr><td>
+<table class=\"m1\" style=\"background-color: $t1color;\" cellpadding=\"$cellpadding\" ><tbody>";
+
 echo str_replace("<a name=\"\"></a>","<a name=\"rd_n$num_linea_date\"></a>",$linea_date);
 
 
@@ -1172,7 +1175,7 @@ else $num_ripeti++;
 
 unlock_tabelle($tabelle_lock);
 
-echo "</tbody></table></div>
+echo "</tbody></table></td></tr></table></div>
 <form id=\"mod_pren\" accept-charset=\"utf-8\" method=\"post\" action=\"modifica_prenota.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
@@ -1230,7 +1233,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"tabella3.php\"><di
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" id=\"m_corr_giu\" name=\"mese\" value=\"$mese\">
-<input class=\"sbutton\" type=\"submit\" name=\"tab3\" value=\"".mex("Visualizza la tabella per la stampa",$pag)."\">
+<button class=\"prnt\" type=\"submit\"><div>".mex("Visualizza la tabella per la stampa",$pag)."</div></button>
 </div></form>";
 } # fine if ($tipo_periodi == "g")
 else {
@@ -1238,7 +1241,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"tabella2.php\"><di
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" id=\"m_corr_giu\" name=\"mese\" value=\"$mese\">
-<input class=\"sbutton\" type=\"submit\" name=\"tab2\" value=\"".mex("Visualizza la tabella con i giorni",$pag)."\">
+<button class=\"prnt\" type=\"submit\"><div>".mex("Visualizza la tabella con i giorni",$pag)."</div></button>
 </div></form>";
 } # fine else if ($tipo_periodi == "g")
 echo "</td><td style=\"width: 100px;\" align=\"left\">";
@@ -1289,11 +1292,11 @@ echo "</td></tr><tr><td style=\"height: 2px;\"></td></tr><tr><td></td><td align=
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"origine\" value=\"$pag?id_sessione=$id_sessione&amp;anno=$anno&amp;mese=$mese\">
 <input type=\"hidden\" id=\"lpren_contr\" name=\"lista_prenota\" value=\"$lista_prenota_contr\">
-<input type=\"hidden\" id=\"dini_contr\" name=\"data_inizio_selezione\" value=\"$data_inizio_tab\">
+<input type=\"hidden\" id=\"dini_contr\" name=\"data_inizio_selezione\" value=\"$data_inizio_selezione\">
 <input type=\"hidden\" id=\"dfine_contr\" name=\"data_fine_selezione\" value=\"$data_fine_tab\">
 ".ucfirst(mex("documento di tipo",$pag))."
  <select name=\"numero_contratto\">$option_num_contr</select>
- <input class=\"sbutton\" type=\"submit\" name=\"vedi_contr\" value=\"".ucfirst(mex("visualizza",$pag))."\">
+ <button class=\"vdoc\" type=\"submit\"><div>".ucfirst(mex("visualizza",$pag))."</div></button>
 </div></form>";
 } # fine if ($option_num_contr and $show_bar != "NO")
 
@@ -1322,7 +1325,7 @@ echo "<table style=\"margin-left: auto; margin-right: auto;\" cellspacing=\"0\" 
 echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form><br>";
 
 

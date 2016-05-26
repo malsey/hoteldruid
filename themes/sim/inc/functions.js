@@ -205,9 +205,23 @@ elementi = elementi.offsetParent;
 }
 
 var nuovo_html = '<div id="aziobar" style="text-align: right; width: 96%; padding: 0; z-index: 2; position: absolute; top: '+(iTop + 1)+'px; left: '+iLeft+'px;"><div style="float: right; background-color: #ffffff; padding: 1px;">';
-if (tasto_ins) nuovo_html += '<input class="rbutton" type="submit" onclick="manda_form(\'inse\')" value="'+tasto_ins.value+'">';
-if (tasto_mod) nuovo_html += '<input class="rbutton" type="submit" onclick="manda_form(\'modi\')" value="'+tasto_mod.value+'">';
-if (tasto_can) nuovo_html += '&nbsp;&nbsp;<input class="rbutton" type="submit" onclick="manda_form(\'canc\')" value="'+tasto_can.value+'">';
+if (tasto_ins) {
+if (tasto_ins.value) tasto_ins = tasto_ins.value;
+else tasto_ins = tasto_ins.childNodes[0].innerHTML;
+nuovo_html += '<input class="rbutton" type="submit" onclick="manda_form(\'inse\')" value="&nbsp;'+tasto_ins+'&nbsp;">';
+}
+if (tasto_mod) {
+if (tasto_mod.value) tasto_mod = tasto_mod.value;
+else tasto_mod = tasto_mod.childNodes[0].innerHTML;
+nuovo_html += '<input class="rbutton" type="submit" onclick="manda_form(\'modi\')" value="&nbsp;'+tasto_mod+'&nbsp;">';
+}
+if (tasto_can) {
+if ((tasto_ins || tasto_mod) && lista_con) nuovo_html += '<span class="canc_vsmlscr">';
+if (tasto_can.value) tasto_can = tasto_can.value;
+else tasto_can = tasto_can.childNodes[0].innerHTML;
+nuovo_html += '&nbsp;&nbsp;<input class="rbutton" type="submit" onclick="manda_form(\'canc\')" value="&nbsp;'+tasto_can+'&nbsp;">';
+if ((tasto_ins || tasto_mod) && lista_con) nuovo_html += '</span>';
+}
 if (lista_con) {
 var tasto_con = document.getElementById('hcon');
 nuovo_html += '&nbsp;&nbsp;<select id="lcon2" class="rselect" onchange="manda_select()">';
@@ -217,7 +231,13 @@ nuovo_html += '<option value="'+lista_con.options[n1].value+'">'+lista_con.optio
 } // fine for n1
 nuovo_html += '</select>';
 } // fine if (lista_con)
-if (tasto_ind) nuovo_html += '&nbsp;&nbsp;<input class="rbutton" type="submit" onclick="manda_form(\'indi\')" value="'+tasto_ind.value+'">';
+if (tasto_ind) {
+if ((tasto_ins || tasto_mod) && lista_con) nuovo_html += '<span class="canc_vsmlscr">';
+if (tasto_ind.value) tasto_ind = tasto_ind.value;
+else tasto_ind = tasto_ind.childNodes[0].innerHTML;
+nuovo_html += '&nbsp;&nbsp;<input class="rbutton" type="submit" onclick="manda_form(\'indi\')" value="&nbsp;'+tasto_ind+'&nbsp;">';
+if ((tasto_ins || tasto_mod) && lista_con) nuovo_html += '</span>';
+}
 nuovo_html += '</div></div>';
 topsp.innerHTML = nuovo_html;
 } // fine if (tasto_mod || tasto_ins)
@@ -273,11 +293,11 @@ nuova_lista_contr += ','+numpren;
 } // for n0
 if (nuova_lista_mod) {
 nuova_lista_mod = nuova_lista_mod.substr(1)
-document.getElementById('smt_prenota_mod').value = document.getElementById('fsl_prenota_mod').value;
+document.getElementById('smt_prenota_mod').childNodes[0].innerHTML = document.getElementById('fsl_prenota_mod').value;
 document.getElementById('lst_prenota_mod').value = nuova_lista_mod;
 } // if
 else {
-document.getElementById('smt_prenota_mod').value = document.getElementById('fms_prenota_mod').value;
+document.getElementById('smt_prenota_mod').childNodes[0].innerHTML = document.getElementById('fms_prenota_mod').value;
 document.getElementById('lst_prenota_mod').value = lista_prenota_mod_orig.substring(1,(lista_prenota_mod_orig.length -1));
 } // else
 if (nuova_lista_contr) document.getElementById('lst_prenota_contr').value = nuova_lista_contr+',';
@@ -370,4 +390,47 @@ function blur_elem (elem) {
 var elem_id = document.getElementById(elem);
 elem_id.blur();
 } // fine function blur_elem
+
+
+function seleziona_icona_tab () {
+var form_vtab = document.getElementById('vtab');
+var sel = form_vtab.getElementsByTagName('select');
+sel = sel[0].options[sel[0].selectedIndex].value;
+var el_vtab = form_vtab.getElementsByTagName('button');
+el_vtab = el_vtab[0].getElementsByTagName('div');
+if (sel == 'prenotazioni') el_vtab[0].style.backgroundImage = "url('./img/reservations.png')";
+if (sel == 'costi') el_vtab[0].style.backgroundImage = "url('./img/expinc.png')";
+if (sel == 'periodi') el_vtab[0].style.backgroundImage = "url('./img/rates.png')";
+if (sel == 'clienti') el_vtab[0].style.backgroundImage = "url('./img/client.png')";
+if (sel == 'regole') el_vtab[0].style.backgroundImage = "url('./img/rules.png')";
+if (sel == 'appartamenti') el_vtab[0].style.backgroundImage = "url('./img/rooms.png')";
+if (sel == 'inventario') el_vtab[0].style.backgroundImage = "url('./img/inventory.png')";
+if (sel == 'documenti') el_vtab[0].style.backgroundImage = "url('./img/documents.png')";
+if (sel == 'statistiche') el_vtab[0].style.backgroundImage = "url('./img/statistics.png')";
+} // fine function seleziona_icona_tab
+
+
+function attiva_seleziona_icona_tab () {
+seleziona_icona_tab();
+var form_vtab = document.getElementById('vtab');
+var select_vtab = form_vtab.getElementsByTagName('select');
+select_vtab[0].onchange = new Function("seleziona_icona_tab()");
+} // fine function attiva_seleziona_icona_tab
+
+
+function tab_in_container () {
+var tabs = document.getElementsByTagName('table');
+var maxtabwidth = tabs[0].offsetWidth;
+var navbarwidth = 0;
+if (tabs[0].className == 'nav_bar') navbarwidth = maxtabwidth;
+for (n1 = 1 ; n1 < tabs.length ; n1++) {
+if (tabs[n1].offsetWidth > maxtabwidth) maxtabwidth = tabs[n1].offsetWidth;
+} // for n1
+if (maxtabwidth > 300) {
+if (maxtabwidth != navbarwidth) maxtabwidth = maxtabwidth + 6;
+document.getElementById('menubox').style.minWidth = maxtabwidth+'px';
+maxtabwidth = maxtabwidth - 6;
+document.getElementById('contentbox').style.minWidth = maxtabwidth+'px';
+}
+} // fine function racchiudi_tabelle
 

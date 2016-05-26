@@ -45,7 +45,7 @@ return $link_mysqli;
 } # fine function connetti_db
 
 
-function disconnetti_db ($numconnessione) {
+function disconnetti_db (&$numconnessione) {
 
 $risul = mysqli_close($numconnessione);
 return $risul;

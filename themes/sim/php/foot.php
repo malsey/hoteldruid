@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2009 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2015 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -34,6 +34,15 @@ replica_tasti();
 ";
 } # fine if ($pag != "visualizza_contratto.php" or $show_bar != "NO")
 
+if ($pag == "inizio.php") {
+echo "
+<script type=\"text/javascript\">
+<!--
+attiva_seleziona_icona_tab('');
+-->
+</script>
+";
+} # fine if ($pag == "inizio.php")
 
 if ($pag == "visualizza_tabelle.php" and $tipo_tabella == "prenotazioni") {
 echo "
@@ -56,6 +65,17 @@ ridim_col_modres();
 </script>
 ";
 } # fine if ($pag == "modifica_prenota.php" or $pag == "modifica_cliente.php")
+
+if ($mobile_device) {
+echo "
+<script type=\"text/javascript\">
+<!--
+tab_in_container();
+-->
+</script>
+";
+} # fine if ($mobile_device)
+
 
 
 if ($start_time) {

@@ -2,7 +2,7 @@
 
 switch ($messaggio) {
 
-case "Torna al menù principale":  		$messaggio = "Vuelve al menú principal"; break;
+case "Torna al menù principale":  		$messaggio = "Volver al menú principal"; break;
 case "Altri costi prenotazione":  		$messaggio = "Otros costes reserva"; break;
 case "TOTALE":  				$messaggio = "TOTAL"; break;
 case "in cassa":  				$messaggio = "en caja"; break;

@@ -638,7 +638,7 @@ echo "</td><td align=\"center\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"mese\" value=\"$mese\">
-<input class=\"sbutton\" type=\"submit\" name=\"tab2\" value=\"".mex("Visualizza la tabella normale",$pag)."\">
+<button class=\"vmon\" type=\"submit\"><div>".mex("Visualizza la tabella normale",$pag)."</div></button>
 </div></form></td><td style=\"width: 100px;\" align=\"left\">";
 if ($mese != 48) {
 $mese_succ = $mese + 1;
@@ -651,14 +651,15 @@ if (!$tutti_mesi) echo "<tr><td></td><td align=\"center\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"mese\" value=\"$mese\">
-<input class=\"sbutton\" type=\"submit\" name=\"tutti_mesi\" value=\"".mex("Visualizza tutti i mesi",$pag)."\">
+<input type=\"hidden\" name=\"tutti_mesi\" value=\"1\">
+<button class=\"amon\" type=\"submit\"><div>".mex("Visualizza tutti i mesi",$pag)."</div></button>
 </div></form></td><td></td></tr>";
 
 echo "<tr><td style=\"height: 2px;\"></td></tr><tr><td></td><td align=\"center\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form></td><td></td></tr><tr><td style=\"height: 20px;\"></td></tr></table>";
 
 

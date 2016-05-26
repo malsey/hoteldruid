@@ -1,21 +1,5 @@
 <?php
-$to = $from = $subject = $message = $headers = "";
-$email=$_POST['email'];
-// if(isset($_POST['email'])) 
-//     {
-//     	$to=$_POST['email'];
-//     	$from = "emeryishimwe@gmail.com";
-// 		$subject = 'Invoice';
-//     	$message = 'Geachte, message...';
-// 		$headers  = "MIME-Version: 1.0" . "\r\n";
-// 		$headers .= "Content-type: text/html; charset=iso-8859-1\" . \"\r\n";
-// 		$headers .= "From: \". $from. \"\r\n";
-// 		$headers .= "Reply-To: ". $from. "\r\n";
-// 		$headers .= "X-Mailer: PHP/" . phpversion();
-// 		$headers .= "X-Priority: 1\" . \"\r\n"; 
 
-// 	    mail($to, $subject, $message, $headers);
-// 	}
 ##################################################################################
 #    HOTELDRUID
 #    Copyright (C) 2001-2014 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
@@ -260,41 +244,37 @@ $tablepersonalizza = $PHPR_TAB_PRE."personalizza";
 $tablecostiprenota = $PHPR_TAB_PRE."costiprenota".$anno;
 
 if ($aggiungi_tipologie) {
-	$manda_dati_assegnazione = "SI";
-	$mostra_form_dati_cliente = "NO";
-	echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
-	<input type=\"hidden\" name=\"anno\" value=\"$anno\">
-	<input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
-	
-	for ($n_t = 1 ; $n_t <= $num_tipologie ; $n_t++) {
-		echo "<input type=\"hidden\" name=\"num_piano$n_t\" value=\"".${"num_piano".$n_t}."\">
-		<input type=\"hidden\" name=\"num_casa$n_t\" value=\"".${"num_casa".$n_t}."\">
-		<input type=\"hidden\" name=\"num_persone_casa$n_t\" value=\"".${"num_persone_casa".$n_t}."\">";
-		$idinizioperiodo = esegui_query("select idperiodi from $tableperiodi where datainizio = '".aggslashdb(${"inizioperiodo".$n_t})."' ");
-		if (numlin_query($idinizioperiodo) == 1) ${"inizioperiodo".$n_t} = risul_query($idinizioperiodo,0,'idperiodi');
-		$idfineperiodo = esegui_query("select idperiodi from $tableperiodi where datafine = '".aggslashdb(${"fineperiodo".$n_t})."' ");
-		$num_idfineperiodo = numlin_query($idfineperiodo);
-		if (numlin_query($idfineperiodo) == 1) ${"fineperiodo".$n_t} = risul_query($idfineperiodo,0,'idperiodi');
-	} # fine for $n_t
-
-	include("./includes/dati_form_prenotazione.php");
-	echo "<br>".mex("Nº di tipologie da aggiungere",$pag).":";
-	echo "<input type=\"text\" name=\"num_tipologie_da_aggiungere\" size=\"2\" maxlength=\"2\" value =\"1\">
-	<input class=\"sbutton\" type=\"submit\" name=\"agg_tip\" value=\"".mex("Aggiungi",$pag)."\">
-	</div></form><br><br>
-	<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
-	<input type=\"hidden\" name=\"anno\" value=\"$anno\">
-	<input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
-	
-	for ($n_t = 1 ; $n_t <= $num_tipologie ; $n_t++) {
-		echo "<input type=\"hidden\" name=\"num_piano$n_t\" value=\"".${"num_piano".$n_t}."\">
-		<input type=\"hidden\" name=\"num_casa$n_t\" value=\"".${"num_casa".$n_t}."\">
-		<input type=\"hidden\" name=\"num_persone_casa$n_t\" value=\"".${"num_persone_casa".$n_t}."\">";
-	} # fine for $n_t
-
-	include("./includes/dati_form_prenotazione.php");
-	echo "<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
-	</div></form>";
+$manda_dati_assegnazione = "SI";
+$mostra_form_dati_cliente = "NO";
+echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
+<input type=\"hidden\" name=\"anno\" value=\"$anno\">
+<input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
+for ($n_t = 1 ; $n_t <= $num_tipologie ; $n_t++) {
+echo "<input type=\"hidden\" name=\"num_piano$n_t\" value=\"".${"num_piano".$n_t}."\">
+<input type=\"hidden\" name=\"num_casa$n_t\" value=\"".${"num_casa".$n_t}."\">
+<input type=\"hidden\" name=\"num_persone_casa$n_t\" value=\"".${"num_persone_casa".$n_t}."\">";
+$idinizioperiodo = esegui_query("select idperiodi from $tableperiodi where datainizio = '".aggslashdb(${"inizioperiodo".$n_t})."' ");
+if (numlin_query($idinizioperiodo) == 1) ${"inizioperiodo".$n_t} = risul_query($idinizioperiodo,0,'idperiodi');
+$idfineperiodo = esegui_query("select idperiodi from $tableperiodi where datafine = '".aggslashdb(${"fineperiodo".$n_t})."' ");
+$num_idfineperiodo = numlin_query($idfineperiodo);
+if (numlin_query($idfineperiodo) == 1) ${"fineperiodo".$n_t} = risul_query($idfineperiodo,0,'idperiodi');
+} # fine for $n_t
+include("./includes/dati_form_prenotazione.php");
+echo "<br>".mex("Nº di tipologie da aggiungere",$pag).":";
+echo "<input type=\"text\" name=\"num_tipologie_da_aggiungere\" size=\"2\" maxlength=\"2\" value =\"1\">
+<button class=\"plus\" type=\"submit\"><div>".mex("Aggiungi",$pag)."</div></button>
+</div></form><br><br>
+<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
+<input type=\"hidden\" name=\"anno\" value=\"$anno\">
+<input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
+for ($n_t = 1 ; $n_t <= $num_tipologie ; $n_t++) {
+echo "<input type=\"hidden\" name=\"num_piano$n_t\" value=\"".${"num_piano".$n_t}."\">
+<input type=\"hidden\" name=\"num_casa$n_t\" value=\"".${"num_casa".$n_t}."\">
+<input type=\"hidden\" name=\"num_persone_casa$n_t\" value=\"".${"num_persone_casa".$n_t}."\">";
+} # fine for $n_t
+include("./includes/dati_form_prenotazione.php");
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
+</div></form>";
 } # fine if ($aggiungi_tipologie)
 
 
@@ -411,7 +391,7 @@ $altre_tab_lock = array($tablenometariffe,$tableperiodi,$tableappartamenti,$tabl
 $tabelle_lock = lock_tabelle($tabelle_lock,$altre_tab_lock);
 
 if ($inserire) {
-	$inseriscicliente = "";
+$inseriscicliente = "";
 } # fine if ($inserire)
 
 $appartamenti = esegui_query(" select * from $tableappartamenti order by idappartamenti");
@@ -1700,7 +1680,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
 $manda_dati_assegnazione = "SI";
 include("./includes/dati_form_prenotazione.php");
-echo "<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form>";
 $inseriscicliente = "";
 $inserire = "NO";
@@ -1831,13 +1811,14 @@ elem_cli.innerHTML = testo;
 <img style=\"display: block;\" src=\"./img/freccia_destra_marg.png\" alt=\"&gt;\"></button><br>
 <div id=\"osp_cli".$idcognome[$num]."\" style=\"visibility: hidden;\"></div>";
 } # fine else if (!$num_clienti_compagni)
+$fr_utilizza_cliente = mex("Utilizza il cliente",$pag)." ".$idcognome[$num]." ".mex("per la prenotazione",$pag);
 echo "<br><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"idclienti\" value=\"".mex("Utilizza il cliente",$pag)." ".$idcognome[$num]." ".mex("per la prenotazione",$pag)."\">";
+<button class=\"cli\" type=\"submit\" name=\"idclienti\" value=\"$fr_utilizza_cliente\"><div>$fr_utilizza_cliente</div></button>";
 } # fine if ($nuovaprenotazione)
 else {
 
 echo "<br><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"inserire\" value=\"".mex($Modifica_i_dati_del_cliente,$pag)." ".$idcognome[$num]."\">";
+<button class=\"mcli\" type=\"submit\" name=\"inserire\" value=\"".mex($Modifica_i_dati_del_cliente,$pag)." ".$idcognome[$num]."\"><div>".mex($Modifica_i_dati_del_cliente,$pag)." ".$idcognome[$num]."</div></button>";
 if (preg_replace("/".str_replace("/","\\/",$cognome)."/i","",$dcognome) != $dcognome) {
 echo "<input type=\"hidden\" name=\"inserire_dato_cognome".$idcognome[$num]."\" value=\"NO\">";
 } # fine if (preg_replace("/".str_replace("/","\\/",$cognome)."/i","",$dcognome) != $dcognome)
@@ -1868,7 +1849,8 @@ echo "<input type=\"hidden\" name=\"numpersone$n_t\" value=\"".${"numpersone".$n
 <input type=\"hidden\" name=\"num_app_richiesti$n_t\" value=\"".${"num_app_richiesti".$n_t}."\">";
 } # fine for $n_t
 echo "<div style=\"text-align: center;\"><br>
-<input class=\"sbutton\" type=\"submit\" id=\"inse\" name=\"datiprenota\" value=\"".mex("Inserisci i dati di un nuovo cliente",$pag)."\">
+<button id=\"inse\" class=\"icli\" type=\"submit\"><div>".mex("Inserisci i dati di un nuovo cliente",$pag)."</div></button>
+<input type=\"hidden\" name=\"datiprenota\" value=\"1\">
 </div></div></form><br>
 <hr style=\"width: 95%\">";
 } # fine if ($inserimento_nuovi_clienti == "SI")
@@ -1882,7 +1864,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
 $manda_dati_assegnazione = "SI";
 include("./includes/dati_form_prenotazione.php");
 echo "<div style=\"text-align: center;\"><br>
-<input class=\"sbutton\" type=\"submit\" id=\"indi\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\" id=\"indi\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></div></form><br><br>";
 } # fine if ($nuovaprenotazione)
 
@@ -1922,9 +1904,9 @@ echo "<input type=\"hidden\" name=\"cognome\" value=\"$cognome\">
 <input type=\"hidden\" name=\"email\" value=\"$email\">";
 for ($num1 = 0 ; $num1 < $num_campi_pers ; $num1++) echo "<input type=\"hidden\" name=\"campo_pers$num1\" value=\"".${"campo_pers".$num1}."\">";
 if ($inserimento_nuovi_clienti == "SI") {
-echo "<input class=\"sbutton\" type=\"submit\" name=\"inserire\" value=\"".mex("Inserisci un nuovo cliente",$pag)."\">
+echo "<button class=\"icli\" type=\"submit\" name=\"inserire\" value=\"1\"><div>".mex("Inserisci un nuovo cliente",$pag)."</div></button>
 <br><hr style=\"width: 95%\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></div></form>";
 } # fine if ($inserimento_nuovi_clienti == "SI")
 
@@ -1960,7 +1942,7 @@ $manda_dati_assegnazione = "SI";
 include("./includes/dati_form_prenotazione.php");
 } # fine if ($nuovaprenotazione)
 echo "<br>
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form>";
 } # fine if ($inserire == "NO")
 else {
@@ -2016,7 +1998,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"modifica_cliente.p
 <input type=\"hidden\" name=\"origine\" value=\"inizio.php\">";
 if ($cliente_modificato == "SI") echo mex("I dati del cliente",$pag)." $cognome ".mex("sono stati modificati",$pag).". ";
 else echo mex("I dati del cliente",$pag)." $cognome ".mex("sono stati inseriti",$pag).". ";
-echo "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Modifica i dati del cliente",$pag)." $idclienti\">
+echo "<button class=\"mcli\" type=\"submit\"><div>".mex("Modifica i dati del cliente",$pag)." $idclienti</div></button>
 </div></form>";
 } # fine if ($inserire != "NO")
 else echo mex("Non si è trovato nessun cliente chiamato",$pag)." $cognome.<br>";
@@ -2024,7 +2006,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$origine\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idclienti\" value=\"$idclienti\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna all'inserimento clienti",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna all'inserimento clienti",$pag)."</div></button>
 </div></form>";
 
 unlock_tabelle($tabelle_lock);
@@ -2046,7 +2028,7 @@ if ($mostra_form_dati_cliente != "NO") {
 
 
 if (!$titolo_form_dati_cliente) $titolo_form_dati_cliente = mex("Inserisci o modifica i dati di un cliente",$pag);
-echo "<h4>$titolo_form_dati_cliente.</h4>";
+echo "<h4 id=\"h_icli\"><span>$titolo_form_dati_cliente.</span></h4>";
 
 # Questa è la form di inserimento
 
@@ -2128,7 +2110,7 @@ echo "<option value=\"".$opt[0]."\">".$opt[0]."</option>";
 } # fine for $num1
 echo "</select> ";
 } # fine if ($titoli_cliente)
-echo "".mex("Cognome",$pag).": ";
+echo "<span class=\"wsnw\">".mex("Cognome",$pag).": ";
 if ($id_utente == 1 and $id_utente_ins != 1) {
 $tableprivilegi = $PHPR_TAB_PRE."privilegi";
 $privilegi_globali_utente = esegui_query("select * from $tableprivilegi where idutente = '$id_utente_ins' and anno = '1'");
@@ -2142,15 +2124,15 @@ $prefisso_clienti = $prefisso_clienti[1];
 if ($attiva_prefisso_clienti == "p") echo $prefisso_clienti;
 echo "<input type=\"text\" id=\"cognome\" name=\"cognome\" value=\"$cognome\">";
 if ($attiva_prefisso_clienti == "s") echo $prefisso_clienti;
-echo ",".mex("nome",$pag).": <input type=\"text\" name=\"nome\" value=\"$nome\">;
- ".mex("soprannome",$pag).": <input type=\"text\" name=\"soprannome\" value=\"$soprannome\">;<br>
+echo ",</span> <span class=\"wsnw\">".mex("nome",$pag).": <input type=\"text\" name=\"nome\" value=\"$nome\">;</span>
+ <span class=\"wsnw\">".mex("soprannome",$pag).": <input type=\"text\" name=\"soprannome\" value=\"$soprannome\">;</span><br>
 ".mex("sesso",$pag).": <select name=\"sesso\">
 <option value=\"\" selected>-</option>
 <option value=\"m\"$sel_m>m</option>
 <option value=\"f\"$sel_f>f</option>
 </select>;
- ".mex("cittadinanza",$pag).": ".mostra_lista_relutenti("nazionalita",$nazionalita,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti)."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionalita','nazione','')\" value=\"#\">;
- ".mex("lingua",$pag).": <select name=\"lingua_cli\">";
+ <span class=\"wsnw\">".mex("cittadinanza",$pag).": ".mostra_lista_relutenti("nazionalita",$nazionalita,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti)."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionalita','nazione','')\" value=\"#\">;</span>
+ <span class=\"wsnw\">".mex("lingua",$pag).": <select name=\"lingua_cli\">";
 if ($lingua_cli == "ita") $sel = " selected";
 else $sel = "";
 $opt_lingue = "<option value=\"ita\"$sel>Italiano</option>";
@@ -2170,9 +2152,9 @@ else $opt_lingue .= "<option value=\"$ini_lingua\"$sel>".ucfirst($nome_lingua)."
 } # fine while ($file = readdir($lang_dig))
 closedir($lang_dir);
 $opt_lingue = "<option value=\"\">------</option>".$opt_lingue;
-echo "$opt_lingue</select>";
+echo "$opt_lingue</select></span>";
 if ($datiprenota) {
-echo ".&nbsp;&nbsp;&nbsp;<label><input name=\"cliente_ospite\" value=\"SI\" type=\"checkbox\" checked>
+echo ".&nbsp;&nbsp; <span class=\"wsnw\"><label><input name=\"cliente_ospite\" value=\"SI\" type=\"checkbox\" checked>
 ".mex("Ospite della prenotazione",$pag)."</label>";
 if ($num_tipologie > 1 or $num_app_richiesti1 > 1) {
 $selected = " selected";
@@ -2188,11 +2170,12 @@ $selected = "";
 echo "</select>";
 } # fine if ($num_tipologie > 1 or $num_app_richiesti1 > 1)
 else echo "<input type=\"hidden\" name=\"prenota_cli_osp\" value=\"p1_1\">";
+echo "</span>";
 } # fine if ($datiprenota)
 
 mostra_funzjs_dati_rel("","",$id_sessione,$anno);
 echo "<hr style=\"width: 95%\">
-".mex("Data di nascita",$pag)." ";
+".mex("Data di nascita",$pag)." <span class=\"wsnw\">";
 $sel_gnascita = "<select name=\"giornonascita\">
 <option value=\"\" selected>--</option>";
 for ( $num = 1; $num <= 31; $num = $num + 1) {
@@ -2213,12 +2196,12 @@ $sel_mnascita .= "<option value=\"$num\"$sel>$num</option>";
 $sel_mnascita .= "</select>";
 if ($stile_data == "usa") echo "$sel_mnascita/$sel_gnascita";
 else echo "$sel_gnascita/$sel_mnascita";
-echo "/<input type=\"text\" name=\"annonascita\" size=\"5\" maxlength=\"4\" value=\"$annonascita\"> (".mex("anno con 4 cifre",$pag)."),
-".mex("nazione di nascita",$pag).": ".mostra_lista_relutenti("nazionenascita",$nazionenascita,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regionenascita")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionenascita','nazionalita','')\" value=\"#\">,<br>
-".mex("reg./prov. di nascita",$pag).": ".mostra_lista_relutenti("regionenascita",$regionenascita,$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","cittanascita","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regionenascita','regione','')\" value=\"#\">,
-".mex("città di nascita",$pag).": ".mostra_lista_relutenti("cittanascita",$cittanascita,$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cittanascita','citta','')\" value=\"#\">";
+echo "/<input type=\"text\" name=\"annonascita\" size=\"5\" maxlength=\"4\" value=\"$annonascita\"></span> (".mex("anno con 4 cifre",$pag)."),
+<span class=\"wsnw smlscrfnt\">".mex("nazione di nascita",$pag).": ".mostra_lista_relutenti("nazionenascita",$nazionenascita,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regionenascita")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionenascita','nazionalita','')\" value=\"#\">,</span><br>
+<span class=\"wsnw smlscrfnt\">".mex("reg./prov. di nascita",$pag).": ".mostra_lista_relutenti("regionenascita",$regionenascita,$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","cittanascita","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regionenascita','regione','')\" value=\"#\">,</span>
+<span class=\"wsnw smlscrfnt\">".mex("città di nascita",$pag).": ".mostra_lista_relutenti("cittanascita",$cittanascita,$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cittanascita','citta','')\" value=\"#\"></span>";
 echo "<hr style=\"width: 95%\">
-".mex("Residenza",$pag).": <select name=\"via\">
+".mex("Residenza",$pag).": <span class=\"wsnw\"><select name=\"via\">
 <option value=\"".mex("Via",$pag)."\">".mex("Via",$pag)."</option>
 <option value=\"".mex("Piazza",$pag)."\">".mex("Piazza",$pag)."</option>
 <option value=\"".mex("Viale",$pag)."\">".mex("Viale",$pag)."</option>
@@ -2228,16 +2211,16 @@ if ($via) $sel = " selected";
 else $sel = "";
 echo "<option value=\"\"$sel>-----</option>
 </select>
-<input type=\"text\" name=\"nomevia\" value=\"$via\">
-Nº<input type=\"text\" name=\"numcivico\" size=\"4\" value=\"$numcivico\">,
-  ".mex("CAP",$pag)."<input type=\"text\" name=\"cap\" size=\"6\" value=\"$cap\">,<br>
-".mex("nazione",$pag).": ".mostra_lista_relutenti("nazione",$nazione,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazione','nazionalita','')\" value=\"#\">,
-".mex("reg./prov.",$pag).": ".mostra_lista_relutenti("regione",$regione,$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","citta","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regione','regionenascita','')\" value=\"#\">,
-".mex("città",$pag).": ".mostra_lista_relutenti("citta",$citta,$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('citta','cittanascita','')\" value=\"#\">";
+<input type=\"text\" name=\"nomevia\" value=\"$via\"></span>
+<span class=\"wsnw\">Nº<input type=\"text\" name=\"numcivico\" size=\"4\" value=\"$numcivico\">,</span>
+  <span class=\"wsnw\">".mex("CAP",$pag)."<input type=\"text\" name=\"cap\" size=\"6\" value=\"$cap\">,</span><br>
+<span class=\"wsnw\">".mex("nazione",$pag).": ".mostra_lista_relutenti("nazione",$nazione,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazione','nazionalita','')\" value=\"#\">,</span>
+<span class=\"wsnw\">".mex("reg./prov.",$pag).": ".mostra_lista_relutenti("regione",$regione,$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","citta","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regione','regionenascita','')\" value=\"#\">,</span>
+<span class=\"wsnw\">".mex("città",$pag).": ".mostra_lista_relutenti("citta",$citta,$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('citta','cittanascita','')\" value=\"#\"></span>";
 echo "<hr style=\"width: 95%\">
 ".mex("Documento",$pag).": ".mostra_lista_relutenti("tipodoc",$tipodoc,$id_utente,"nome_documentoid","iddocumentiid","iddocumentoid",$tabledocumentiid,$tablerelutenti,"","","SI");
 echo "<input type=\"text\" name=\"documento\" value=\"$documento\">
-".mex("scadenza",$pag).": ";
+<span class=\"wsnw\">".mex("scadenza",$pag).": ";
 $sel_gscaddoc = "<select name=\"giornoscaddoc\">
 <option value=\"\" selected>--</option>";
 for ( $num = 1; $num <= 31; $num = $num + 1) {
@@ -2265,20 +2248,20 @@ for ($num1 = 0; $num1 < 16; $num1++) {
 $num = $anno_corr + $num1;
 echo "<option value=\"$num\">$num</option>";
 } # fine for $num1
-echo "</select>;<br>
-".mex("nazione di rilascio",$pag).": ".mostra_lista_relutenti("nazionedoc",$nazionedoc,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regionedoc")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionedoc','nazionalita','')\" value=\"#\">,
-".mex("reg./prov.",$pag).": ".mostra_lista_relutenti("regionedoc",$regionedoc,$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","cittadoc","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regionedoc','regione','')\" value=\"#\">,
-".mex("città",$pag).": ".mostra_lista_relutenti("cittadoc",$cittadoc,$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cittadoc','citta','')\" value=\"#\">
+echo "</select>;</span><br>
+<span class=\"wsnw smlscrfnt\">".mex("nazione di rilascio",$pag).": ".mostra_lista_relutenti("nazionedoc",$nazionedoc,$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","","","regione","regionedoc")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('nazionedoc','nazionalita','')\" value=\"#\">,</span>
+<span class=\"wsnw\">".mex("reg./prov.",$pag).": ".mostra_lista_relutenti("regionedoc",$regionedoc,$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","","","citta","cittadoc","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('regionedoc','regione','')\" value=\"#\">,</span>
+<span class=\"wsnw\">".mex("città",$pag).": ".mostra_lista_relutenti("cittadoc",$cittadoc,$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val('cittadoc','citta','')\" value=\"#\"></span>
 <hr style=\"width: 95%\">
-".mex("Numero di telefono",$pag).": <input type=\"text\" name=\"telefono\" value=\"$telefono\"> 
-".mex("Secondo telefono",$pag).": <input type=\"text\" name=\"telefono2\" value=\"$telefono2\"><br>
-".mex("Terzo telefono",$pag).": <input type=\"text\" name=\"telefono3\" value=\"$telefono3\">
-".mex("Numero di fax",$pag).": <input type=\"text\" name=\"fax\" value=\"$fax\"><br>
-E-mail: <input type=\"text\" name=\"email\" size=\"30\" value=\"$email\">";
+<span class=\"wsnw smlscrfnt\">".mex("Numero di telefono",$pag).": <input type=\"text\" name=\"telefono\" value=\"$telefono\"></span>
+<span class=\"wsnw smlscrfnt\">".mex("Secondo telefono",$pag).": <input type=\"text\" name=\"telefono2\" value=\"$telefono2\"></span><br>
+<span class=\"wsnw smlscrfnt\">".mex("Terzo telefono",$pag).": <input type=\"text\" name=\"telefono3\" value=\"$telefono3\"></span>
+<span class=\"wsnw\">".mex("Numero di fax",$pag).": <input type=\"text\" name=\"fax\" value=\"$fax\"></span><br>
+<span class=\"wsnw smlscrfnt\">E-mail: <input type=\"text\" name=\"email\" size=\"30\" value=\"$email\"></span>";
 
 if ($num_campi_pers) {
 echo "<hr style=\"width: 95%\">
-<table cellspacing=0 cellpadding=0><tr>";
+<table class=\"nomob\" cellspacing=0 cellpadding=0><tr>";
 $pari = 0;
 for ($num1 = 0 ; $num1 < $num_campi_pers ; $num1++) {
 $opt = explode("<",$campi_pers[$num1]);
@@ -2313,17 +2296,17 @@ if (n1 == 1) suffcp = '';
 else suffcp = '_1_'+num_ar+'_'+n_t;
 testo += '<hr width=\"35%\">\
 '+n1+'. ".addslashes(mex("Cognome",$pag)).": <input type=\"text\" id=\"cognome'+suff+'\" name=\"cognome'+suff+'\"><input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'cognome'+suff+'\',\'cognome'+suffcp+'\',\'\')\" value=\"#\">,\
- ".addslashes(mex("nome",$pag)).": <input type=\"text\" name=\"nome'+suff+'\">;\
- ".addslashes(mex("sesso",$pag)).": <select name=\"sesso'+suff+'\">\
+ ".addslashes("<span class=\"wsnw\">".mex("nome",$pag)).": <input type=\"text\" name=\"nome'+suff+'\">;<\/span>\
+ ".addslashes("<span class=\"wsnw\">".mex("sesso",$pag)).": <select name=\"sesso'+suff+'\">\
 <option value=\"\" selected>-<\/option>\
 <option value=\"m\">m<\/option>\
 <option value=\"f\">f<\/option>\
-<\/select>;<br>\
+<\/select>;<\/span><br>\
 ".addslashes(mex("cittadinanza",$pag)).": ".mostra_lista_relutenti("nazionalita'+suff+'","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","JS")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'nazionalita'+suff+'\',\'nazionalita'+suffcp+'\',\'\')\" value=\"#\">;\
  ".addslashes(mex("parentela",$pag)).": ".mostra_lista_relutenti("parentela'+suff+'","",$id_utente,"nome_parentela","idparentele","idparentela",$tableparentele,$tablerelutenti,"","JS")."<br>\
 <div style=\"height: 4px\"><\/div>\
 ".addslashes(mex("Data di nascita",$pag)).": ";
-$sel_gnascita = "<select name=\"giornonascita'+suff+'\">\
+$sel_gnascita = "<span class=\"wsnw\"><select name=\"giornonascita'+suff+'\">\
 <option value=\"\" selected>--<\/option>";
 for ( $num = 1; $num <= 31; $num = $num + 1) {
 if (strlen($num) == 1) $num = "0".$num;
@@ -2339,10 +2322,10 @@ $sel_mnascita .= "<option value=\"$num\">$num<\/option>";
 $sel_mnascita .= "<\/select>";
 if ($stile_data == "usa") echo "$sel_mnascita/$sel_gnascita";
 else echo "$sel_gnascita/$sel_mnascita";
-echo "/<input type=\"text\" name=\"annonascita'+suff+'\" size=\"5\" maxlength=\"4\" value=\"19\"> (".addslashes(mex("anno con 4 cifre",$pag))."),\
- ".mex("nazione di nascita",$pag).": ".mostra_lista_relutenti("nazionenascita'+suff+'","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","JS","","regione","regionenascita'+suff+'")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'nazionenascita'+suff+'\',\'nazionalita'+suff+'\',\'\')\" value=\"#\">,<br>\
-".mex("reg./prov. di nascita",$pag).": ".mostra_lista_relutenti("regionenascita'+suff+'","",$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","JS","","citta","cittanascita'+suff+'","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'regionenascita'+suff+'\',\'regionenascita'+suffcp+'\',\'\')\" value=\"#\">,\
- ".mex("città di nascita",$pag).": ".mostra_lista_relutenti("cittanascita'+suff+'","",$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","JS","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'cittanascita'+suff+'\',\'cittanascita'+suffcp+'\',\'\')\" value=\"#\"><br>\
+echo "/<input type=\"text\" name=\"annonascita'+suff+'\" size=\"5\" maxlength=\"4\" value=\"19\"><\/span> (".addslashes(mex("anno con 4 cifre",$pag))."),\
+ <span class=\"wsnw smlscrfnt\">".mex("nazione di nascita",$pag).": ".mostra_lista_relutenti("nazionenascita'+suff+'","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","JS","","regione","regionenascita'+suff+'")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'nazionenascita'+suff+'\',\'nazionalita'+suff+'\',\'\')\" value=\"#\">,<\/span><br>\
+<span class=\"wsnw smlscrfnt\">".mex("reg./prov. di nascita",$pag).": ".mostra_lista_relutenti("regionenascita'+suff+'","",$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","JS","","citta","cittanascita'+suff+'","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'regionenascita'+suff+'\',\'regionenascita'+suffcp+'\',\'\')\" value=\"#\">,<\/span>\
+ <span class=\"wsnw smlscrfnt\">".mex("città di nascita",$pag).": ".mostra_lista_relutenti("cittanascita'+suff+'","",$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","JS","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'cittanascita'+suff+'\',\'cittanascita'+suffcp+'\',\'\')\" value=\"#\"><\/span><br>\
 <div style=\"height: 4px\"><\/div>'
 if (n1 == 1) {
 testo += '".mex("nazione",$pag).": ".mostra_lista_relutenti("nazione'+suff+'","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","JS","","regione","regione'+suff+'")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'nazione'+suff+'\',\'nazionalita'+suff+'\',\'\')\" value=\"#\">,\
@@ -2351,7 +2334,7 @@ testo += '".mex("nazione",$pag).": ".mostra_lista_relutenti("nazione'+suff+'",""
 <div style=\"height: 4px\"><\/div>\
 ".addslashes(mex("Documento",$pag)).": ".mostra_lista_relutenti("tipodoc'+suff+'","",$id_utente,"nome_documentoid","iddocumentiid","iddocumentoid",$tabledocumentiid,$tablerelutenti,"","JS","SI");
 echo "<input type=\"text\" name=\"documento'+suff+'\">\
- ".addslashes(mex("scadenza",$pag)).": ";
+ <span class=\"wsnw\">".addslashes(mex("scadenza",$pag)).": ";
 $sel_gscaddoc = "<select name=\"giornoscaddoc'+suff+'\">\
 <option value=\"\" selected>--<\/option>";
 for ( $num = 1; $num <= 31; $num = $num + 1) {
@@ -2379,10 +2362,10 @@ for ($num3 = 0 ; $num3 < 12 ; $num3++) {
 $num = $anno_corr + $num3;
 echo "<option value=\"$num\">$num<\/option>";
 } # fine for $num3
-echo "<\/select>;<br>\
-".mex("nazione di rilascio",$pag).": ".mostra_lista_relutenti("nazionedoc'+suff+'","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","JS","","regione","regionedoc'+suff+'")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'nazionedoc'+suff+'\',\'nazionalita'+suff+'\',\'\')\" value=\"#\">,\
- ".mex("reg./prov.",$pag).": ".mostra_lista_relutenti("regionedoc'+suff+'","",$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","JS","","citta","cittadoc'+suff+'","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'regionedoc'+suff+'\',\'regione'+suff+'\',\'\')\" value=\"#\">,\
- ".mex("città",$pag).": ".mostra_lista_relutenti("cittadoc'+suff+'","",$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","JS","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'cittadoc'+suff+'\',\'citta'+suff+'\',\'\')\" value=\"#\"><br>\
+echo "<\/select>;<\/span><br>\
+<span class=\"wsnw smlscrfnt\">".mex("nazione di rilascio",$pag).": ".mostra_lista_relutenti("nazionedoc'+suff+'","",$id_utente,"nome_nazione","idnazioni","idnazione",$tablenazioni,$tablerelutenti,"","JS","","regione","regionedoc'+suff+'")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'nazionedoc'+suff+'\',\'nazionalita'+suff+'\',\'\')\" value=\"#\">,<\/span>\
+ <span class=\"wsnw\">".mex("reg./prov.",$pag).": ".mostra_lista_relutenti("regionedoc'+suff+'","",$id_utente,"nome_regione","idregioni","idregione",$tableregioni,$tablerelutenti,"","JS","","citta","cittadoc'+suff+'","nazione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'regionedoc'+suff+'\',\'regione'+suff+'\',\'\')\" value=\"#\">,<\/span>\
+ <span class=\"wsnw\">".mex("città",$pag).": ".mostra_lista_relutenti("cittadoc'+suff+'","",$id_utente,"nome_citta","idcitta","idcitta",$tablecitta,$tablerelutenti,"","JS","","","","regione")."<input type=\"button\" class=\"cpbutton\" onclick=\"cp_val(\'cittadoc'+suff+'\',\'citta'+suff+'\',\'\')\" value=\"#\"><\/span><br>\
 <div style=\"height: 4px\"><\/div>';
 } // fine if (n1 == 1)
 } // fine for n1
@@ -2413,7 +2396,8 @@ echo "<hr style=\"width: 95%\">
 <div style=\"text-align: center;\">";
 
 if ($datiprenota) {
-echo "<input class=\"sbutton\" id=\"inse\" type=\"submit\" name=\"inserire\" value=\"".mex("Inserisci i dati",$pag)."\"><br><br>
+echo "<button id=\"inse\" class=\"icli\" type=\"submit\"><div>".mex("Inserisci i dati",$pag)."</div></button><br><br>
+<input type=\"hidden\" name=\"inserire\" value=\"1\">
 <input type=\"hidden\" name=\"inserire_dati_cliente\" value=\"SI\">";
 $manda_cognome = "NO";
 $manda_dati_assegnazione = "NO";
@@ -2422,8 +2406,8 @@ $manda_cognome = "";
 } # fine if ($datiprenota)
 else {
 
-echo "
-<input class=\"sbutton\" id=\"inse\" type=\"submit\" name=\"inseriscicliente\" value=\"".mex("Inserisci i dati",$pag)."\">
+echo "<button id=\"inse\" class=\"icli\" type=\"submit\"><div>".mex("Inserisci i dati",$pag)."</div></button>
+<input type=\"hidden\" name=\"inseriscicliente\" value=\"1\">
 ";
 
 } # fine else if ($datiprenota)
@@ -2435,7 +2419,7 @@ echo "<br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button id=\"indi\" class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form><br>";
 } # fine if (!$datiprenota)
 

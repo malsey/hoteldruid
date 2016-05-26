@@ -2,7 +2,7 @@
 
 ##################################################################################
 #    HOTELDRUID
-#    Copyright (C) 2001-2015 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
+#    Copyright (C) 2001-2016 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as published by
@@ -2500,6 +2500,10 @@ esegui_query("insert into ".$PHPR_TAB_PRE."personalizza (idpersonalizza,idutente
 } # fine for $num1
 } # fine if ($versione_corrente < "2.13")
 
+if ($versione_corrente < "2.14") {
+$aggiornato = "SI";
+} # fine if ($versione_corrente < "2.14")
+
 
 
 
@@ -2510,7 +2514,7 @@ if (C_NASCONDI_MARCA != "SI") {
 if (@is_file("./COPYING")) $file_copying = "file <a href=\"COPYING\">COPYING</a>";
 else $file_copying = "<a href=\"http://www.gnu.org/licenses/agpl-3.0.html\">AGPLv3</a> License";
 echo "<div style=\"text-align: center;\">
-HOTELDRUID version ".C_PHPR_VERSIONE_TXT.", Copyright (C) 2001-2015 Marco M. F. De Santis<br>
+HOTELDRUID version ".C_PHPR_VERSIONE_TXT.", Copyright (C) 2001-2016 Marco M. F. De Santis<br>
 HotelDruid comes with ABSOLUTELY NO WARRANTY; <br>
 for details see the $file_copying.<br>
 This is free software, and you are welcome to redistribute it<br>

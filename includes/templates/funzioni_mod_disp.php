@@ -316,6 +316,7 @@ if ($continua != "NO") {
 $SI = mex("SI",$pag);
 $NO = mex("NO",$pag);
 global $M_PHPR_DB_TYPE,$M_PHPR_DB_NAME,$M_PHPR_DB_HOST,$M_PHPR_DB_PORT,$M_PHPR_DB_USER,$M_PHPR_DB_PASS,$M_PHPR_LOAD_EXT,$M_PHPR_TAB_PRE,$m_stile_soldi,$m_stile_data,$m_valuta_sing,$m_valuta_plur,$utente_lis;
+if ($tipo_db == "mysql" and @function_exists('mysqli_connect')) $tipo_db = "mysqli";
 $M_PHPR_DB_TYPE = $tipo_db;
 $M_PHPR_DB_NAME = $nome_db;
 $M_PHPR_DB_HOST = $computer_db;

@@ -51,6 +51,15 @@ case "PARTENZE E CORRENTI":  		$messaggio = "DEPART. AND CURRENT"; break;
 case "":  		$messaggio = ""; break;
 case "":  		$messaggio = ""; break;
 
+# Simple theme top menu drop-down menus widths (leave defaults if widths are OK)
+case "insert-ddw":  			$messaggio = "100px"; break;
+case "tables-ddw":  			$messaggio = "100px"; break;
+case "months-ddw":  			$messaggio = "86px"; break;
+case "reservations-ddw":  		$messaggio = "150px"; break;
+case "clients-ddw":  			$messaggio = "15em"; break;
+case "rates-ddw":  			$messaggio = "150px"; break;
+case "configure-ddw":  			$messaggio = "86px"; break;
+
 } # fine switch ($messaggio)
 
 ?>

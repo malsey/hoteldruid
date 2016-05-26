@@ -6,7 +6,7 @@
 #                                                         #
 ###########################################################
 
-HOTELDRUID versión 2.1.3
+HOTELDRUID versión 2.1.4
 Programa para la gestión de habitaciones de hotel o de 
 alquiler semanal y diario de apartamentos.
 
@@ -336,6 +336,10 @@ Si se olvida la contraseña del usuario administrador se puede
 borrar el archivo abilita_login al interior del directorio dati,
 de esta manera será desactivado el login inicial y cualquiera 
 podrá acceder con los privilegios del usuario administrador.
+
+AGRADECIMIENTOS
+Gracias a Stan Khodjaev de icojam.com por liberar el set de iconos 
+"Marmalade" bajo dominio público.
 
 
 LICENCIA DE USO

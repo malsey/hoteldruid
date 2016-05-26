@@ -1,3 +1,17 @@
+2.1.4 (06/02/2016)
+======================
+-added "export clients data" document in csv format to default documents
+-selecting documents from month table will select first date in previous month even for first month
+-added icons to base.css and simple themes
+-fixed bug: not uploading documents on some server configurations
+-optimizations for mobile view
+-fixed bug: in pos extra costs could not be added to some reservations when check-in not enabled
+-new costant in includes/costanti.php for mobile custom css (loaded after default custom css)
+-fixed bug: tables not locked in function that displays messages about saved documents
+-fixed bug: variable [rate_price_of_array_day] was not defined if not inside reservations repetition
+-fixed bug: errors restoring a backup with constant C_EXT_DB_DATA_PATH enabled and mysql database
+
+
 2.1.3 (29/10/2015)
 ======================
 -added new document "ISTAT C/59_M" with monthly totals to default Italian documents

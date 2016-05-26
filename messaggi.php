@@ -620,13 +620,13 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div style=
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"cambia_qualcosa\" value=\"SI\">
 <input type=\"hidden\" name=\"scarica_mess\" value=\"1\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Scarica messaggi email",$pag)."\" style=\"font-size: 70%;\">
+<button class=\"deml\" type=\"submit\"><div style=\"font-size: 70%;\">".mex("Scarica messaggi email",$pag)."</div></button
 </div></form>";
 } # fine if (numlin_query($server_email_tab_messaggi))
 } # fine if (function_exists('imap_open'))
 
 
-echo "<h3>".mex("Messaggi",$pag)."</h3><br><br>";
+echo "<h3 id=\"h_mess\"><span>".mex("Messaggi",$pag)."</span></h3><br><br>";
 
 $tutti_utenti = esegui_query("select * from $tableutenti order by idutenti");
 $num_tutti_utenti = numlin_query($tutti_utenti);
@@ -941,7 +941,7 @@ $tasto_prenota .= "<input type=\"hidden\" name=\"costoagg$ncostiagg"."_$n_t\" va
 } # fine if ($attiva_costi_agg_consentiti == "n" or...
 } # fine for $num2
 } # fine for $n_t
-$tasto_prenota .= "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Inserisci la prenotazione",$pag)."\">
+$tasto_prenota .= "<button class=\"ires\" type=\"submit\"><div>".mex("Inserisci la prenotazione",$pag)."</div></button>
 </div></form><br>";
 
 if ($num_tipologie == 1 and !$numero_tariffa[1] and $num_app_tipo_richiesti[1] == 1 and $fineperiodo[1]) {
@@ -955,7 +955,7 @@ $tasto_prenota .= "<form accept-charset=\"utf-8\" method=\"post\" action=\"dispo
 <input type=\"hidden\" name=\"fineperiodo\" value=\"".$fineperiodo[1]."\">
 <input type=\"hidden\" name=\"origine\" value=\"messaggi.php?pagina_messaggi=$pagina_messaggi#mess$idmessaggi\">";
 if ($numpersone[1]) $tasto_prenota .= "<input type=\"hidden\" name=\"numpersone\" value=\"".$numpersone[1]."\">";
-$tasto_prenota .= "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Controlla disponibilità",$pag)."\">
+$tasto_prenota .= "<button class=\"chav\" type=\"submit\"><div>".mex("Controlla disponibilità",$pag)."</div></button>
 </div></form><br>";
 } # fine if ($num_tipologie == 1 and !$numero_tariffa[1] and...
 } # fine if ($priv_ins_nuove_prenota == "s" and $inizioperiodo[1])
@@ -1015,7 +1015,7 @@ $tasto_contr .= "<input type=\"hidden\" name=\"num_ripeti\" value=\"$n_c\">
 <select name=\"numero_contratto\">
 $option_contratti
 </select><br>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Visualizza il documento",$pag)."\">
+<button class=\"vdoc\" type=\"submit\"><div>".mex("Visualizza il documento",$pag)."</div></button>
 </div></form><br>";
 } # fine if ($option_contratti)
 } # fine if ($stato_prenota == "da_inserire")
@@ -1070,7 +1070,7 @@ echo " (";
 mostra_menu_date(C_DATI_PATH."/selperiodimenu$anno.$id_utente.php","n_data_partenza","",1," selected",$id_utente,$tema,"",$fineperiodo[1]);
 echo ")<br>
 ".ucfirst(mex("persone",$pag)).": ".$numpersone[1]." (<input name=\"n_num_persone\" size=\"3\" type=\"text\">)<br>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Modifica",$pag)."\"><br>
+<button class=\"edtm\" type=\"submit\"><div>".mex("Modifica",$pag)."</div></button><br>
 -------------------------<br></div></form>";
 } # fine if ($aggiunta_testo_dt)
 echo "$testo</td>
@@ -1082,7 +1082,8 @@ $tasto_contr
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"cambia_qualcosa\" value=\"SI\">
 <input type=\"hidden\" name=\"idmessaggi\" value=\"$idmessaggi\">
-<input class=\"sbutton\" type=\"submit\" name=\"elimina_messaggio\" value=\"".mex("Elimina",$pag)."\">
+<input type=\"hidden\" name=\"elimina_messaggio\" value=\"1\">
+<button class=\"canc\" type=\"submit\"><div>".mex("Elimina",$pag)."</div></button>
 </div></form></td></tr>";
 
 } # fine if ($num_pagine == 1 or (($num1 + 1) > (($pagina_messaggi - 1) * $num_vedi_in_tab) and ($num1 + 1) <= ($pagina_messaggi * $num_vedi_in_tab)))
@@ -1096,7 +1097,7 @@ echo "</table>$stringa_pagine<br><div style=\"text-align: center\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"cambia_qualcosa\" value=\"SI\">
 <input type=\"hidden\" name=\"elimina_tutti_mess\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Elimina tutti i messaggi",$pag)."\"><br>
+<button class=\"canc\" type=\"submit\"><div>".mex("Elimina tutti i messaggi",$pag)."</div></button><br>
 ".mex("arrivati",$pag)." <select name=\"prima_dopo\">
 <option value=\"prima\">".mex("prima del",$pag)."</option>
 <option value=\"dopo\">".mex("dopo il",$pag)."</option>
@@ -1117,6 +1118,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"cambia_qualcosa\" value=\"SI\">
+<input type=\"hidden\" name=\"spedisci_messaggio\" value=\"1\">
 ".mex("Nuovo messaggio a",$pag)."
  <select name=\"destinatario\">
 <option value=\"tutti\" selected>".mex("tutti",$pag)."</option>
@@ -1144,7 +1146,7 @@ echo "</select> ".mex("il",$pag)."
 </select><br>
 <table><tr><td style=\"height: 3px;\"></td></tr></table>".mex("testo del messaggio",$pag).":
  <input name=\"testo\" size=\"55\" type=\"text\">&nbsp;&nbsp;&nbsp;
-<input class=\"sbutton\" type=\"submit\" name=\"spedisci_messaggio\" value=\"".mex("Spedisci",$pag)."\">
+<button class=\"send\" type=\"submit\"><div>".mex("Spedisci",$pag)."</div></button>
 </div></form>";
 } # fine if ($priv_ins_messaggi == "s")
 
@@ -1152,7 +1154,7 @@ echo "<br><hr style=\"width: 95%\"><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"./inizio.php\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 </div></form><table><tr><td style=\"height: 20px;\"></td></tr></table>";
 
 

@@ -140,6 +140,7 @@ $nome_contratto = $nomi_contratti['salv'][$numero_contratto];
 
 
 $mostra_contratto = "SI";
+$mostra_foot = "";
 
 if ($id_transazione == "tabdoc" and $priv_vedi_tab_doc != "n") {
 $contr_corr_orig = $contr_corr;
@@ -171,6 +172,9 @@ if ($tipo_transazione != "con_s") {
 $mostra_contratto = "NO";
 $mostra_torna_indietro = "SI";
 unset($id_transazione);
+if ($tema[$id_utente] and $tema[$id_utente] != "base" and @is_dir("./themes/".$tema[$id_utente]."/php")) include("./themes/".$tema[$id_utente]."/php/head.php");
+else include("./includes/head.php");
+$mostra_foot = "SI";
 echo "".mex("Transazione <b style=\"font-weight: normal; color: red;\">scaduta</b>",$pag).".<br>";
 } # fine if ($tipo_transazione != "con_s")
 else {
@@ -185,6 +189,9 @@ $mostra_torna_indietro = "SI";
 $num_file_salva = count($nome_file_contr);
 for ($num1 = 1 ; $num1 <= $num_file_salva ; $num1++) {
 if (@is_file($dir_salvato."/".$nome_file_contr[$num1])) unlink($dir_salvato."/".$nome_file_contr[$num1]);
+if ($tema[$id_utente] and $tema[$id_utente] != "base" and @is_dir("./themes/".$tema[$id_utente]."/php")) include("./themes/".$tema[$id_utente]."/php/head.php");
+else include("./includes/head.php");
+$mostra_foot = "SI";
 echo "".mex("Il documento",$pag)." <b>".$nome_file_contr[$num1]."</b> ".mex("è stato <b style=\"font-weight: normal; color: blue;\">cancellato</b>",$pag).".<br>";
 } # fine for $num1
 } # fine if ($cancella == "SI" and $priv_cancella_contratti != "n")
@@ -711,12 +718,12 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"".htmlspecialchars
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"torna_indietro\" value=\"1\">
-&nbsp;&nbsp;".bottone_submit_contr(mex("Torna indietro",$pag),"indi","indietro")."
+&nbsp;&nbsp;".bottone_submit_contr(mex("Torna indietro",$pag),"indi","indietro","gobk")."
 </div></form><br>";
 } # fine if ($mostra_torna_indietro == "SI")
 
 
-if (($mostra_contratto == "SI" and $mostra_headers == "SI") or $manda_mail == "SI" or $dir_salva) {
+if (($mostra_contratto == "SI" and $mostra_headers == "SI") or $manda_mail == "SI" or $dir_salva or $mostra_foot) {
 if ($tema[$id_utente] and $tema[$id_utente] != "base" and @is_dir("./themes/".$tema[$id_utente]."/php")) include("./themes/".$tema[$id_utente]."/php/foot.php");
 else include("./includes/foot.php");
 } # fine if (($mostra_contratto == "SI" and $mostra_headers == "SI") or...

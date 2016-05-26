@@ -347,7 +347,7 @@ echo "<div style=\"height: 5px;\"></div>
 <em>".mex("Tasse",'creaprezzi.php')."</em>: <input type=\"text\" name=\"tasseperc_ca\" value=\"$tasseperc_ca\" size=\"4\">%
  <small>(".mex("il valore del costo si intente con tasse già incluse",'creaprezzi.php').")</small><br>
 <div style=\"height: 5px;\"></div>
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Continua",$pag)."\">
+<button class=\"aexc\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 </div></form><br><br><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag#tab_inventario\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
@@ -356,7 +356,7 @@ echo "<div style=\"height: 5px;\"></div>
 <input type=\"hidden\" name=\"origine_vecchia\" value=\"$origine_vecchia\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
 <input type=\"hidden\" name=\"idmag\" value=\"$idmag_orig\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br>";
 } # fine if ($crea_ca and !$continua)
 
@@ -397,7 +397,7 @@ $frase_modifica .= "<form accept-charset=\"utf-8\" method=\"post\" action=\"modi
 <input type=\"hidden\" name=\"idntariffe\" value=\"".($idntariffe - 1)."\">
 <input type=\"hidden\" name=\"origine\" value=\"$pag?idmag=$idmag_orig&origine=visualizza_tabelle.php&tipo_tabella=inventario\">
 ".mex("Il costo aggiuntivo",'creaprezzi.php')." \"<em>$nome_costo_agg</em>\" ".mex("è stato inserito",'creaprezzi.php').".
- <input class=\"sbutton\" type=\"submit\" value=\"".mex("Modifica il costo",'creaprezzi.php')."\">
+ <button class=\"exco\" type=\"submit\"><div>".mex("Modifica il costo",'creaprezzi.php')."</div></button>
 </div></form>";
 } # fine if (!numlin_query($costiagg_esist))
 else $frase_modifica .= "<span class=\"colred\">".mex("Costo aggiuntivo non inserito",$pag)."</span>: ".mex("costo già esistente",$pag).".<br>";
@@ -574,7 +574,7 @@ echo "</select><br>";
 if ($luogo_da_trovato != "SI") echo "<br>".mex("Nessun posto da cui ricaricare",$pag).".";
 echo "</td><td style=\"width: 50px;\"></td>
 <td valign=\"middle\">".mex("mancanti",$pag).": <span id=\"mancanti\">".($num_diff * -1)."</span></td></tr></table>";
-if ($luogo_da_trovato == "SI") echo "<br><input class=\"sbutton\" type=\"submit\" value=\"".mex("Continua",$pag)."\">";
+if ($luogo_da_trovato == "SI") echo "<br><button class=\"xinv\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>";
 echo "</div></form><br><hr style=\"width: 350px; margin-left: 0; text-align: left;\"><br><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
@@ -583,7 +583,7 @@ echo "</div></form><br><hr style=\"width: 350px; margin-left: 0; text-align: lef
 <input type=\"hidden\" name=\"origine_vecchia\" value=\"$origine_vecchia\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
 <input type=\"hidden\" name=\"idmag\" value=\"$idmag_orig\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form>";
 } # fine if ($ricarica != "continua")
 
@@ -661,8 +661,8 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 if ($tipoid == "idappartamento") echo mex("dell'appartamento",'unit.php');
 else echo mex("del magazzino",$pag);
 echo " <b>$nome_mag</b>?<br>
-<input class=\"sbutton\" type=\"submit\" name=\"elimina\" value=\"".mex("SI",$pag)."\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("NO",$pag)."\">
+<button class=\"cinv\" type=\"submit\" name=\"elimina\" value=\"1\"><div>".mex("SI",$pag)."</div></button>
+<button class=\"gobk\" type=\"submit\"><div>".mex("NO",$pag)."</div></button>
 </div></form>";
 } # fine if (!$elimina_cont)
 else {
@@ -680,8 +680,8 @@ unlock_tabelle($tabelle_lock);
 
 # Form per modificare l'inventario.
 if ($mostra_form_inventario != "NO") {
-if ($tipoid == "idappartamento") echo "<h3>".mex("Inventario dell'appartamento",'unit.php')." <b>$nome_mag</b>.</h3><br>";
-else echo "<h3>".mex("Inventario del magazzino",$pag)." $nome_mag.</h3><br>";
+if ($tipoid == "idappartamento") echo "<h3 id=\"h_stkr\"></span>".mex("Inventario dell'appartamento",'unit.php')." <b>$nome_mag</b>.</span></h3><br>";
+else echo "<h3 id=\"h_stkr\"><span>".mex("Inventario del magazzino",$pag)." $nome_mag.</span></h3><br>";
 if ($frase_modifica) echo "$frase_modifica<div style=\"height: 5px;\"></div>";
 
 if ($priv_mod_beni != "n") {
@@ -824,11 +824,11 @@ echo "<td><select name=\"ric_checkin\">
 <option value=\"\" selected>".ucfirst(mex("no",$pag))."</option>
 </select></td>";
 } # fine if ($attiva_checkin == "SI")
-echo "<td>".mex("<input class=\"sbutton\" type=\"submit\" name=\"aggiungi_bene\" value=\"".mex("aggiungi",$pag)."\">",$pag)."</td></tr>";
+echo "<td><button class=\"plum\" type=\"submit\" name=\"aggiungi_bene\" value=\"1\"><div>".mex("aggiungi",$pag)."</div></button></td></tr>";
 } # fine if ($opt_beni and $priv_ins_beni != "n")
 
 echo "</table><br><div style=\"text-align: center;\">";
-if ($priv_mod_beni != "n") echo "<input class=\"sbutton\" type=\"submit\" name=\"modifica_quantita\" value=\"".mex("Modifica le quantità attuali",$pag)."\">";
+if ($priv_mod_beni != "n") echo "<button class=\"ainv\" type=\"submit\" name=\"modifica_quantita\" value=\"1\"><div>".mex("Modifica le quantità attuali",$pag)."</div></button>";
 echo "</div></div></form>
 $frase_modifica<br>";
 
@@ -839,7 +839,7 @@ echo "<hr style=\"width: 95%\"><br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">";
 if ($origine_vecchia) echo "<input type=\"hidden\" name=\"origine\" value=\"$origine_vecchia\">";
-echo "<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br></div>";
 
 } # fine if ($mostra_form_inventario != "NO")

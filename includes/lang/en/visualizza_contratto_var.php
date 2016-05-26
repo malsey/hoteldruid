@@ -76,6 +76,7 @@ $trad_var['sconto_senza_tasse_p'] = 'discount_without_taxes_p';
 $trad_var['nome_costo_agg'] = 'extra_cost_name';
 $trad_var['valore_costo_agg'] = 'extra_cost_value';
 $trad_var['valore_costo_agg_p'] = 'extra_cost_value_p';
+$trad_var['giorni_costo_agg'] = 'extra_cost_days';
 $trad_var['valore_tutti_costi_agg'] = 'value_all_extra_costs';
 $trad_var['valore_tutti_costi_agg_p'] = 'value_all_extra_costs_p';
 $trad_var['tutti_i_costi_agg'] = 'all_extra_costs';

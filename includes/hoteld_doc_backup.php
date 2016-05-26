@@ -1,6 +1,6 @@
 <?php exit(); ?>
 
-<!--             2015-10-28 20:56:39             -->
+<!--             2016-02-05 12:14:18             -->
 
 <!--  **    SAVE THIS FILE AS hoteld_doc_backup.php     **  -->
 
@@ -235,6 +235,22 @@
 <riga><cmp>21847</cmp><cmp>var2</cmp><cmp>iva_fatt</cmp></riga>
 <riga><cmp>21849</cmp><cmp>var2</cmp><cmp>mos_costo_come_tasse_fatt</cmp></riga>
 <riga><cmp>21850</cmp><cmp>var2</cmp><cmp>mos_subtotale_fatt</cmp></riga>
+<riga><cmp>100818</cmp><cmp>var15</cmp><cmp>cognome_csv</cmp></riga>
+<riga><cmp>100819</cmp><cmp>var15</cmp><cmp>nome_csv</cmp></riga>
+<riga><cmp>100820</cmp><cmp>var15</cmp><cmp>soprannome_csv</cmp></riga>
+<riga><cmp>100821</cmp><cmp>var15</cmp><cmp>titolo_csv</cmp></riga>
+<riga><cmp>100822</cmp><cmp>var15</cmp><cmp>email_csv</cmp></riga>
+<riga><cmp>100823</cmp><cmp>var15</cmp><cmp>telefono_csv</cmp></riga>
+<riga><cmp>100824</cmp><cmp>var15</cmp><cmp>fax_csv</cmp></riga>
+<riga><cmp>100825</cmp><cmp>var15</cmp><cmp>nazione_csv</cmp></riga>
+<riga><cmp>100826</cmp><cmp>var15</cmp><cmp>regione_csv</cmp></riga>
+<riga><cmp>100827</cmp><cmp>var15</cmp><cmp>citta_csv</cmp></riga>
+<riga><cmp>100828</cmp><cmp>var15</cmp><cmp>indirizzo_csv</cmp></riga>
+<riga><cmp>100829</cmp><cmp>var15</cmp><cmp>cap_csv</cmp></riga>
+<riga><cmp>100830</cmp><cmp>var15</cmp><cmp>cittadinanza_csv</cmp></riga>
+<riga><cmp>100831</cmp><cmp>var15</cmp><cmp>data_nascita_csv</cmp></riga>
+<riga><cmp>100832</cmp><cmp>var15</cmp><cmp>partita_iva_csv</cmp></riga>
+<riga><cmp>100833</cmp><cmp>var15</cmp><cmp>tmp_csv</cmp></riga>
 <riga><cmp>83168</cmp><cmp>var14</cmp><cmp>num_rimovcli</cmp></riga>
 <riga><cmp>83169</cmp><cmp>var14</cmp><cmp>data_rimovcli</cmp></riga>
 <riga><cmp>83170</cmp><cmp>var14</cmp><cmp>pos_rimovcli</cmp></riga>
@@ -443,7 +459,7 @@
 <riga><cmp>6</cmp><cmp>opzeml</cmp><cmp>;SI;</cmp></riga>
 <riga><cmp>5</cmp><cmp>oggetto</cmp><cmp>Disponibilità</cmp></riga>
 <riga><cmp>6</cmp><cmp>oggetto</cmp><cmp>Conferma prenotazione</cmp></riga>
-<riga><cmp>1</cmp><cmp>nomi_con</cmp><cmp>1#?&Esempio#@&2#?&Fattura#@&3#?&Fattura - html#@&4#?&Ricevuta ultimo pagamento#@&5#?&Email disponibilità#@&6#?&Email conferma#@&7#?&Schedine alloggiati#@&9#?&ISTAT C/59_G#@&8#?&File alloggiatiweb#@&11#?&Informativa sulla privacy#@&12#?&Turistat#@&13#?&Turiweb Ricestat#@&14#?&RIMOVCLI - ISTAT Liguria#@&10#?&ISTAT C/59_M</cmp></riga>
+<riga><cmp>1</cmp><cmp>nomi_con</cmp><cmp>1#?&Esempio#@&2#?&Fattura#@&3#?&Fattura - html#@&4#?&Ricevuta ultimo pagamento#@&5#?&Email disponibilità#@&6#?&Email conferma#@&7#?&Schedine alloggiati#@&9#?&ISTAT C/59_G#@&8#?&File alloggiatiweb#@&11#?&Informativa sulla privacy#@&12#?&Turistat#@&13#?&Turiweb Ricestat#@&14#?&RIMOVCLI - ISTAT Liguria#@&10#?&ISTAT C/59_M#@&15#?&Esporta dati clienti</cmp></riga>
 <riga><cmp>3</cmp><cmp>nomefile</cmp><cmp>Fattura</cmp></riga>
 <riga><cmp>5</cmp><cmp>mln_ita</cmp><cmp>Gentile Signor[a] [cognome_email_disp],
 le confermo la disponibilita' di un appartamento[c num_persone_tot!=""] per [num_persone_tot] persone[/c] per il periodo dal [data_inizio] al [data_fine]. Il prezzo per detto periodo e' di [costo_tot_p] [nome_valuta] (comprese le spese accessorie).
@@ -523,6 +539,7 @@ Best regards,
 </cmp></riga>
 <riga><cmp>3</cmp><cmp>impor_vc</cmp><cmp>2</cmp></riga>
 <riga><cmp>14</cmp><cmp>est_txt</cmp><cmp>xml</cmp></riga>
+<riga><cmp>15</cmp><cmp>est_txt</cmp><cmp>csv</cmp></riga>
 <riga><cmp>2</cmp><cmp>dir</cmp><cmp>~</cmp></riga>
 <riga><cmp>3</cmp><cmp>dir</cmp><cmp>~</cmp></riga>
 <riga><cmp>8</cmp><cmp>contrtxt</cmp><cmp>[r][r2][null_ps][/r2][/r][r][r2][acapo_ps][codice_ospite_ps][data_inizio_ps][num_periodi_ps][cognome_ps][nome_ps][sesso_ps][data_nascita_ps][comune_ps][provincia_ps][codice_nazione_nascita_ospite][codice_cittadinanza_ospite][tipo_doc_ps][numero_doc_ps][luogo_doc_ps][/r2][/r]</cmp></riga>
@@ -556,6 +573,9 @@ Best regards,
 [/c][c mostra_prov_rimovcli(pos_rimovcli)!=""]<rigac59 nazione="i" residenza="[prov_pos_rimovcli(pos_rimovcli)]" presenti="[presenze_prov_rimovcli(pos_rimovcli)]" partiti="[partenze_prov_rimovcli(pos_rimovcli)]" arrivati="[arrivi_prov_rimovcli(pos_rimovcli)]"/>
 [/c][/r4][c mostra_pag_rimovcli!="0"]</giornaliero>
 </rm:c59>[/c][/r4][r][null_rimovcli][/r]</cmp></riga>
+<riga><cmp>15</cmp><cmp>contrtxt</cmp><cmp>Cognome,Nome,Soprannome,Titolo,Sesso,Email,Telefono,Fax,Lingua,Nazione di Residenza,Regione di Residenza,Città di Residenza,Indirizzo,CAP,Cittadinanza,Data di Nascita,Partita Iva
+[r][cognome_csv],[nome_csv],[soprannome_csv],[titolo_csv],[sesso],[email_csv],[telefono_csv],[fax_csv],[codice_lingua],[nazione_csv],[regione_csv],[citta_csv],[indirizzo_csv],[cap_csv],[cittadinanza_csv],[data_nascita_csv],[partita_iva_csv]
+[/r]</cmp></riga>
 <riga><cmp>2</cmp><cmp>contrrtf</cmp><cmp>{\rtf1\ansi\deff1\adeflang1025[r][r3][/r3] [/r]
 {\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset0 Times New Roman;}{\f2\fswiss\fprq2\fcharset0 Arial;}{\f3\fswiss\fprq2\fcharset0 Arial;}{\f4\fswiss\fprq2\fcharset0 Bitstream Vera Sans;}{\f5\fswiss\fprq2\fcharset0 Tahoma;}{\f6\froman\fprq2\fcharset0 Garamond;}{\f7\froman\fprq2\fcharset0 Times New Roman;}{\f8\fnil\fprq2\fcharset0 Bitstream Vera Sans;}}
 {\colortbl;\red0\green0\blue0;\red230\green230\blue230;\red255\green255\blue255;\red204\green204\blue204;\red128\green128\blue128;}
@@ -2670,7 +2690,9 @@ Fattura n. [numero_progressivo_documento] del [oggi]
 
 
 </div></cmp></riga>
-<riga><cmp>15</cmp><cmp>contrhtm</cmp><cmp></cmp></riga>
+<riga><cmp>16</cmp><cmp>contrhtm</cmp><cmp></cmp></riga>
+<riga><cmp>17</cmp><cmp>contrhtm</cmp><cmp></cmp></riga>
+<riga><cmp>18</cmp><cmp>contrhtm</cmp><cmp></cmp></riga>
 <riga><cmp>5</cmp><cmp>contreml</cmp><cmp>#!mln!#ita</cmp></riga>
 <riga><cmp>6</cmp><cmp>contreml</cmp><cmp>#!mln!#ita</cmp></riga>
 <riga><cmp>5</cmp><cmp>cond9</cmp><cmp>inr#@?#@?unset#%?a218</cmp></riga>
@@ -3166,6 +3188,67 @@ Fattura n. [numero_progressivo_documento] del [oggi]
 <riga><cmp>175</cmp><cmp>cond2</cmp><cmp>rpt#@?#$?logo_struttura#%?!=#%?txt#%?#@?set#%?21840#%?.=#%?var#%?logo_struttura#%?txt#%?#%?txt#%?</cmp></riga>
 <riga><cmp>176</cmp><cmp>cond2</cmp><cmp>rpt#@?#$?logo_struttura#%?!=#%?txt#%?#@?set#%?21840#%?.=#%?txt#%?" alt="Logo" style="float: right;">#%?txt#%?#%?txt#%?</cmp></riga>
 <riga><cmp>177</cmp><cmp>cond2</cmp><cmp>inr#@?#@?set#%?21846#%?=#%?txt#%?0#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>1</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100818#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>2</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?cognome#%?{}#%?txt#%?&quot;#$?cognome#%?{}#%?txt#%?,#@?set#%?100818#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>3</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100818#%?.=#%?var#%?cognome#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>4</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?cognome#%?{}#%?txt#%?&quot;#$?cognome#%?{}#%?txt#%?,#@?set#%?100818#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>5</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100819#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>6</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?nome#%?{}#%?txt#%?&quot;#$?nome#%?{}#%?txt#%?,#@?set#%?100819#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>7</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100819#%?.=#%?var#%?nome#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>8</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?nome#%?{}#%?txt#%?&quot;#$?nome#%?{}#%?txt#%?,#@?set#%?100819#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>9</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100820#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>10</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?soprannome#%?{}#%?txt#%?&quot;#$?soprannome#%?{}#%?txt#%?,#@?set#%?100820#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>11</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100820#%?.=#%?var#%?soprannome#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>12</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?soprannome#%?{}#%?txt#%?&quot;#$?soprannome#%?{}#%?txt#%?,#@?set#%?100820#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>13</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100821#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>14</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?titolo#%?{}#%?txt#%?&quot;#$?titolo#%?{}#%?txt#%?,#@?set#%?100821#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>15</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100821#%?.=#%?var#%?titolo#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>16</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?titolo#%?{}#%?txt#%?&quot;#$?titolo#%?{}#%?txt#%?,#@?set#%?100821#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>17</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100822#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>18</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?email#%?{}#%?txt#%?&quot;#$?email#%?{}#%?txt#%?,#@?set#%?100822#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>19</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100822#%?.=#%?var#%?email#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>20</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?email#%?{}#%?txt#%?&quot;#$?email#%?{}#%?txt#%?,#@?set#%?100822#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>21</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100823#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>22</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?telefono#%?{}#%?txt#%?&quot;#$?telefono#%?{}#%?txt#%?,#@?set#%?100823#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>23</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100823#%?.=#%?var#%?telefono#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>24</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?telefono#%?{}#%?txt#%?&quot;#$?telefono#%?{}#%?txt#%?,#@?set#%?100823#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>25</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100824#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>26</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?fax#%?{}#%?txt#%?&quot;#$?fax#%?{}#%?txt#%?,#@?set#%?100824#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>27</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100824#%?.=#%?var#%?fax#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>28</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?fax#%?{}#%?txt#%?&quot;#$?fax#%?{}#%?txt#%?,#@?set#%?100824#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>29</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100825#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>30</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?nazione#%?{}#%?txt#%?&quot;#$?nazione#%?{}#%?txt#%?,#@?set#%?100825#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>31</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100825#%?.=#%?var#%?nazione#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>32</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?nazione#%?{}#%?txt#%?&quot;#$?nazione#%?{}#%?txt#%?,#@?set#%?100825#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>33</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100826#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>34</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?regione#%?{}#%?txt#%?&quot;#$?regione#%?{}#%?txt#%?,#@?set#%?100826#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>35</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100826#%?.=#%?var#%?regione#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>36</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?regione#%?{}#%?txt#%?&quot;#$?regione#%?{}#%?txt#%?,#@?set#%?100826#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>37</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100827#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>38</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?citta#%?{}#%?txt#%?&quot;#$?citta#%?{}#%?txt#%?,#@?set#%?100827#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>39</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100827#%?.=#%?var#%?citta#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>40</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?citta#%?{}#%?txt#%?&quot;#$?citta#%?{}#%?txt#%?,#@?set#%?100827#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>41</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100833#%?=#%?var#%?via#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>42</cmp><cmp>cond15</cmp><cmp>rpt#@?#$?numcivico#%?!=#%?txt#%?#@?set#%?100833#%?.=#%?txt#%? #%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>43</cmp><cmp>cond15</cmp><cmp>rpt#@?#$?numcivico#%?!=#%?txt#%?#@?set#%?100833#%?.=#%?var#%?numcivico#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>44</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100828#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>45</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?tmp_csv#%?{}#%?txt#%?&quot;#$?tmp_csv#%?{}#%?txt#%?,#@?set#%?100828#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>46</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100828#%?.=#%?var#%?tmp_csv#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>47</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?tmp_csv#%?{}#%?txt#%?&quot;#$?tmp_csv#%?{}#%?txt#%?,#@?set#%?100828#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>48</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100829#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>49</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?cap#%?{}#%?txt#%?&quot;#$?cap#%?{}#%?txt#%?,#@?set#%?100829#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>50</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100829#%?.=#%?var#%?cap#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>51</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?cap#%?{}#%?txt#%?&quot;#$?cap#%?{}#%?txt#%?,#@?set#%?100829#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>52</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100830#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>53</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?cittadinanza#%?{}#%?txt#%?&quot;#$?cittadinanza#%?{}#%?txt#%?,#@?set#%?100830#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>54</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100830#%?.=#%?var#%?cittadinanza#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>55</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?cittadinanza#%?{}#%?txt#%?&quot;#$?cittadinanza#%?{}#%?txt#%?,#@?set#%?100830#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>56</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100831#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>57</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?date#%?100831#%?data_nascita#%?da#%?0#%?g</cmp></riga>
+<riga><cmp>58</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100832#%?=#%?txt#%?#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>59</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?partita_iva#%?{}#%?txt#%?&quot;#$?partita_iva#%?{}#%?txt#%?,#@?set#%?100832#%?=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
+<riga><cmp>60</cmp><cmp>cond15</cmp><cmp>rpt#@?#@?set#%?100832#%?.=#%?var#%?partita_iva#%?txt#%?&quot;#%?txt#%?""</cmp></riga>
+<riga><cmp>61</cmp><cmp>cond15</cmp><cmp>rpt#@?or#$?partita_iva#%?{}#%?txt#%?&quot;#$?partita_iva#%?{}#%?txt#%?,#@?set#%?100832#%?.=#%?txt#%?"#%?txt#%?#%?txt#%?</cmp></riga>
 <riga><cmp>3</cmp><cmp>cond14</cmp><cmp>ind#@?#@?set#%?88229#%?=#%?txt#%?COD1#%?txt#%?#%?txt#%?</cmp></riga>
 <riga><cmp>4</cmp><cmp>cond14</cmp><cmp>ind#@?#@?set#%?88230#%?=#%?txt#%?5#%?txt#%?#%?txt#%?</cmp></riga>
 <riga><cmp>5</cmp><cmp>cond14</cmp><cmp>ind#@?#@?set#%?88231#%?=#%?txt#%?15#%?txt#%?#%?txt#%?</cmp></riga>

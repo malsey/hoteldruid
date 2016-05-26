@@ -1,22 +1,5 @@
 <?php
 
-
-    if(isset($_POST['email'])) 
-    {
-    	$to=$_POST['email'];
-    	$from = "emeryishimwe@gmail.com";
-		$subject = 'Welecome!';
-    	$message = "Welcome to ou Hotel. We wish you the best residence from the whole team.";
-		$headers  = "MIME-Version: 1.0" . "\r\n";
-		$headers .= "Content-type: text/html; charset=iso-8859-1\" . \"\r\n";
-		$headers .= "From: \". $from. \"\r\n";
-		$headers .= "Reply-To: ". $from. "\r\n";
-		$headers .= "X-Mailer: PHP/" . phpversion();
-		$headers .= "X-Priority: 1\" . \"\r\n";
-
-	    mail($to, $subject, $message, $headers);
-	}
-	
 ##################################################################################
 #    HOTELDRUID
 #    Copyright (C) 2001-2014 by Marco Maria Francesco De Santis (marco@digitaldruid.net)
@@ -572,7 +555,7 @@ $num_ordine[$n_t][$num1][$num_ospiti[$n_t][$num1]] = "1";
 else $max_num_ordine[$n_t][$num1] = 2;
 } # fine for $num1
 } # fine for $n_t
-$tabelle_lock = array("$tableclienti");
+$tabelle_lock = array($tableclienti);
 $tabelle_lock = lock_tabelle($tabelle_lock);
 esegui_query("update $tableclienti set max_num_ordine = '1' where idclienti = '$idclienti'  ");
 $condizione_utente = "";
@@ -1686,7 +1669,6 @@ $commento_arr = array();
 for ($num2 = 1 ; $num2 <= $num_commenti ; $num2++) {
 if (strcmp($commento[$num2],"")) {
 if (($priv_ins_commento == "s" and (!strcmp($tipo_commento[$num2],"") or $tipo_commento[$num2] == "checkin" or $tipo_commento[$num2] == "checkout")) or ($priv_ins_commenti_pers == "s" and $comm_pers_presenti[$tipo_commento[$num2]])) {
-
 echo "<br>".mex("Commento",$pag)."";
 if ($tipo_commento[$num2] == "checkin") echo " <em>".mex("per un promemoria all'entrata",$pag)."</em>";
 if ($tipo_commento[$num2] == "checkout") echo " <em>".mex("per un promemoria all'uscita",$pag)."</em>";
@@ -1702,13 +1684,14 @@ if (strcmp($tipo_commento[$num2],"") and $tipo_commento[$num2] != "checkin" and 
 $commento = $commento_arr['prenota'].">".$commento_arr['checkin'].">".$commento_arr['checkout'].$commento_arr['pers'];
 if ($commento != ">>") esegui_query("update $tableprenota set commento = '$commento' where idprenota = '$idprenota' ");
 } # fine if ($priv_ins_commento == "s" or $priv_ins_commenti_pers == "s")
+
 echo "<br>".mex("Prenotazione",$pag)." $idprenota ".mex("inserita",$pag)."!<div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"modifica_prenota.php\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"id_prenota\" value=\"$idprenota\">
 <input type=\"hidden\" name=\"origine\" value=\"inizio.php\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai\" value=\"".mex("Modifica la prenotazione",$pag)." $idprenota\">
+<button class=\"mres\" type=\"submit\"><div>".mex("Modifica la prenotazione",$pag)." $idprenota</div></button>
 </div></form></div>
 <hr style=\"width: 95%\">";
 
@@ -1738,7 +1721,7 @@ echo "<br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"origine\" value=\"inizio.php\">
 <input type=\"hidden\" name=\"id_prenota\" value=\"$lista_idprenota\">
-<input class=\"sbutton\" type=\"submit\" name=\"vedi_contr\" value=\"".mex("Modifica come gruppo le prenotazioni inserite",$pag)."\">
+<button class=\"mress\" type=\"submit\"><div>".mex("Modifica come gruppo le prenotazioni inserite",$pag)."</div></button>
 </div></form></div><br>
 <hr style=\"width: 95%\">";
 } # fine if (str_replace(",","",$lista_idprenota) != $lista_idprenota)
@@ -1766,16 +1749,16 @@ echo "
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">";
 if ($torna_invece_di_ok == "SI") {
-echo "<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"".mex("Torna indietro",$pag)."\"><br></form>";
+echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."\"></div></button><br></form>";
 } # fine if ($torna_invece_di_ok == "SI")
 else {
 echo "<br><div style=\"text-align: center;\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"".mex("Inserisci una nuova prenotazione",$pag)."\"></div>
+<button class=\"ires\" type=\"submit\"><div>".mex("Inserisci una nuova prenotazione",$pag)."</div></button></div>
 <br></div></form>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 <br></div></form><div style=\"height: 20px;\"></div>";
 } # fine else if ($torna_invece_di_ok == "SI")
 
@@ -1789,7 +1772,7 @@ else {
 if ($mostra_form_inserisci_prenota != "NO") {
 
 # Inizio della pagina.
-echo "<h4>".mex("Inserisci una nuova prenotazione",$pag).".</h4>";
+echo "<h4 id=\"h_ires\"><span>".mex("Inserisci una nuova prenotazione",$pag).".</span></h4>";
 if (@get_magic_quotes_gpc()) {
 $cognome = stripslashes($cognome);
 $nome = stripslashes($nome);
@@ -1802,12 +1785,11 @@ echo "<br>
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"origine\" value=\"prenota.php\">
 <hr style=\"width: 95%\"><div class=\"linhbox\">
-".mex("Cliente titolare: cognome",$pag).": ";
+".mex("Cliente titolare",$pag).": <span class=\"wsnw\">".mex("cognome",$pag).": ";
 if ($attiva_prefisso_clienti == "p") echo $prefisso_clienti;
 echo "<input type=\"text\" name=\"cognome\" value=\"$cognome\">";
 if ($attiva_prefisso_clienti == "s") echo $prefisso_clienti." ";
-echo " ".mex("nome",$pag).":
-<input type=\"text\" name=\"nome\" value=\"$nome\"><br>";
+echo ",</span> <span class=\"wsnw\">".mex("nome",$pag).": <input type=\"text\" name=\"nome\" value=\"$nome\"></span><br>";
 if ($prenota_vicine == "SI") $checked = " checked";
 else $checked = "";
 $mess_app_vicini = "<label><input type=\"checkbox\" name=\"prenota_vicine\" value=\"SI\"$checked> ".mex("Appartamenti vicini",'unit.php').".</label><br>";
@@ -1869,6 +1851,8 @@ else sel_tvsc.disabled = 0;
 $campi_pers_comm = esegui_query("select valpersonalizza from $tablepersonalizza where idpersonalizza = 'campi_pers_comm' and idutente = '$id_utente'");
 if (numlin_query($campi_pers_comm) == 1) $campi_pers_comm = risul_query($campi_pers_comm,0,'valpersonalizza');
 else $campi_pers_comm = "";
+if ($mobile_device) $cols_textarea = "36";
+else $cols_textarea = "45";
 if ($attiva_checkin == "SI" or $campi_pers_comm) {
 echo "<script type=\"text/javascript\">
 <!--
@@ -1887,7 +1871,7 @@ if (colsel_vedi == '\"checkout\"') colsel_vedi = '".str_replace("'","\\'",mex("p
 n_comm_node = document.createElement('div');
 n_comm_node.style.cssFloat = 'left';
 n_comm_node.style.padding = '3px 12px 3px 0';
-n_comm_node.innerHTML = '".mex("Commento",$pag)." '+colsel_vedi+':<br><textarea name=\"commento'+num_commenti_agg+'_'+nt+'\" rows=3 cols=45 style=\"white-space: pre; overflow: auto;\"></textarea><input type=\"hidden\" name=\"tipo_commento'+num_commenti_agg+'_'+nt+'\" value=\"'+colsel+'\">';
+n_comm_node.innerHTML = '".mex("Commento",$pag)." '+colsel_vedi+':<br><textarea name=\"commento'+num_commenti_agg+'_'+nt+'\" rows=3 cols=$cols_textarea style=\"white-space: pre; overflow: auto;\"></textarea><input type=\"hidden\" name=\"tipo_commento'+num_commenti_agg+'_'+nt+'\" value=\"'+colsel+'\">';
 n_comm.appendChild(n_comm_node);
 }
 -->
@@ -1903,7 +1887,7 @@ echo "<tr><td bgcolor=\"$bgcolor_tipologia\"><b>".mex("Tipologia",$pag)." $n_t</
 if ($bgcolor_tipologia == $t2row1color) $bgcolor_tipologia = $t2row2color;
 else $bgcolor_tipologia = $t2row1color;
 } # fine if ($num_tipologie > 1)
-echo mex("Dal",$pag)." ";
+echo "<span class=\"wsnw\">".mex("Dal",$pag)." ";
 if (${"num_app_richiesti".$n_t} != 1) {
 ${"inizioperiodo".$n_t} = explode(",",${"inizioperiodo".$n_t});
 ${"inizioperiodo".$n_t} = ${"inizioperiodo".$n_t}[0];
@@ -1925,7 +1909,7 @@ $date_selected = risul_query($date_selected,0,'datainizio');
 } # fine if (${"inizioperiodo".$n_t})
 else $date_selected = $inizio_select;
 mostra_menu_date(C_DATI_PATH."/selperiodimenu$anno.$id_utente.php","inizioperiodo$n_t",$date_selected,"","",$id_utente,$tema);
-echo " ".mex("al",$pag)." ";
+echo "</span> <span class=\"wsnw\">".mex("al",$pag)." ";
 if (${"fineperiodo".$n_t}) {
 $date_selected = ${"fineperiodo".$n_t};
 if (controlla_num($date_selected) == "SI") {
@@ -1937,8 +1921,8 @@ else $date_selected = $fine_select;
 mostra_menu_date(C_DATI_PATH."/selperiodimenu$anno.$id_utente.php","fineperiodo$n_t",$date_selected,"","",$id_utente,$tema);
 if (!$nometipotariffa) $sel = " selected";
 else $sel = "";
-echo "<br>
-<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr><td>
+echo "</span><br>
+<table id=\"ir_dat\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr><td>
 ".mex("Tipo di tariffa",$pag)." :
 <select name=\"nometipotariffa$n_t\">
 <option value=\"\"$sel>----</option>";
@@ -1973,7 +1957,7 @@ echo "<td style=\"width: 30px;\"></td><td><select name=\"tipo_sconto$n_t\" id=\"
 <option value=\"tot_sett\"$sel_tot_sett>".mex("prezzo totale $parola_settimanale",$pag)."</option>
 <option value=\"tar\"$sel_tar>".mex("prezzo tariffa",$pag)."</option>
 <option value=\"tar_sett\"$sel_tar_sett>".mex("prezzo tariffa $parola_settimanale",$pag)."</option>
-</select>: <input type=\"text\" name=\"sconto$n_t\" size=\"7\" value =\"".${"sconto".$n_t}."\">";
+</select>: <span class=\"wsnw\"><input type=\"text\" name=\"sconto$n_t\" size=\"7\" value =\"".${"sconto".$n_t}."\">";
 $sel_val = "";
 $sel_tot = "";
 $sel_tar = "";
@@ -1984,7 +1968,7 @@ echo " <select name=\"tipo_val_sconto$n_t\" id=\"tvsc$n_t\">
 <option value=\"\"$sel_val>$Euro</option>
 <option value=\"tot\"$sel_tot>".mex("% del totale",$pag)."</option>
 <option value=\"tar\"$sel_tar>".mex("% della tariffa",$pag)."</option>
-</select>;</td>";
+</select>;</span></td>";
 } # fine if ($priv_ins_sconto == "s")
 echo "</tr><tr><td>";
 if ($priv_ins_num_persone == "s") {
@@ -2096,7 +2080,7 @@ echo "<br><div class=\"linhbox\">";
 if ($priv_ins_checkin == "s") {
 if (!${"giorno_stima_checkin".$n_t}) ${"giorno_stima_checkin".$n_t} = 1;
 ${"g_ckn_sel".${"giorno_stima_checkin".$n_t}."_".$n_t} = " selected";
-echo mex("Orario stimato di entrata",$pag).": ".mex("giorno",$pag)."
+echo mex("Orario stimato di entrata",$pag).": <span class=\"wsnw\">".mex("giorno",$pag)."
  <select name=\"giorno_stima_checkin$n_t\">
 <option value=\"1\"".${"g_ckn_sel1_".$n_t}.">1</option>
 <option value=\"2\"".${"g_ckn_sel2_".$n_t}.">2</option>
@@ -2126,7 +2110,7 @@ if ($num1 == ${"min_stima_checkin".$n_t}) $sel = " selected";
 else $sel = "";
 echo "<option value=\"$num1\"$sel>$num1</option>";
 } # fine for $num1
-echo "</select>.<br>";
+echo "</select></span>.<br>";
 } # fine if ($priv_ins_checkin == "s")
 if ($priv_ins_caparra == "s") {
 $metodi_pagamento = esegui_query("select valpersonalizza from $tablepersonalizza where idpersonalizza = 'metodi_pagamento' and idutente = '$id_utente'");
@@ -2150,7 +2134,7 @@ if ($priv_ins_orig_prenota == "s") {
 $origini_prenota = esegui_query("select valpersonalizza from $tablepersonalizza where idpersonalizza = 'origini_prenota' and idutente = '$id_utente'");
 $origini_prenota = risul_query($origini_prenota,0,'valpersonalizza');
 if ($origini_prenota) {
-if ($priv_ins_caparra == "s") echo "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr><td>";
+if ($priv_ins_caparra == "s") echo "<table class=\"nomob\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr><td>";
 if (!${"origine_prenota".$n_t}) $sel = " selected";
 else $sel = "";
 echo mex("Origine",$pag).": <select name=\"origine_prenota$n_t\">
@@ -2174,18 +2158,18 @@ if (!${"tipo_val_commissioni".$n_t}) $sel_val = " selected";
 if (${"tipo_val_commissioni".$n_t} == "tar") $sel_tar = " selected";
 if (${"tipo_val_commissioni".$n_t} == "ts") $sel_ts = " selected";
 if (${"tipo_val_commissioni".$n_t} == "tsc") $sel_tsc = " selected";
-echo "".mex("Commissioni",$pag).": <input type=\"text\" name=\"commissioni$n_t\" size=\"5\" value =\"".${"commissioni".$n_t}."\">
+echo "".mex("Commissioni",$pag).": <span class=\"wsnw\"><input type=\"text\" name=\"commissioni$n_t\" size=\"5\" value =\"".${"commissioni".$n_t}."\">
 <select name=\"tipo_val_commissioni$n_t\">
 <option value=\"\"$sel_val>$Euro</option>
 <option value=\"tar\"$sel_tar>".mex("% della tariffa",$pag)."</option>
 <option value=\"ts\"$sel_ts>".mex("% della tariffa",$pag)."+".strtolower(mex("Sconto",$pag))."</option>
 <option value=\"tsc\"$sel_tsc>".mex("% del prezzo totale",$pag)."</option>
-</select>.";
+</select></span>.";
 if ($origini_prenota) echo "</td></tr></table>";
 } # fine if ($priv_ins_caparra == "s")
 echo "</div>";
 if ($priv_ins_multiple != "n") {
-echo "<table><tr><td>".mex("Nº di prenotazioni di questa tipologia",$pag).":";
+echo "<table class=\"nomob\"><tr><td>".mex("Nº di prenotazioni di questa tipologia",$pag).":";
 if (!${"num_app_richiesti".$n_t}) ${"num_app_richiesti".$n_t} = 1;
 echo "<input type=\"text\" name=\"num_app_richiesti$n_t\" size=\"2\" maxlength=\"3\" value =\"".${"num_app_richiesti".$n_t}."\">.";
 if ($num_tipologie == $n_t and $num_tipologie < 999) echo "</td><td style=\"width: 80px;\"></td><td><input class=\"sbutton\" type=\"submit\" name=\"aggiungi_tipologie\" value =\"".mex("Aggiungi altre tipologie",$pag)."\">";
@@ -2372,19 +2356,15 @@ if (!$commenti_presenti[$c_pers_comm[$num1]]) echo "<option value=\"".$c_pers_co
 } # fine if ($campi_pers_comm)
 echo "</select>";
 } # fine if ($attiva_checkin == "SI" or $campi_pers_comm)
-
-
 echo ":<br>
- <textarea name=\"commento1_$n_t\" rows=3 cols=45 style=\"white-space: pre; overflow: auto;\">".${"commento1_".$n_t}."</textarea><br>
+ <textarea name=\"commento1_$n_t\" rows=3 cols=$cols_textarea style=\"white-space: pre; overflow: auto;\">".${"commento1_".$n_t}."</textarea><br>
 <div id=\"n_comm$n_t\">";
-echo "<br><label for=\"email\">Invoice e-mail:</label>
-    <input type=\"text\" name=\"email\" id=\"email\"/>";
 for ($num1 = 2 ; $num1 <= ${"num_commenti".$n_t} ; $num1++) {
 $nome_comm = "\"".${"tipo_commento$num1"."_".$n_t}."\"";
 if ($nome_comm == "\"checkin\"") $nome_comm = mex("per un promemoria all'entrata",$pag);
 if ($nome_comm == "\"checkout\"") $nome_comm = mex("per un promemoria all'uscita",$pag);
 echo "<div style=\"float: left; padding: 3px 12px 3px 0;\">".mex("Commento",$pag)." $nome_comm:<br>
-<textarea name=\"commento$num1"."_$n_t\" rows=3 cols=45 style=\"white-space: pre; overflow: auto;\">".${"commento$num1"."_".$n_t}."</textarea></div>
+<textarea name=\"commento$num1"."_$n_t\" rows=3 cols=$cols_textarea style=\"white-space: pre; overflow: auto;\">".${"commento$num1"."_".$n_t}."</textarea></div>
 <input type=\"hidden\" name=\"tipo_commento$num1"."_$n_t\" value=\"".${"tipo_commento$num1"."_".$n_t}."\">";
 } # fine for $num1
 echo "</div><div style=\"clear: both;\"></div>
@@ -2399,13 +2379,13 @@ echo "<div style=\"text-align: center;\"><input type=\"hidden\" name=\"numcostia
 <input type=\"hidden\" name=\"num_tipologie\" value=\"$num_tipologie\">
 <input type=\"hidden\" name=\"mos_tut_dat\" value=\"$mos_tut_dat\">
 <input type=\"hidden\" name=\"nuovaprenotazione\" value=\"SI\">
-<input class=\"sbutton\" id=\"inse\" type=\"submit\" name=\"ins_nuova_prenota\" value=\"".mex("Inserisci la prenotazione",$pag)."\">
+<button id=\"inse\" class=\"ires\" type=\"submit\"><div>".mex("Inserisci la prenotazione",$pag)."</div></button>
 <hr style=\"width: 95%\">
 </div></div></form><br>
 <form accept-charset=\"utf-8\" method=\"post\" action=\"inizio.php\"><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" name=\"torna\" value=\"".mex("Torna al menù principale",$pag)."\">
+<button id=\"indi\" class=\"bkmm\" type=\"submit\"><div>".mex("Torna al menù principale",$pag)."</div></button>
 <br></div></form><div style=\"height: 20px;\"></div>";
 
 } # fine if ($mostra_form_inserisci_prenota != "NO")

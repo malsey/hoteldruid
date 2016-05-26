@@ -667,7 +667,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"$pag\"><div>
 <input type=\"hidden\" name=\"idntariffe\" value=\"$idntariffe\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"origine\" value=\"".htmlspecialchars($origine)."\">
-<input class=\"sbutton\" type=\"submit\" name=\"ok\" value=\"OK\"><br>
+<button class=\"cont\" type=\"submit\"><div>OK</div></button><br>
 </div></form>";
 
 } # fine if ($errore != "SI")
@@ -693,7 +693,7 @@ echo "<br><div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idntariffe\" value=\"$idntariffe\">
 <input type=\"hidden\" name=\"origine\" value=\"".htmlspecialchars($origine)."\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 <br></div></form></div>";
 } # fine else if ($errore != "SI")
 
@@ -713,7 +713,7 @@ else include("./includes/interconnect/aggiorna_ic.php");
 
 if ($mostra_form_iniziale != "NO") {
 
-echo "<h3>".mex("Modifica il costo aggiuntivo",$pag)." ".($idntariffe - 10).".</h3>";
+echo "<h3 id=\"h_exc\"><span>".mex("Modifica il costo aggiuntivo",$pag)." ".($idntariffe - 10).".</span></h3>";
 
 $d_nome = $dati_ca[$num_costo]['nome'];
 if ($dati_ca[$num_costo]['mostra'] == "n") $selected_mostra_no = " selected";
@@ -1520,14 +1520,14 @@ echo "</table></td></tr>
 if ($origine) $action = $origine;
 else $action = "visualizza_tabelle.php#tab_costi_agg";
 echo "<br><div style=\"text-align: center;\">
-<input class=\"sbutton\" id=\"modi\" type=\"submit\" name=\"modifica_costo\" value=\"".mex("Modifica il costo",$pag)."\">
+<button class=\"exco\" id=\"modi\" type=\"submit\" name=\"modifica_costo\" value=\"".mex("Modifica il costo",$pag)."\"><div>".mex("Modifica il costo",$pag)."</div></button>
 </div></div></form><br>
 <div style=\"text-align: center;\">
 <form accept-charset=\"utf-8\" method=\"post\" action=\"$action\"><div>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"periodi\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" id=\"indi\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div>
 <table><tr><td style=\"height: 20px;\"></td></tr></table>";
 
@@ -1541,7 +1541,7 @@ echo mex("Il costo è stato cancellato",$pag).".<br>
 <input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"periodi\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div>
 <table><tr><td style=\"height: 20px;\"></td></tr></table>";
 } # fine else if ($dati_ca['id'][$idntariffe] != "")

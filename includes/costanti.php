@@ -52,7 +52,7 @@ define('C_CREADB_CITTA_DEFAULT',"NO");
 # costanti usate per l'hosting
 # abilitare in includes/funzioni.php
 ########
-define('C_BACKUP_E_MODELLI_CON_NUOVI_DATI',"NO");
+define('C_BACKUP_E_MODELLI_CON_NUOVI_DATI',"SI");
 define('C_CREA_SUBORDINAZIONI',"SI");
 define('C_CREA_NUOVI_APP',"SI");
 define('C_URL_NUOVI_APP',"");
@@ -96,7 +96,8 @@ define('C_PASSWORD_BOOKINGCOM_IC',"");
 define('C_ORGANIZZAZIONE_VENERE_IC',"");
 define('C_API_KEY_BBLIVERATE_IC',"");
 define('C_FILE_TITOLO_PERS',"");
-define('C_FILE_CSS_PERS',"./dev/pers.css");
+define('C_FILE_CSS_PERS',"");
+define('C_FILE_MOB_CSS_PERS',"");
 
 # Restrizioni per la demo amministratore
 define('C_RESTRIZIONI_DEMO_ADMIN',"NO");

@@ -303,7 +303,7 @@ echo "
 if ($num_id_prenota == 1) echo mex("Si è sicuri di voler <b>cancellare</b> la prenotazione",$pag)." $id_prenota?<br>";
 else echo mex("Si è sicuri di voler <b>cancellare</b> le prenotazioni",$pag)." $id_prenota_int?<br>";
 echo "<input type=\"hidden\" name=\"cancella_c\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" name=\"cancella\" value=\"".mex("SI",$pag)."\"> ";
+<button class=\"cres\" type=\"submit\" name=\"cancella\" value=\"".mex("SI",$pag)."\"><div>".mex("SI",$pag)."</div></button> ";
 if (($d_pagato != 0 or !strcmp($d_pagato,"~~~~")) and $priv_mod_pagato == "s") {
 echo "(<label><input type=\"checkbox\" id=\"canc_pag\" name=\"cancella_pagato\" value=\"SI\" checked>
  ".mex("cancella anche ciò che era stato pagato",$pag)."";
@@ -320,7 +320,7 @@ echo "</select>";
 else echo "</label>";
 echo ")<br>";
 } # fine if (($d_pagato != 0 or...
-echo "<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("NO",$pag)."\">
+echo "<br><button class=\"gobk\" type=\"submit\" name=\"torna\" value=\"".mex("NO",$pag)."\"><div>".mex("NO",$pag)."</div></button>
 </div></form>";
 } # fine if ($cancella_c != "SI")
 else {
@@ -393,7 +393,7 @@ echo "<form accept-charset=\"utf-8\" method=\"post\" action=\"modifica_prenota.p
 <input type=\"hidden\" name=\"cambia_cliente\" value=\"SI\">
 ".mex("Nuovo titolare della prenotazione",$pag).": $select_osp
 <input type=\"text\" name=\"id_nuovo_cliente\" size=\"5\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Cambia cliente",$pag)."\">
+<button class=\"xcli\" type=\"submit\"><div>".mex("Cambia cliente",$pag)."</div></button>
 </div></form>";
 } # fine if (!$id_nuovo_cliente)
 
@@ -519,8 +519,8 @@ echo "<br><br>
 <input type=\"hidden\" name=\"origine\" value=\"$origine\">
 <input type=\"hidden\" name=\"idprenota_origine\" value=\"$idprenota_origine\">
 <input type=\"hidden\" name=\"id_prenota\" value=\"$id_prenota_int\">";
-if ($errore != "SI") echo "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Annulla",$pag)."\">";
-else echo "<input class=\"sbutton\" type=\"submit\" value=\"".mex("Torna indietro",$pag)."\">";
+if ($errore != "SI") echo "<button class=\"canc\" type=\"submit\"><div>".mex("Annulla",$pag)."</div></button>";
+else echo "<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>";
 echo "</div></form>";
 } # fine if ($mostra_form_modifica_prenota == "NO")
 } # fine if ($cambia_cliente == "SI" and $priv_cambia_cliente != "n" and $vedi_clienti != "NO")
@@ -2502,7 +2502,7 @@ echo "<input type=\"hidden\" name=\"mese\" value=\"$mese\">
 <input type=\"hidden\" name=\"idprenota_origine\" value=\"$idprenota_origine\">
 <input type=\"hidden\" name=\"id_prenota\" value=\"$id_prenota_int\">
 <input type=\"hidden\" name=\"modificaprenotazione\" value=\"modifica\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Continua",$pag)."\">
+<button class=\"mres\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 </div></form><hr align=\"left\" style=\"width: 30%; margin-left: 0; text-align: left;\">";
 } # fine if ($dati_ca[$num_costo]['numsett'] == "c" and $dati_ca[$num_costo]['associasett'] == "s" and...
 else {
@@ -3142,7 +3142,7 @@ echo "<input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"tableprenota_da_aggiornare\" value=\"$tableprenota_da_aggiornare\">
 
 <input type=\"hidden\" name=\"modificaprenotazione\" value=\"Continua\">
-<br><input class=\"sbutton\" type=\"submit\" value=\"".mex("Continua",$pag)."\">
+<br><button class=\"mres\" type=\"submit\"><div>".mex("Continua",$pag)."</div></button>
 <br><br><hr style=\"width: 75%; margin-left: 5px; text-align: left;\"><br></div></form>";
 } # fine if ($inserire == "SI")
 elseif ($form_continua_iniziata == "SI") echo "</div></form>";
@@ -3162,7 +3162,7 @@ echo "<br><input type=\"hidden\" name=\"anno\" value=\"$anno\">
 <input type=\"hidden\" name=\"origine\" value=\"$origine\">
 <input type=\"hidden\" name=\"idprenota_origine\" value=\"$idprenota_origine\">
 <input type=\"hidden\" name=\"id_prenota\" value=\"$id_prenota_int\">
-<input class=\"sbutton\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form><br>";
 
 } # fine if ($modificaprenotazione != "Continua")
@@ -3511,8 +3511,8 @@ if ($mostra_form_modifica_prenota != "NO") {
 
 
 # Inizio della pagina.
-if ($num_id_prenota == 1) echo "<h3>".mex("Modifica o cancella la prenotazione",$pag)." $id_prenota.</h3>";
-else echo "<h3>".mex("Modifica o cancella le prenotazioni",$pag)." ".str_replace(",",", ",$id_prenota_int).".</h3>";
+if ($num_id_prenota == 1) echo "<h3 class=\"h_mres\"><span>".mex("Modifica o cancella la prenotazione",$pag)." $id_prenota.</span></h3>";
+else echo "<h3 class=\"h_mress\"><span>".mex("Modifica o cancella le prenotazioni",$pag)." ".str_replace(",",", ",$id_prenota_int).".</span></h3>";
 if (!$origine) { $origine = "tabella.php"; }
 
 # Form per modificare la prenotazione.
@@ -3816,7 +3816,7 @@ $utente_inserimento = risul_query($dati_cliente,0,'utente_inserimento');
 if ($vedi_clienti == "PROPRI" and $utente_inserimento != $id_utente) $mostra_cliente = "NO";
 if ($vedi_clienti == "GRUPPI" and !$utenti_gruppi[$utente_inserimento]) $mostra_cliente = "NO";
 } # fine elseif ($vedi_clienti == "PROPRI" or $vedi_clienti == "GRUPPI")
-echo "<table cellspacing=0 cellpadding=4 border=0><tr><td>";
+echo "<table class=\"nomob\" cellspacing=0 cellpadding=4 border=0><tr><td>";
 if ($mostra_cliente == "NO") echo "<br>&nbsp;".mex("Cliente",$pag)." <b>$id_clienti</b><br><br>";
 else {
 
@@ -3838,7 +3838,7 @@ echo "</td><td>
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"idclienti\" value=\"$id_clienti\">
 <input type=\"hidden\" name=\"origine\" value=\"modifica_prenota.php?mese=$mese&amp;tipo_tabella=$tipo_tabella&amp;id_prenota=$idprenota_origine2&amp;origine=$origine\">
-<input class=\"sbutton\" type=\"submit\" name=\"vai\" value=\"".mex("Modifica i dati del cliente",$pag)."\">
+<button class=\"mcli\" type=\"submit\"><div>".mex("Modifica i dati del cliente",$pag)."</div></button>
 </div></form>";
 } # fine if ($modifica_clienti == "SI" or...
 } # fine if ($modifica_clienti != "NO")
@@ -3854,7 +3854,7 @@ echo "</td><td>
 <input type=\"hidden\" name=\"idprenota_origine\" value=\"$idprenota_origine\">
 <input type=\"hidden\" name=\"id_prenota\" value=\"$id_prenota_int\">
 <input type=\"hidden\" name=\"cambia_cliente\" value=\"SI\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Cambia cliente",$pag)."\">
+<button class=\"xcli\" type=\"submit\"><div>".mex("Cambia cliente",$pag)."</div></button>
 </div></form>";
 } # fine if ($priv_cambia_cliente != "n")
 echo "</td></tr>";
@@ -3911,7 +3911,7 @@ echo "</td><td colspan=\"2\" valign=\"middle\">
 <input type=\"hidden\" name=\"anno\" value=\"$anno_origine\">
 <input type=\"hidden\" name=\"id_sessione\" value=\"$id_sessione\">
 <input type=\"hidden\" name=\"origine\" value=\"modifica_prenota.php?mese=$mese&amp;tipo_tabella=$tipo_tabella&amp;id_prenota=$idprenota_origine2&amp;origine=$origine\">
-<input class=\"sbutton\" type=\"submit\" value=\"".mex("Modifica gli ospiti",$pag)."\">";
+<button class=\"gsts\" type=\"submit\"><div>".mex("Modifica gli ospiti",$pag)."</div></button>";
 /*if ($num_id_prenota == 1) echo "<input type=\"hidden\" name=\"id_prenota\" value=\"$id_prenota\">";
 else {
 echo " ".mex("della prenotazione",$pag)."
@@ -4003,11 +4003,11 @@ echo "<tr style=\"background-color: ".rowbgcolor().";\"><td colspan=\"2\">&nbsp;
 if ($d_checkin and $attiva_checkin == "SI") echo " <small>(".str_replace(" ","&nbsp;",str_replace("--","",str_replace("$d_data_inizio_f ","",formatta_data($d_checkin)))).")</small>";
 echo "</td><td style=\"width: 600px;\"> ";
 if ($priv_mod_date == "s") {
-echo mex("cambia in",$pag)." ";
+echo mex("cambia in",$pag)." <span class=\"wsnw\">";
 if ($n_inizioperiodo == "") $blank_selected = " selected";
 else $blank_selected = "";
 mostra_menu_date(C_DATI_PATH."/selperiodimenu$anno.$id_utente.php","n_inizioperiodo",$n_inizioperiodo,1,$blank_selected,$id_utente,$tema,"",$d_data_inizio);
-echo " ";
+echo "</span> ";
 } # fine if ($priv_mod_date == "s")
 if ($attiva_checkin == "SI" and $priv_mod_checkin == "s" and !$d_checkout_min) {
 echo "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -4019,11 +4019,11 @@ echo "</td></tr>
 if ($d_checkout and $attiva_checkin == "SI") echo " <small>(".str_replace(" ","&nbsp;",str_replace("--","",str_replace("$d_data_fine_f ","",formatta_data($d_checkout)))).")</small>";
 echo "</td><td> ";
 if ($priv_mod_date == "s") {
-echo mex("cambia in",$pag)." ";
+echo mex("cambia in",$pag)." <span class=\"wsnw\">";
 if ($n_fineperiodo == "") $blank_selected = " selected";
 else $blank_selected = "";
 mostra_menu_date(C_DATI_PATH."/selperiodimenu$anno.$id_utente.php","n_fineperiodo",$n_fineperiodo,1,$blank_selected,$id_utente,$tema,"",$d_data_fine);
-echo " ";
+echo "</span> ";
 } # fine if ($priv_mod_date == "s")
 if ($attiva_checkin == "SI" and $priv_mod_checkin == "s" and $d_checkin_min) {
 echo "&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -4386,8 +4386,10 @@ echo "<option value=\"".$campi_pers_comm[$num1]."\"$selected>".mex("cambia il co
 echo "</select>";
 } # fine if (($priv_mod_commento == "s" and ($attiva_checkin == "SI" and...
 else echo mex("cambia in",$pag);
+if ($mobile_device) $cols_textarea = "24";
+else $cols_textarea = "40";
 echo ":<br>
-<textarea name=\"n_commento\" rows=2 cols=40 style=\"white-space: pre; overflow: auto;\"$onclick>$n_commento</textarea><br>";
+<textarea name=\"n_commento\" rows=2 cols=$cols_textarea style=\"white-space: pre; overflow: auto;\"$onclick>$n_commento</textarea><br>";
 if ($priv_mod_commento == "s") echo "<label><input type=\"checkbox\" name=\"n_cancella_commento\" value=\"SI\"$checked> ".mex("Cancella il commento",$pag).".</label>";
 } # fine if ($priv_mod_commento == "s" or $priv_mod_commenti_pers == "s")
 echo "</td></tr>";
@@ -5048,11 +5050,15 @@ echo ".</label><br>";
 
 if ($num_id_prenota == 1) {
 $frase_modifica_prenota = mex("Modifica la prenotazione",$pag)." $id_prenota";
+$mr_class = "mres";
 $frase_cancella_prenota = mex("Cancella la prenotazione",$pag)." $id_prenota";
+$cr_class = "cres";
 } # fine if ($num_id_prenota == 1)
 else {
 $frase_modifica_prenota = mex("Modifica le prenotazioni",$pag);
+$mr_class = "mress";
 $frase_cancella_prenota = mex("Cancella le prenotazioni",$pag);
+$cr_class = "cress";
 } # fine else if ($num_id_prenota == 1)
 
 $dcognome = str_replace("\"","&quot;",$dcognome);
@@ -5069,7 +5075,7 @@ echo "<div style=\"text-align: center;\">
 <input type=\"hidden\" name=\"d_host_inserimento\" value=\"$d_host_inserimento\">
 <input type=\"hidden\" name=\"pagina_gia_modificata\" value=\"SI\">
 
-<input class=\"sbutton\" id=\"modi\" type=\"submit\" name=\"modificaprenotazione\" value=\"$frase_modifica_prenota\">
+<button class=\"$mr_class\" id=\"modi\" type=\"submit\" name=\"modificaprenotazione\" value=\"$frase_modifica_prenota\"><div>$frase_modifica_prenota</div></button>
 </div>
 </div></form>
 <table><tr><td style=\"height: 12px;\"></td></tr></table>
@@ -5086,7 +5092,8 @@ echo "<table><tr><td style=\"height: 6px;\"></td></tr></table>
 <input type=\"hidden\" name=\"d_data_inserimento\" value=\"$d_data_inserimento\">
 <input type=\"hidden\" name=\"d_host_inserimento\" value=\"$d_host_inserimento\">
 <input type=\"hidden\" name=\"d_pagato\" value=\"$d_pagato\">
-<input class=\"sbutton\" id=\"canc\" type=\"submit\" name=\"cancella\" value=\"$frase_cancella_prenota\">
+<input type=\"hidden\" name=\"cancella\" value=\"1\">
+<button class=\"$cr_class\" id=\"canc\" type=\"submit\"><div>$frase_cancella_prenota</div></button>
 </div></form>
 <table><tr><td style=\"height: 6px;\"></td></tr></table>
 <hr style=\"width: 95%;\">";
@@ -5215,14 +5222,14 @@ echo "<option value=\"$num_contratto\">$num_contratto_vedi</option>";
 } # fine if ($attiva_contratti_consentiti == "n" or...
 } # fine for $num_contratto
 echo "</select>
- <input class=\"sbutton\" id=\"tcon\" type=\"submit\" value=\"".ucfirst(mex("visualizza",$pag))."\">
+ <button class=\"vdoc\" id=\"tcon\" type=\"submit\"><div>".ucfirst(mex("visualizza",$pag))."</div></button>
 <input type=\"hidden\" id=\"hcon\" value=\"".ucfirst(mex("visualizza il documento",$pag))."\">";
 if ($dati_cap['num'] > 0 and $num_id_prenota == 1) {
-echo "<br>(".mex("con costo agg.",$pag)."
+echo "<br><div class=\"doc_ec\">(".mex("con costo agg.",$pag)."
  <select name=\"num_costo_agg_sel\">
 <option value=\"\" selected>----</option>
 $select_costo_stampa
-</select>)";
+</select>)</div>";
 } # fine if ($dati_cap['num'] > 0 and $num_id_prenota == 1)
 echo "</div></form>
 <table><tr><td style=\"height: 6px;\"></td></tr></table>
@@ -5236,7 +5243,7 @@ echo "<table><tr><td style=\"height: 6px;\"></td></tr></table>
 <input type=\"hidden\" name=\"mese\" value=\"$mese\">
 <input type=\"hidden\" name=\"tipo_tabella\" value=\"$tipo_tabella\">
 <input type=\"hidden\" name=\"torna_indietro\" value=\"1\">
-<input class=\"sbutton\" id=\"indi\" type=\"submit\" name=\"torna\" value=\"".mex("Torna indietro",$pag)."\">
+<button class=\"gobk\" id=\"indi\" type=\"submit\"><div>".mex("Torna indietro",$pag)."</div></button>
 </div></form></div>
 <table><tr><td style=\"height: 20px;\"></td></tr></table>";
 
